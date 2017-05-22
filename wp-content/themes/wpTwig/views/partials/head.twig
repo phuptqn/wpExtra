@@ -1,0 +1,12 @@
+<meta http-equiv="Content-Type" content="text/html; charset={{ site.charset }}" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="{{ site.pingback_url }}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }} Feed" href="{{ fn('get_bloginfo', 'rss2_url') }}" />
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }} Comments Feed" href="{{ fn('get_bloginfo', 'comments_rss2_url') }}" />
+
+{% if global.favicon %}
+<link rel="shortcut icon" href="{{ global.favicon }}" type="image/x-icon" />
+{% endif %}
