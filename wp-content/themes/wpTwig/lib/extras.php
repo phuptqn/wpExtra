@@ -66,12 +66,12 @@ add_action( 'wp_enqueue_scripts', 'master_scripts' );
 /**
  * Pagination function
  */
-function get_pagination_link($href, $text) {
-	return '<a href="' . $href . '" class="pa-item">' . $text . '</a>';
+function get_pagination_link($href, $text, $classes = '') {
+    return '<a href="' . $href . '" class="pa-item ' . $classes . '">' . $text . '</a>';
 }
 
 function get_pagination_current($text) {
-	return '<span class="pa-item pa-current">' . $text . '</span>';
+    return '<span class="pa-item pa-current">' . $text . '</span>';
 }
 
 /**
@@ -84,73 +84,77 @@ function get_pagination_current($text) {
  */
 function pagination($type = 'long', $pages = '', $paged = '', $range = 3) {
  
-	$paged = $paged ? $paged : get_query_var('paged');
-	$paged = $paged ? $paged : 1;
+    if ( ! $paged ) {
+        $paged = get_query_var('paged');
+        $paged = $paged ? $paged : 1;
+    }
 
-	global $wp_query;
-	$pages = $pages ? $pages : $wp_query->max_num_pages;
+    if ( ! $pages ) {
+        global $wp_query;
+        $pages = $wp_query->max_num_pages;
+    }
 
-	if (!$pages || $pages == 1) return;
+    if ( !$pages || $pages == 1 ) return '';
  
-	$html = '';
+    $html = '';
 
-	if ($type == 'long') {
+    if ($type == 'long') {
 
-		$dots_left = 0;
-		$dots_right = 0;
+        $dots_left = 0;
+        $dots_right = 0;
 
-		$html .= ($paged >= 2) ? get_pagination_link( get_pagenum_link($paged - 1), '<i class="fa fa-angle-left"></i>' ) : '';
+        $html .= ($paged >= 2) ? get_pagination_link( get_pagenum_link($paged - 1), '&#171;', 'pa-control pa-left' ) : '';
 
-		for ($i = 1; $i <= $pages; $i++) {
+        for ($i = 1; $i <= $pages; $i++) {
 
-			$output = ( $paged == $i ) ? get_pagination_current($i) : get_pagination_link( get_pagenum_link($i), $i );
+            $output = ( $paged == $i ) ? get_pagination_current($i) : get_pagination_link( get_pagenum_link($i), $i );
 
-			if ($i <= 2 || $i >= $pages - 1) {
-				$html .= $output;
-			} else {
-				if ($paged == $i) {
-					if ($i == 3) {
-						$html .= get_pagination_current($i) . get_pagination_link( get_pagenum_link($i + 1), $i + 1 );
-					} elseif ($i == $pages - 2) {
-						$html .= get_pagination_link( get_pagenum_link($i - 1), $i - 1 ) . get_pagination_current($i);
-					} else {
-						$html .= get_pagination_link( get_pagenum_link($i - 1), $i - 1 ) . get_pagination_current($i) . get_pagination_link( get_pagenum_link($i + 1), $i + 1 );
-					}
-				} else {
-					if ( abs($i - $paged) >= 3 ) {
-						if ($i < $paged) {
-							if (!$dots_left) {
-								$html .= '<span class="pa-item">...</span>';
-								$dots_left = 1;
-							}
-						} else {
-							if (!$dots_right) {
-								$html .= '<span class="pa-item">...</span>';
-								$dots_right = 1;
-							}
-						}
-					} elseif ( ($i == 3 && $paged != 1 && $paged != 4) || ($i == $pages - 2 && $paged != $pages && $paged != $pages - 3) ) {
-						$html .= get_pagination_link( get_pagenum_link($i), $i );
-					}
-					
-				}
-			}
+            if ($i <= 2 || $i >= $pages - 1) {
+                $html .= $output;
+            } else {
+                if ($paged == $i) {
+                    if ($i == 3) {
+                        $html .= get_pagination_current($i) . get_pagination_link( get_pagenum_link($i + 1), $i + 1 );
+                    } elseif ($i == $pages - 2) {
+                        $html .= get_pagination_link( get_pagenum_link($i - 1), $i - 1 ) . get_pagination_current($i);
+                    } else {
+                        $html .= get_pagination_link( get_pagenum_link($i - 1), $i - 1 ) . get_pagination_current($i) . get_pagination_link( get_pagenum_link($i + 1), $i + 1 );
+                    }
+                } else {
+                    if ( abs($i - $paged) >= 3 ) {
+                        if ($i < $paged) {
+                            if (!$dots_left) {
+                                $html .= '<span class="pa-item pa-dots">...</span>';
+                                $dots_left = 1;
+                            }
+                        } else {
+                            if (!$dots_right) {
+                                $html .= '<span class="pa-item pa-dots">...</span>';
+                                $dots_right = 1;
+                            }
+                        }
+                    } elseif ( ($i == 3 && $paged != 1 && $paged != 4) || ($i == $pages - 2 && $paged != $pages && $paged != $pages - 3) ) {
+                        $html .= get_pagination_link( get_pagenum_link($i), $i );
+                    }
+                    
+                }
+            }
 
-		}
+        }
 
-		$html .= ($paged <= $pages - 1) ? get_pagination_link( get_pagenum_link($paged + 1), '<i class="fa fa-angle-right"></i>' ) : '';
+        $html .= ($paged <= $pages - 1) ? get_pagination_link( get_pagenum_link($paged + 1), '&#187;', 'pa-control pa-right' ) : '';
 
-	} elseif ($type == 'short') {
-		
-		for ($i = 1; $i <= $pages; $i++) {
-			if ( !($i >= $paged + $range + 1 || $i <= $paged - $range - 1) ) {
-				$html .= ( $paged == $i ) ? get_pagination_current($i) : get_pagination_link( get_pagenum_link($i), $i );
-			}
-		}
+    } elseif ($type == 'short') {
+        
+        for ($i = 1; $i <= $pages; $i++) {
+            if ( !($i >= $paged + $range + 1 || $i <= $paged - $range - 1) ) {
+                $html .= ( $paged == $i ) ? get_pagination_current($i) : get_pagination_link( get_pagenum_link($i), $i );
+            }
+        }
 
-	} else {
-		$html .= 'Invalid pagination function parameters.';
-	}
+    } else {
+        $html .= 'Invalid pagination function parameters.';
+    }
 
-	return $html;
+    return $html;
 }
