@@ -63,6 +63,16 @@ function master_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'master_scripts' );
 
+// @length unit: Character
+function get_stripped_excerpt( $content, $length = 250 ) {
+    $return = wp_strip_all_tags($content, true);
+    if ( $return && strlen($return) > $length ) {
+        $return = substr( $return, 0, strpos($return, ' ', $length) );
+    }
+
+    return $return;
+}
+
 /**
  * Pagination function
  */
