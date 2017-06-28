@@ -2,8 +2,8 @@
 Contributors: jarednova, connorjburton, lggorman
 Tags: template engine, templates, twig
 Requires at least: 3.7
-Stable tag: 1.2.4
-Tested up to: 4.7.2
+Stable tag: 1.3.2
+Tested up to: 4.7.3
 PHP version: 5.3.0 or greater
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -40,6 +40,32 @@ Timber is great for any WordPress developer who cares about writing good, mainta
 
 
 == Changelog ==
+
+= 1.3.2 =
+* Fix for image bug with WPML and Roots/Bedrock active #1445 (thanks @njbarrett)
+* Fix for some HTTPs issues #1448 (thanks @baldursson)
+* Improved docs! #1441 (thanks @gchtr)
+* Allow ACF to convert single WP_Post objects to Timber Posts #1439 (thanks @luism-s)
+
+= 1.3.1 =
+* Fix for Timber::get_widgets with Twig 2.0 #1422 (thanks @gchtr)
+* Fix for WPML Menus #1414 (thanks @mikeyb31)
+* Fix for WPCLI integration #1429 #1430 (thanks @vyarmolenko)
+* Fix for image format processing #1421 (thanks @mgussekloo)
+
+= 1.3.0 =
+* Default $context object now returns a PostQuery for $context['posts'] this is cool because you can use `{{ posts.pagination }}` in your Twig templates without any further PHP work (thanks @lggorman)
+* Timber\Images with PDFs and other content types now return the file instead of null # (thanks @hoandang)
+* Timber\Comments now support different comment types #1364 (thanks @yantei)
+* Timber\Comments {{ comment.content }} now returns processed comment with `<p>` tags
+* Fix for HTTP error when uploading media files in Windows #1346 (thanks Matias Griese)
+* Fix for image resizing on alternative WP setups (thanks @gillesgoetsch)
+* Exposing a function to global Twig scope through Timber\FunctionWrapper is deprecated, the prefered method to do this is through a Twig template like `{{ function('my_cool_function', 'my_argument') }}` (thanks @gchtr)
+* Fixed issues with use of Twig 2.0 (#1370)
+* Fixed up some things with Timber/Archives and getting post_count #1376
+* Don't let Timber fail when converting TIFFs or other weird file types, instead return the passed value w/o modifying #1383
+* Updated `FunctionWrapper` with appropriate warnings and Twig 2.0 compat (thank you thank you @gchtr)
+Misc fixes to documentation
 
 = 1.2.4 =
 * Fixed regression from S3 handling #1330 (@gchtr)

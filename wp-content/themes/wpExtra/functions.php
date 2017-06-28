@@ -1,7 +1,7 @@
 <?php
 
 if ( ! class_exists('acf') && ! is_admin() ) {
-	echo 'Please active ACF plugin!'; die;
+    echo 'Please active ACF plugin!'; die;
 }
 
 add_action( 'init', 'master_init' );

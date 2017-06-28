@@ -29,9 +29,9 @@ class ImageHelper {
 	const BASE_CONTENT = 2;
 
 	public static function init() {
-		self::add_constants();
 		self::add_actions();
 		self::add_filters();
+		return true;
 	}
 
 	/**
@@ -180,17 +180,6 @@ class ImageHelper {
 	}
 
 	/**
-	 * Adds a constant defining the path to the content directory relative to the site
-	 * for example /wp-content or /content
-	 */
-	protected static function add_constants() {
-		if ( !defined('WP_CONTENT_SUBDIR') ) {
-			$wp_content_path = str_replace(get_home_url(), '', WP_CONTENT_URL);
-			define('WP_CONTENT_SUBDIR', $wp_content_path);
-		}
-	}
-
-	/**
 	 * adds a 'relative' key to wp_upload_dir() result.
 	 * It will contain the relative url to upload dir.
 	 * @return void
@@ -257,8 +246,7 @@ class ImageHelper {
 	protected static function process_delete_generated_files( $filename, $ext, $dir, $search_pattern, $match_pattern = null ) {
 		$searcher = '/'.$filename.$search_pattern;
 		foreach ( glob($dir.$searcher) as $found_file ) {
-			$regexdir = str_replace('/', '\/', $dir);
-			$pattern = '/'.($regexdir).'\/'.$filename.$match_pattern.$ext.'/';
+			$pattern = '/'.preg_quote($dir, '/').'\/'.preg_quote($filename, '/').$match_pattern.preg_quote($ext, '/').'/';
 			$match = preg_match($pattern, $found_file);
 			if ( !$match_pattern || $match ) {
 				unlink($found_file);
@@ -354,25 +342,25 @@ class ImageHelper {
 		);
 		$upload_dir = wp_upload_dir();
 		$tmp = $url;
-		if ( 0 === strpos($tmp, ABSPATH) || 0 === strpos($tmp, '/srv/www/') ) {
+		if ( TextHelper::starts_with($tmp, ABSPATH) || TextHelper::starts_with($tmp, '/srv/www/') ) {
 			// we've been given a dir, not an url
 			$result['absolute'] = true;
-			if ( 0 === strpos($tmp, $upload_dir['basedir']) ) {
+			if ( TextHelper::starts_with($tmp, $upload_dir['basedir']) ) {
 				$result['base'] = self::BASE_UPLOADS; // upload based
 				$tmp = str_replace($upload_dir['basedir'], '', $tmp);
 			}
-			if ( 0 === strpos($tmp, WP_CONTENT_DIR) ) {
+			if ( TextHelper::starts_with($tmp, WP_CONTENT_DIR) ) {
 				$result['base'] = self::BASE_CONTENT; // content based
 				$tmp = str_replace(WP_CONTENT_DIR, '', $tmp);
 			}
 		} else {
 			if ( !$result['absolute'] ) {
-				$tmp = site_url().$tmp;
+				$tmp = untrailingslashit(network_home_url()).$tmp;
 			}
-			if ( 0 === strpos($tmp, $upload_dir['baseurl']) ) {
+			if ( URLHelper::starts_with($tmp, $upload_dir['baseurl']) ) {
 				$result['base'] = self::BASE_UPLOADS; // upload based
 				$tmp = str_replace($upload_dir['baseurl'], '', $tmp);
-			} else if ( 0 === strpos($tmp, content_url()) ) {
+			} else if ( URLHelper::starts_with($tmp, content_url()) ) {
 				$result['base'] = self::BASE_CONTENT; // content-based
 				$tmp = self::theme_url_to_dir($tmp);
 				$tmp = str_replace(WP_CONTENT_DIR, '', $tmp);
@@ -464,7 +452,7 @@ class ImageHelper {
 			$subdir = URLHelper::url_to_file_system($subdir);
 		}
 		$subdir = self::maybe_realpath($subdir);
-		
+
 		$path = '';
 		if ( self::BASE_UPLOADS == $base ) {
 			//it is in the Uploads directory
@@ -531,11 +519,11 @@ class ImageHelper {
 			$au['subdir'],
 			$au['basename']
 		);
-		
+
 		$new_url = apply_filters('timber/image/new_url', $new_url);
 		$destination_path = apply_filters('timber/image/new_path', $destination_path);
 		// if already exists...
-		if ( file_exists($destination_path) ) {
+		if ( file_exists($source_path) && file_exists($destination_path) ) {
 			if ( $force || filemtime($source_path) > filemtime($destination_path) ) {
 				// Force operation - warning: will regenerate the image on every pageload, use for testing purposes only!
 				unlink($destination_path);

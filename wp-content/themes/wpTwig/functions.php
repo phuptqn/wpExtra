@@ -1,7 +1,10 @@
 <?php
 
 if ( ! class_exists('TimberSite') && ! is_admin() ) {
-	echo 'Please active Timber plugin!'; die;
+	echo 'Please active Timber plugin!';
+}
+if ( ! class_exists('acf') && ! is_admin() ) {
+	echo '<br/>Please active ACF plugin!'; die;
 }
 
 if ( class_exists('TimberSite') ) {

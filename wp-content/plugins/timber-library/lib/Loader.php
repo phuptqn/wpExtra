@@ -87,8 +87,11 @@ class Loader {
 	}
 
 	/**
-	 * @param array $filenames
-	 * @return bool
+	 * Get first existing template file.
+	 *
+	 * @param array|string $filenames  Name of the Twig file to render. If this is an array of files, the function
+	 *                                 return the first file that exists.
+	 * @return string
 	 */
 	public function choose_template( $filenames ) {
 		if ( is_array($filenames) ) {
@@ -163,6 +166,7 @@ class Loader {
 
 		$twig = apply_filters('twig_apply_filters', $twig);
 		$twig = apply_filters('timber/twig/filters', $twig);
+		$twig = apply_filters('timber/twig/functions', $twig);
 		$twig = apply_filters('timber/twig/escapers', $twig);
 		$twig = apply_filters('timber/loader/twig', $twig);
 		return $twig;
@@ -205,7 +209,9 @@ class Loader {
 
 	public function clear_cache_twig() {
 		$twig = $this->get_twig();
-		$twig->clearCacheFiles();
+		if ( method_exists($twig, 'clearCacheFiles') ) {
+			$twig->clearCacheFiles();
+		}
 		$cache = $twig->getCache();
 		if ( $cache ) {
 			self::rrmdir($twig->getCache());
