@@ -168,3 +168,16 @@ function pagination($type = 'long', $pages = '', $paged = '', $range = 3) {
 
     return $html;
 }
+
+// ACF remove row confirm
+add_action('acf/input/admin_footer', function() {
+    ?>
+    <script type="text/javascript">
+        (function ($) {
+            $('body').on('click', 'a[data-event="remove-layout"], a[data-event="remove-row"], .acf-repeater-remove-row, .acf-fc-remove, a.delete-field', function (e) {
+                return confirm("Are you sure? This is permanent!");
+            })
+        })(jQuery);
+    </script>
+    <?php
+});
