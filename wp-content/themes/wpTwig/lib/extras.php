@@ -77,43 +77,43 @@ function get_stripped_excerpt( $content, $length = 250 ) {
  * Pagination function
  */
 function get_pagination_link($href, $text, $classes = '') {
-    return '<a href="' . $href . '" class="pa-item ' . $classes . '">' . $text . '</a>';
+    return '<a href="' . $href . '" class="' . $classes . '">' . $text . '</a>';
 }
 
 function get_pagination_current($text) {
-    return '<span class="pa-item pa-current">' . $text . '</span>';
+    return '<span class="current">' . $text . '</span>';
 }
 
 /**
  * Get pagination
+ * @param  string  $custom_query
  * @param  string  $type  long or short
- * @param  string  $pages max_num_pages (total of pages)
- * @param  string  $paged current page
  * @param  integer $range how many items to show at the same time
  * @return pagination html
  */
-function pagination($type = 'long', $pages = '', $paged = '', $range = 3) {
+function get_extra_pagination($custom_query = '', $div_class = 'extra-pagination', $type = 'long', $range = 3) {
  
-    if ( ! $paged ) {
-        $paged = get_query_var('paged');
-        $paged = $paged ? $paged : 1;
-    }
+    $paged = get_query_var('paged');
+    $paged = $paged ? $paged : get_query_var('page');
+    $paged = $paged ? $paged : 1;
 
-    if ( ! $pages ) {
+    if ( $custom_query === '' ) {
         global $wp_query;
         $pages = $wp_query->max_num_pages;
+    } else {
+        $pages = $custom_query->max_num_pages;
     }
 
     if ( !$pages || $pages == 1 ) return '';
  
-    $html = '';
+    $html = '<div class="' . $div_class . '">';
 
     if ($type == 'long') {
 
         $dots_left = 0;
         $dots_right = 0;
 
-        $html .= ($paged >= 2) ? get_pagination_link( get_pagenum_link($paged - 1), '&#171;', 'pa-control pa-left' ) : '';
+        $html .= ($paged >= 2) ? get_pagination_link( get_pagenum_link($paged - 1), '&#171;', 'arrow arrow-left' ) : '';
 
         for ($i = 1; $i <= $pages; $i++) {
 
@@ -134,12 +134,12 @@ function pagination($type = 'long', $pages = '', $paged = '', $range = 3) {
                     if ( abs($i - $paged) >= 3 ) {
                         if ($i < $paged) {
                             if (!$dots_left) {
-                                $html .= '<span class="pa-item pa-dots">...</span>';
+                                $html .= '<span class="dots">...</span>';
                                 $dots_left = 1;
                             }
                         } else {
                             if (!$dots_right) {
-                                $html .= '<span class="pa-item pa-dots">...</span>';
+                                $html .= '<span class="dots">...</span>';
                                 $dots_right = 1;
                             }
                         }
@@ -152,7 +152,7 @@ function pagination($type = 'long', $pages = '', $paged = '', $range = 3) {
 
         }
 
-        $html .= ($paged <= $pages - 1) ? get_pagination_link( get_pagenum_link($paged + 1), '&#187;', 'pa-control pa-right' ) : '';
+        $html .= ($paged <= $pages - 1) ? get_pagination_link( get_pagenum_link($paged + 1), '&#187;', 'arrow arrow-right' ) : '';
 
     } elseif ($type == 'short') {
         
@@ -165,6 +165,8 @@ function pagination($type = 'long', $pages = '', $paged = '', $range = 3) {
     } else {
         $html .= 'Invalid pagination function parameters.';
     }
+
+    $html .= '</div>';
 
     return $html;
 }
@@ -181,3 +183,15 @@ add_action('acf/input/admin_footer', function() {
     </script>
     <?php
 });
+
+function some_scripts_into_head() {
+?>
+    <script type="text/javascript">
+        var site = {
+            url     : '<?php echo rtrim( get_site_url(), '/' ); ?>',
+            themeUrl: '<?php echo rtrim( get_template_directory_uri(), '/' ); ?>'
+        };
+    </script>   
+<?php
+}
+add_action('wp_head', 'some_scripts_into_head');

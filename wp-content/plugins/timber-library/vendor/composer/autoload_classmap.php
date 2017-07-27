@@ -153,6 +153,7 @@ return array(
     'Timber\\Theme' => $baseDir . '/lib/Theme.php',
     'Timber\\Timber' => $baseDir . '/lib/Timber.php',
     'Timber\\Twig' => $baseDir . '/lib/Twig.php',
+    'Timber\\Twig_Function' => $baseDir . '/lib/Twig_Function.php',
     'Timber\\URLHelper' => $baseDir . '/lib/URLHelper.php',
     'Timber\\User' => $baseDir . '/lib/User.php',
     'Twig\\Cache\\CacheInterface' => $vendorDir . '/twig/twig/src/Cache/CacheInterface.php',
