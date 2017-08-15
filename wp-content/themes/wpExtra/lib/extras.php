@@ -218,7 +218,8 @@ if ( ! class_exists('RichterPagination') ) {
                     } else {
                         if ($paged == $i) {
                             if ($i == 3) {
-                                $html .= $this->getRichterPaginationCurrent($i) . $this->getRichterPaginationLink( get_pagenum_link($i + 1), $i + 1 );
+                                $html .= $this->getRichterPaginationCurrent($i);
+                                $html .= ($i + 1 != $pages - 1) ? $this->getRichterPaginationLink( get_pagenum_link($i + 1), $i + 1 ) : '';
                             } elseif ($i == $pages - 2) {
                                 $html .= $this->getRichterPaginationLink( get_pagenum_link($i - 1), $i - 1 ) . $this->getRichterPaginationCurrent($i);
                             } else {
