@@ -44,8 +44,8 @@ gulp.task('sass', function () {
 		.pipe(wait(1000))
 		.pipe(sass({
 			outputStyle: 'expanded',
-			indentType: 'tab',
-			indentWidth: 1
+			indentType: 'space',
+			indentWidth: 4
 		}))
 		.pipe(autoprefixer({
 			browsers: ['last 10 versions']
@@ -54,14 +54,7 @@ gulp.task('sass', function () {
 		.pipe(gulp.dest(paths.bundles))
 		.pipe(rename('style.min.css'))
 		.pipe(cssnano({zindex: false}))
-		.pipe(gulp.dest(paths.min))
-		.pipe(browserSync.stream());
-});
-
-gulp.task('babeljs', function () {
-	return gulp.src( paths.js + '/*.js' )
-		.pipe(babel())
-		.pipe(gulp.dest( paths.temp + '/babeljs' ));
+		.pipe(gulp.dest(paths.min));
 });
 
 gulp.task('vendor_js', function () {
@@ -78,7 +71,21 @@ gulp.task('vendor_js', function () {
 		.pipe(gulp.dest(paths.min));
 });
 
-gulp.task('js', function () {
+gulp.task('jshint', function () {
+	return gulp.src(paths.js + '/*.js')
+		.pipe(jshint({
+			esversion: 6
+		}))
+		.pipe(jshint.reporter('default'))
+});
+
+gulp.task('babeljs', ['jshint'], function () {
+	return gulp.src( paths.js + '/*.js' )
+		.pipe(babel())
+		.pipe(gulp.dest( paths.temp + '/babeljs' ));
+});
+
+gulp.task('js', ['babeljs'], function () {
 	return gulp.src([
 			paths.temp + '/babeljs/*.js'
 		])
@@ -89,32 +96,20 @@ gulp.task('js', function () {
 		.pipe(gulp.dest(paths.min));
 });
 
-gulp.task('jshint', function () {
-	return gulp.src(paths.js + '/*.js')
-		.pipe(jshint({
-			esversion: 6
-		}))
-		.pipe(jshint.reporter('default'))
-});
-
-gulp.task('jsreload', ['jshint', 'babeljs', 'js'], function (done) {
-	browserSync.reload();
-	done();
-});
-
 gulp.task('default', ['vendor_js', 'vendor_css', 'jshint', 'babeljs', 'js', 'sass'], function() {
 
 	browserSync.init({
 		proxy: siteUrl
 	});
 
+	// Run registerd tasks
+	gulp.watch([paths.js + '/*.js'], {cwd: './'}, ['js']);
+
 	gulp.watch([
 		paths.scss + '/*.scss',
 		paths.scss + '/*/*.scss',
 		paths.scss + '/*/*/*.scss'
 	], {cwd: './'}, ['sass']);
-
-	gulp.watch([paths.js + '/*.js'], {cwd: './'}, ['jsreload']);
 
 	gulp.watch([
 		'./*.php',
@@ -124,7 +119,9 @@ gulp.task('default', ['vendor_js', 'vendor_css', 'jshint', 'babeljs', 'js', 'sas
 		'./*.twig',
 		'./*/*.twig',
 		'./*/*/*.twig',
-		'./*/*/*/*.twig'
+		'./*/*/*/*.twig',
+		paths.bundles + '/*.js',
+		paths.bundles + '/*.css'
 	])
 	.on('change', browserSync.reload);
 
