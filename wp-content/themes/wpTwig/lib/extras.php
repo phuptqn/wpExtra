@@ -99,6 +99,33 @@ function some_scripts_into_head() {
 }
 add_action('wp_head', 'some_scripts_into_head');
 
+add_filter('body_class', 'xBodyClasses');
+function xBodyClasses($classes) {
+    if ( ! is_singular() ) return $classes;
+
+    $xClasses = get_field('body_css_classes');
+    if ( $xClasses ) {
+        $classes[] = $xClasses;
+    }
+
+    return $classes;
+}
+
+if ( ! function_exists( 'wpex_mce_text_sizes' ) ) {
+    function wpex_mce_text_sizes( $initArray ) {
+        $string = '';
+
+        for ($i = 5; $i <= 50; $i++) { 
+            $string .= $i . 'px ';
+        }
+
+        $initArray['fontsize_formats'] = trim($string);
+
+        return $initArray;
+    }
+}
+add_filter( 'tiny_mce_before_init', 'wpex_mce_text_sizes' );
+
 /**
  * Pagination Class
  * How to use:
