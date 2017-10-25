@@ -3,6 +3,15 @@
  * Extra functions
  */
 
+function isLocalhost() {
+    $ipList = array(
+        '127.0.0.1',
+        '::1'
+    );
+
+    return in_array($_SERVER['REMOTE_ADDR'], $ipList);
+}
+
 // Allows SVG files to be added to Media Uploader
 function cc_mime_types( $mimes ) {
 	$mimes['svg'] = 'image/svg+xml';
@@ -55,11 +64,13 @@ function master_scripts() {
 	if ( is_singular() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
 
+    $param = isLocalhost() ? rand(100000000, 999999999) : null;
+
 	wp_enqueue_style( 'vendor-style', $url_obj->styleUrl('vendor'), array(), null );
-	wp_enqueue_style( 'main-style', $url_obj->styleUrl('style'), array(), null );
+	wp_enqueue_style( 'main-style', $url_obj->styleUrl('style'), array(), $param );
 	
 	wp_enqueue_script( 'vendor-script', $url_obj->scriptUrl('vendor'), array('jquery'), null, true );
-	wp_enqueue_script( 'main-script', $url_obj->scriptUrl('script'), array('jquery'), null, true );
+	wp_enqueue_script( 'main-script', $url_obj->scriptUrl('script'), array('jquery'), $param, true );
 }
 add_action( 'wp_enqueue_scripts', 'master_scripts' );
 
