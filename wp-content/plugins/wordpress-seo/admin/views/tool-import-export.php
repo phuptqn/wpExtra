@@ -11,7 +11,6 @@ if ( ! defined( 'WPSEO_VERSION' ) ) {
 
 $yform = Yoast_Form::get_instance();
 
-$replace = false;
 $import  = false;
 
 /**
@@ -21,44 +20,33 @@ $import  = false;
  * Yoast SEO that we can import stuff for that plugin.
  */
 if ( filter_input( INPUT_POST, 'import' ) || filter_input( INPUT_GET, 'import' ) ) {
-
 	check_admin_referer( 'wpseo-import' );
 
 	$post_wpseo = filter_input( INPUT_POST, 'wpseo', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
-	$replace    = ( ! empty( $post_wpseo['deleteolddata'] ) && $post_wpseo['deleteolddata'] === 'on' );
-
-	if ( ! empty( $post_wpseo['importwoo'] ) ) {
-		$import = new WPSEO_Import_WooThemes_SEO( $replace );
-	}
-
-	if ( ! empty( $post_wpseo['importaioseo'] ) || filter_input( INPUT_GET, 'importaioseo' ) ) {
-		$import = new WPSEO_Import_AIOSEO( $replace );
-	}
-
-	if ( ! empty( $post_wpseo['importheadspace'] ) ) {
-		$import = new WPSEO_Import_External( $replace );
-		$import->import_headspace();
-	}
-
-	if ( ! empty( $post_wpseo['importjetpackseo'] ) || filter_input( INPUT_GET, 'importjetpackseo' ) ) {
-		$import = new WPSEO_Import_Jetpack_SEO( $replace );
-	}
-
-	if ( ! empty( $post_wpseo['importwpseo'] ) || filter_input( INPUT_GET, 'importwpseo' ) ) {
-		$import = new WPSEO_Import_WPSEO( $replace );
-	}
+	$action = 'import';
 }
+elseif ( filter_input( INPUT_POST, 'import_external' ) ) {
+	check_admin_referer( 'wpseo-import-plugins' );
 
-if ( isset( $_FILES['settings_import_file'] ) ) {
+	$class = filter_input( INPUT_POST, 'import_external_plugin' );
+	$import = new WPSEO_Import_Plugin( new $class, 'import' );
+}
+elseif ( filter_input( INPUT_POST, 'clean_external' ) ) {
+	check_admin_referer( 'wpseo-clean-plugins' );
+
+	$class = filter_input( INPUT_POST, 'clean_external_plugin' );
+	$import = new WPSEO_Import_Plugin( new $class, 'cleanup' );
+}
+elseif ( isset( $_FILES['settings_import_file'] ) ) {
 	check_admin_referer( 'wpseo-import-file' );
 
-	$import = new WPSEO_Import();
+	$import = new WPSEO_Import_Settings();
 }
 
 /**
  * Allow custom import actions.
  *
- * @api bool|object $import Contains info about the handled import
+ * @api WPSEO_Import_Status $import Contains info about the handled import.
  */
 $import = apply_filters( 'wpseo_handle_import', $import );
 
@@ -68,15 +56,13 @@ if ( $import ) {
 	 *
 	 * @api  string  $msg  The message.
 	 */
-	$msg = apply_filters( 'wpseo_import_message', isset( $import->msg ) ? $import->msg : '' );
+	$msg = apply_filters( 'wpseo_import_message', $import->status->get_msg() );
 
-	if ( $msg != '' ) {
-		// Check if we've deleted old data and adjust message to match it.
-		if ( $replace ) {
-			$msg .= ' ' . __( 'The old data of the imported plugin was deleted successfully.', 'wordpress-seo' );
+	if ( ! empty( $msg ) ) {
+		$status = 'error';
+		if ( $import->status->status ) {
+			$status = 'updated';
 		}
-
-		$status = ( $import->success ) ? 'updated' : 'error';
 
 		echo '<div id="message" class="message ', $status, '"><p>', $msg, '</p></div>';
 	}
@@ -102,7 +88,7 @@ $tabs = array(
 
 	<h2 class="nav-tab-wrapper" id="wpseo-tabs">
 		<?php foreach ( $tabs as $identifier => $tab ) : ?>
-			<a class="nav-tab" id="<?php echo $identifier; ?>-tab" href="#top#<?php echo $identifier; ?>"><?php echo $tab['label']; ?></a>
+			<a class="nav-tab" id="<?php echo esc_attr( $identifier . '-tab' ); ?>" href="<?php echo esc_url( '#top#' . $identifier ); ?>"><?php echo esc_html( $tab['label'] ); ?></a>
 		<?php endforeach; ?>
 
 		<?php
@@ -133,7 +119,7 @@ $helpcenter->localize_data();
 $helpcenter->mount();
 
 foreach ( $tabs as $identifier => $tab ) {
-	printf( '<div id="%s" class="wpseotab">', $identifier );
+	printf( '<div id="%s" class="wpseotab">', esc_attr( $identifier ) );
 	require_once WPSEO_PATH . 'admin/views/tabs/tool/' . $identifier . '.php';
 	echo '</div>';
 }
