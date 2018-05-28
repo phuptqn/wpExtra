@@ -28,7 +28,7 @@ gulp.task('vendor_css', function () {
 			paths.vendor + '/bootstrap/dist/css/bootstrap.css',
 			paths.vendor + '/font-awesome/css/font-awesome.css',
 			paths.vendor + '/fancybox/source/jquery.fancybox.css',
-			paths.vendor + '/flexslider/flexslider.css'
+			paths.vendor + '/slick-carousel/slick/slick.css'
 		])
 		.pipe(concat('vendor.css'))
 		.pipe(gulp.dest(paths.bundles))
@@ -59,10 +59,9 @@ gulp.task('sass', function () {
 
 gulp.task('vendor_js', function () {
 	return gulp.src([
+			paths.vendor + '/bootstrap/dist/js/bootstrap.js',
 			paths.vendor + '/fancybox/source/jquery.fancybox.js',
-			paths.vendor + '/flexslider/jquery.flexslider.js',
-			paths.vendor + '/lodash/dist/lodash.js',
-			paths.vendor + '/bootstrap/dist/js/bootstrap.js'
+			paths.vendor + '/slick-carousel/slick/slick.js'
 		])
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest(paths.bundles))
