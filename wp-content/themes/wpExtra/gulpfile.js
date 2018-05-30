@@ -103,7 +103,13 @@ gulp.task('js', ['babeljs'], function () {
 		.pipe(gulp.dest(paths.min));
 });
 
-gulp.task('default', ['copy_assets', 'vendor_js', 'vendor_css', 'jshint', 'babeljs', 'js', 'sass'], function() {
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+var tasks = ['copy_assets', 'vendor_js', 'vendor_css', 'jshint', 'babeljs', 'js', 'sass'];
+
+var main = function() {
 
 	browserSync.init({
 		proxy: siteUrl
@@ -130,4 +136,7 @@ gulp.task('default', ['copy_assets', 'vendor_js', 'vendor_css', 'jshint', 'babel
 	])
 	.on('change', browserSync.reload);
 
-});
+};
+
+gulp.task('default', tasks, main);
+gulp.task('watch', tasks, main);
