@@ -1,34 +1,41 @@
-'use strict';
-
-var gulp 			= require('gulp'),
-	sass 			= require('gulp-sass'),
-	autoprefixer 	= require('gulp-autoprefixer'),
-	concat 			= require('gulp-concat'),
-	uglify 			= require('gulp-uglify'),
-	jshint 			= require('gulp-jshint'),
-	cssnano 		= require('gulp-cssnano'),
-	rename 			= require('gulp-rename'),
-	babel 			= require('gulp-babel'),
-	wait            = require('gulp-wait'),
-	browserSync 	= require('browser-sync').create();
-
 var siteUrl = 'wpextra.me';
 
+var gulp 				= require('gulp'),
+	sass 					= require('gulp-sass'),
+	autoprefixer 	= require('gulp-autoprefixer'),
+	concat 				= require('gulp-concat'),
+	uglify 				= require('gulp-uglify'),
+	jshint 				= require('gulp-jshint'),
+	cssnano 			= require('gulp-cssnano'),
+	rename 				= require('gulp-rename'),
+	babel 				= require('gulp-babel'),
+	wait          = require('gulp-wait'),
+	browserSync 	= require('browser-sync').create();
+
 var paths = {
-	vendor	: './assets/vendor',
-	bundles	: './assets/bundles',
-	min		: './assets/min',
-	js 		: './assets/js',
-	scss	: './assets/scss',
-	temp	: './assets/temp'
-}
+	bundles	: './dist/bundles',
+	min			: './dist/min',
+	fonts		: './dist/fonts',
+	img			: './dist/img',
+
+	js 			: './src/js',
+	scss		: './src/scss',
+	temp		: './src/temp',
+
+	node		: './node_modules'
+};
+
+gulp.task( 'copy_assets', function() {
+  return gulp.src( paths.node + '/font-awesome/fonts/*.{ttf,woff,woff2,eot,svg}' )
+    .pipe(gulp.dest(paths.fonts));
+});
 
 gulp.task('vendor_css', function () {
 	return gulp.src([
-			paths.vendor + '/bootstrap/dist/css/bootstrap.css',
-			paths.vendor + '/font-awesome/css/font-awesome.css',
-			paths.vendor + '/fancybox/source/jquery.fancybox.css',
-			paths.vendor + '/slick-carousel/slick/slick.css'
+			paths.node + '/bootstrap/dist/css/bootstrap.css',
+			paths.node + '/font-awesome/css/font-awesome.css',
+			paths.node + '/@fancyapps/fancybox/dist/jquery.fancybox.css',
+			paths.node + '/slick-carousel/slick/slick.css'
 		])
 		.pipe(concat('vendor.css'))
 		.pipe(gulp.dest(paths.bundles))
@@ -45,7 +52,7 @@ gulp.task('sass', function () {
 		.pipe(sass({
 			outputStyle: 'expanded',
 			indentType: 'space',
-			indentWidth: 4
+			indentWidth: 2
 		}))
 		.pipe(autoprefixer({
 			browsers: ['last 10 versions']
@@ -59,9 +66,10 @@ gulp.task('sass', function () {
 
 gulp.task('vendor_js', function () {
 	return gulp.src([
-			paths.vendor + '/bootstrap/dist/js/bootstrap.js',
-			paths.vendor + '/fancybox/source/jquery.fancybox.js',
-			paths.vendor + '/slick-carousel/slick/slick.js'
+			paths.node + '/popper.js/dist/umd/popper.js',
+			paths.node + '/bootstrap/dist/js/bootstrap.js',
+			paths.node + '/@fancyapps/fancybox/dist/jquery.fancybox.js',
+			paths.node + '/slick-carousel/slick/slick.js'
 		])
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest(paths.bundles))
@@ -75,7 +83,7 @@ gulp.task('jshint', function () {
 		.pipe(jshint({
 			esversion: 6
 		}))
-		.pipe(jshint.reporter('default'))
+		.pipe(jshint.reporter('default'));
 });
 
 gulp.task('babeljs', ['jshint'], function () {
@@ -95,14 +103,18 @@ gulp.task('js', ['babeljs'], function () {
 		.pipe(gulp.dest(paths.min));
 });
 
-gulp.task('default', ['vendor_js', 'vendor_css', 'jshint', 'babeljs', 'js', 'sass'], function() {
+gulp.task('default', ['copy_assets', 'vendor_js', 'vendor_css', 'jshint', 'babeljs', 'js', 'sass'], function() {
 
 	browserSync.init({
 		proxy: siteUrl
 	});
 
 	// Run registerd tasks
-	gulp.watch([paths.js + '/*.js'], {cwd: './'}, ['js']);
+	gulp.watch([
+		paths.js + '/*.js',
+		paths.js + '/*/*.js',
+		paths.js + '/*/*/*.js'
+	], {cwd: './'}, ['js']);
 
 	gulp.watch([
 		paths.scss + '/*.scss',
@@ -114,13 +126,7 @@ gulp.task('default', ['vendor_js', 'vendor_css', 'jshint', 'babeljs', 'js', 'sas
 		'./*.php',
 		'./*/*.php',
 		'./*/*/*.php',
-		'./*/*/*/*.php',
-		'./*.twig',
-		'./*/*.twig',
-		'./*/*/*.twig',
-		'./*/*/*/*.twig',
-		paths.bundles + '/*.js',
-		paths.bundles + '/*.css'
+		paths.bundles + '/*.{js,css}'
 	])
 	.on('change', browserSync.reload);
 

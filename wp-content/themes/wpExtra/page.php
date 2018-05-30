@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
-<div id="main" class="pagein">
-    Page content
+<div id="page-body" class="singular-body page-body">
+  <?php the_content() ?>
 </div>
 
 <?php get_footer(); ?>

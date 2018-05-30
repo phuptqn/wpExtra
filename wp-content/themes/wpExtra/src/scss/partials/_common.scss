@@ -1,0 +1,11 @@
+body {
+  line-height: 1.25;
+}
+p, ul, ol, h2, h3, h4, h5, h6 {
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+iframe, img {
+  max-width: 100%;
+}

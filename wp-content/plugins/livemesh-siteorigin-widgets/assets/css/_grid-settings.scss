@@ -1,0 +1,64 @@
+$neat-grid: (
+        columns: 12,
+        gutter: 20px,
+        direction: ltr,
+);
+
+$lsow-desktop-grid: (
+        columns: 12,
+        gutter: 20px,
+        media: 801px,
+);
+
+$lsow-tablet-grid: (
+        columns: 6,
+        gutter: 20px,
+        media: 480px,
+);
+
+$lsow-mobile-grid: (
+        columns: 2,
+        gutter: 20px,
+);
+
+
+$lsow-gapless-grid: (
+        gutter: 0px,
+);
+
+$lsow-gapless-desktop-grid: (
+        columns: 12,
+        gutter: 0px,
+        media: 801px,
+);
+
+$lsow-gapless-tablet-grid: (
+        columns: 6,
+        gutter: 0px,
+        media: 480px,
+);
+
+$lsow-gapless-mobile-grid: (
+        columns: 2,
+        gutter: 0px,
+);
+
+$lsow-five-col-grid: (
+        columns: 5,
+        gutter: 20px,
+        media: 801px,
+);
+
+$lsow-gapless-five-col-grid: (
+        columns: 5,
+        gutter: 0px,
+        media: 801px,
+);
+
+$lsow-mobile-only-grid: (
+        media: "(max-width: 479px)",
+);
+
+$lsow-tablet-only-grid: (
+        media: "(min-width:480px) and (max-width: 800px)",
+);

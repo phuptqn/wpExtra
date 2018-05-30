@@ -1,11 +1,13 @@
-            <footer>
-                Footer
-            </footer>
+      <footer>
+        <?php _e('Footer', 'wpextra') ?>
+      </footer>
 
-        </div>
+    </div>
 
-        <?php wp_footer(); ?>
+    <?php wp_footer(); ?>
 
-    </body>
+    <?php the_field('code_before_body_closing', 'option') ?>
+
+  </body>
 
 </html>
