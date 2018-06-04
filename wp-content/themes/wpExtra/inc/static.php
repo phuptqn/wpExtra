@@ -69,20 +69,6 @@ function previewSvgMediaImage($response, $attachment, $meta) {
 }
 add_filter('wp_prepare_attachment_for_js', 'previewSvgMediaImage', 10, 3);
 
-// ACF remove row confirm
-function masterAcfAdminScripts() {
-  ?>
-  <script type="text/javascript">
-    (function ($) {
-      $('body').on('click', 'a[data-event="remove-layout"], a[data-event="remove-row"], .acf-repeater-remove-row, .acf-fc-remove, a.delete-field', function (e) {
-        return confirm("Are you sure? This is permanent!");
-      });
-    })(jQuery);
-  </script>
-  <?php
-}
-add_action('acf/input/admin_footer', 'masterAcfAdminScripts');
-
 function masterTextSizes( $initArray ) {
   $string = '';
 
