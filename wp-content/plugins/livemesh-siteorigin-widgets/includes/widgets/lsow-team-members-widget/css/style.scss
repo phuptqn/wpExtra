@@ -44,7 +44,7 @@
         max-width: 100%;
         margin: 0 auto 30px;
         border-radius: 50%;
-        transition: all .3s ease-in-out 0s;
+        transition: all 0.3s ease-in-out 0s;
         }
       .lsow-social-list {
         position: absolute;
@@ -60,7 +60,7 @@
           font-size: 26px;
           color: #fff;
           opacity: 0;
-          transition: all .3s ease-in-out 0s;
+          transition: all 0.3s ease-in-out 0s;
           &:hover {
             color: #ccc;
             }
@@ -104,12 +104,10 @@
 
 .lsow-team-members.lsow-style2 {
   position: relative;
-  overflow: hidden;
   max-width: 960px;
   .lsow-team-member-wrapper {
     clear: both;
     margin-top: 100px;
-    overflow: hidden;
     &:first-child {
       margin-top: 0;
       }
@@ -120,7 +118,7 @@
       img {
         max-width: 320px;
         border-radius: 50%;
-        transition: all .3s ease-in-out 0s;
+        transition: all 0.3s ease-in-out 0s;
         }
       }
     .lsow-team-member-text {

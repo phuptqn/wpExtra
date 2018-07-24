@@ -5,7 +5,8 @@
  * @var $posts
  */
 
-if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'];
+if (!empty($instance['title']))
+    echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'];
 
 $taxonomies = array();
 
@@ -43,11 +44,12 @@ if ($loop->have_posts()) : ?>
 
                             <?php if ($settings['image_linkable']): ?>
 
-                                <a href="<?php the_permalink(); ?>"> <?php the_post_thumbnail('large'); ?> </a>
+                                <a href="<?php the_permalink(); ?>"
+                                   target="<?php echo $settings['link_target']; ?>"><?php the_post_thumbnail($settings['image_size']); ?></a>
 
                             <?php else: ?>
 
-                                <?php the_post_thumbnail('large'); ?>
+                                <?php the_post_thumbnail($settings['image_size']); ?>
 
                             <?php endif; ?>
 
@@ -55,7 +57,7 @@ if ($loop->have_posts()) : ?>
 
                                 <div class="lsow-entry-info">
 
-                                    <?php the_title('<h3 class="lsow-post-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '"
+                                    <?php the_title('<h3 class="lsow-post-title"><a target="' . $settings["link_target"] . '" href="' . get_permalink() . '" title="' . get_the_title() . '"
                                                rel="bookmark">', '</a></h3>'); ?>
 
                                     <?php echo lsow_get_info_for_taxonomies($taxonomies); ?>
@@ -63,6 +65,8 @@ if ($loop->have_posts()) : ?>
                                 </div>
 
                             </div>
+
+                            <div class="lsow-image-overlay"></div>
 
                         </div>
 
@@ -74,7 +78,7 @@ if ($loop->have_posts()) : ?>
 
                             <?php if ($settings['display_title']) : ?>
 
-                                <?php the_title('<h3 class="entry-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '"
+                                <?php the_title('<h3 class="entry-title"><a target="' . $settings["link_target"] . '" href="' . get_permalink() . '" title="' . get_the_title() . '"
                                                rel="bookmark">', '</a></h3>'); ?>
 
                             <?php endif; ?>

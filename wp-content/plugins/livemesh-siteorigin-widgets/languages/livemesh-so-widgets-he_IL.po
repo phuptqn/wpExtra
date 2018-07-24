@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: livemesh-siteorigin-widgets\n"
-"POT-Creation-Date: 2017-03-18 17:54+0530\n"
-"PO-Revision-Date: 2017-03-18 17:54+0530\n"
+"POT-Creation-Date: 2018-07-02 11:47+0530\n"
+"PO-Revision-Date: 2018-07-02 11:47+0530\n"
 "Last-Translator: LiveMesh\n"
 "Language-Team: Ahrale | Atar4U.com <contact@atar4u.com>\n"
 "Language: he_IL\n"
@@ -49,23 +49,24 @@ msgstr "הגדרות התוסף אופסו"
 msgid "Sorry, an error occurred while resetting settings"
 msgstr "מצטערים, אירעה שגיאה בעת איפוס ההגדרות"
 
-#: admin/admin-init.php:67 admin/views/documentation.php:215
+#: admin/admin-init.php:67 admin/views/documentation.php:218
 msgid "Livemesh Widgets"
 msgstr "ווידג'טים של  Livemesh"
 
 #: admin/admin-init.php:78
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:84
 #: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:59
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:241
+#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:89
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:247
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:89
 #: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:104
 #: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:54
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:112
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:74
 #: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:115
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:103
-#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:136
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:119
+#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:143
 #: includes/widgets/lsow-testimonials-slider-widget/lsow-testimonials-slider-widget.php:64
-#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:64
+#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:71
 msgid "Settings"
 msgstr "הגדרות"
 
@@ -73,12 +74,8 @@ msgstr "הגדרות"
 msgid "Documentation"
 msgstr "תיעוד"
 
-#: admin/admin-init.php:98 admin/views/documentation.php:216
-msgid "Upgrade to Pro"
-msgstr "שדרוג לגרסת פרו"
-
 #: admin/views/admin-banner1.php:13 admin/views/admin-banner2.php:13
-#: admin/views/admin-banner3.php:13 includes/class-lsow-setup.php:167
+#: includes/class-lsow-setup.php:204
 msgid "Livemesh SiteOrigin Widgets"
 msgstr "ווידג'טים של  Livemesh עבור בנאי הדפים"
 
@@ -97,10 +94,6 @@ msgstr "שמירת ההגדרות"
 #: admin/views/admin-banner2.php:18
 msgid "Reset"
 msgstr "איפוס"
-
-#: admin/views/admin-banner3.php:13 admin/views/settings.php:44
-msgid "Premium Upgrade"
-msgstr "שדרוג לגרסת פרו"
 
 #: admin/views/documentation.php:34
 #, php-format
@@ -134,86 +127,86 @@ msgstr "שאלות נפוצות ותמיכה"
 msgid "Latest Updates"
 msgstr "עדכונים אחרונים"
 
-#: admin/views/documentation.php:112 admin/views/documentation.php:119
-#: admin/views/documentation.php:223 admin/views/documentation.php:229
+#: admin/views/documentation.php:115 admin/views/documentation.php:122
+#: admin/views/documentation.php:226 admin/views/documentation.php:232
 msgid "Plugins → SiteOrigin Widgets"
 msgstr "תוספים ← וידג'טים של SiteOrigin"
 
-#: admin/views/documentation.php:115 admin/views/documentation.php:220
-#: admin/views/documentation.php:232
+#: admin/views/documentation.php:118 admin/views/documentation.php:223
+#: admin/views/documentation.php:235
 msgid "Livemesh Widgets→Settings"
 msgstr "וידג'טים של Livemesh ← הגדרות"
 
-#: admin/views/documentation.php:138 admin/views/documentation.php:190
+#: admin/views/documentation.php:141 admin/views/documentation.php:193
 msgid "Tools→Import"
 msgstr "כלים ← יבוא"
 
-#: admin/views/documentation.php:243
+#: admin/views/documentation.php:219
+msgid "Upgrade to Pro"
+msgstr "שדרוג לגרסת פרו"
+
+#: admin/views/documentation.php:246
 msgid "Appearance→Widgets"
 msgstr "עיצוב ← וידג'טים"
 
-#: admin/views/documentation.php:1158
+#: admin/views/documentation.php:1161
 msgid "SiteOrigin Widgets Bundle"
 msgstr "SiteOrigin Widgets Bundle"
 
-#: admin/views/documentation.php:1161
+#: admin/views/documentation.php:1164
 msgid "Install SiteOrigin Widgets Bundle"
 msgstr "נא להתקין את SiteOrigin Widgets Bundle"
 
-#: admin/views/documentation.php:1162 admin/views/documentation.php:1184
-#: admin/views/documentation.php:1204
+#: admin/views/documentation.php:1165 admin/views/documentation.php:1187
+#: admin/views/documentation.php:1207
 msgid "Install Now"
 msgstr "התקנה"
 
-#: admin/views/documentation.php:1166 admin/views/documentation.php:1188
-#: admin/views/documentation.php:1208
+#: admin/views/documentation.php:1169 admin/views/documentation.php:1191
+#: admin/views/documentation.php:1211
 msgid "Installed"
 msgstr "מותקן"
 
-#: admin/views/documentation.php:1180
+#: admin/views/documentation.php:1183
 msgid "SiteOrigin Page Builder"
 msgstr "בנאי הדפים"
 
-#: admin/views/documentation.php:1183
+#: admin/views/documentation.php:1186
 msgid "Install SiteOrigin Page Builder"
 msgstr "נא להתקין את בנאי הדפים"
 
-#: admin/views/documentation.php:1200
+#: admin/views/documentation.php:1203
 msgid "Portfolio Post Type"
 msgstr "סוג פוסט פורטפוליו"
 
-#: admin/views/documentation.php:1203
+#: admin/views/documentation.php:1206
 msgid "Install Portfolio Post Type"
 msgstr "התקנת סוג פוסט פורטפוליו"
 
-#: admin/views/documentation.php:1395
+#: admin/views/documentation.php:1545
 msgid "Why upgrade to Premium version?"
 msgstr "למה לשדרג לגרסת פרו?"
 
-#: admin/views/documentation.php:1396
+#: admin/views/documentation.php:1546
 msgid ""
 "Premium version offers multiple benefits - more widgets, advanced features "
 "for widgets including those part of the free plugin and priority support "
 "through a dedicated support forum."
 msgstr ""
 
-#: admin/views/documentation.php:1400
+#: admin/views/documentation.php:1550 admin/views/settings.php:323
 msgid "Know More"
 msgstr "פרטים נוספים"
 
-#: admin/views/documentation.php:1400
+#: admin/views/documentation.php:1550
 msgid "Know More Details"
 msgstr "פרטים נוספים"
 
-#: admin/views/premium-upgrade.php:475 admin/views/settings.php:205
-msgid "Why upgrade to Premium Version of the plugin?"
-msgstr "למה לשדרג לגרסת הפרימיום של התוסף?"
-
-#: admin/views/premium-upgrade.php:604
+#: admin/views/documentation.php:1563
 msgid "Contact Us"
 msgstr "צרו קשר"
 
-#: admin/views/premium-upgrade.php:604
+#: admin/views/documentation.php:1573
 msgid "Write to Us"
 msgstr "כתבו לנו"
 
@@ -229,6 +222,10 @@ msgstr "עיצוב CSS"
 #: admin/views/settings.php:41
 msgid "Debugging"
 msgstr "ניפוי שגיאות"
+
+#: admin/views/settings.php:44 admin/views/settings.php:197
+msgid "Premium Version"
+msgstr "כרסת פרימיום"
 
 #: admin/views/settings.php:54
 msgid "Theme Colors"
@@ -317,106 +314,144 @@ msgstr "מידע מערכת"
 msgid "Server setup information useful for debugging purposes."
 msgstr "מידע הגדרות השרת שימושי למטרות ניפוי שגיאות."
 
-#: admin/views/settings.php:197
-msgid "Premium Version"
-msgstr "כרסת פרימיום"
+#: admin/views/settings.php:206
+msgid "Why upgrade to Premium Version of the plugin?!"
+msgstr ""
 
-#: admin/views/settings.php:253
+#: admin/views/settings.php:210
+msgid "Thanks for upgrading to the Premium Version of the plugin!"
+msgstr ""
+
+#: admin/views/settings.php:255
 msgid "Purchase Now"
 msgstr "קניה"
 
-#: includes/class-lsow-setup.php:38
-msgid "Top Padding"
-msgstr "מרווח עליון"
+#: admin/views/settings.php:319
+msgid "Go Premium"
+msgstr ""
 
-#: includes/class-lsow-setup.php:41
-msgid "Top Padding for the row."
-msgstr "מרווח עליון של השורה"
+#: includes/class-lsow-setup.php:36
+msgid "Top Padding (Deprecated)"
+msgstr ""
+
+#: includes/class-lsow-setup.php:39
+msgid ""
+"Top Padding for the row. Deprecated - use native padding attributes above."
+msgstr ""
+
+#: includes/class-lsow-setup.php:43
+msgid "Bottom Padding (Deprecated)"
+msgstr ""
 
 #: includes/class-lsow-setup.php:46
-msgid "Bottom Padding"
-msgstr "מרווח תחתון"
+msgid ""
+"Bottom Padding for the row. Deprecated - use native padding attributes above."
+msgstr ""
 
-#: includes/class-lsow-setup.php:49
-msgid "Bottom Padding for the row."
-msgstr "מרווח תחתון של השורה"
+#: includes/class-lsow-setup.php:50
+msgid "Top Padding in Tablet resolution (Deprecated)"
+msgstr ""
 
-#: includes/class-lsow-setup.php:54
-msgid "Top Padding in Tablet resolution"
-msgstr "מרווח עליון ברזולוציית טאבלט"
+#: includes/class-lsow-setup.php:53
+msgid ""
+"Top Padding for the row in tablet resolutions. Deprecated - use native "
+"padding attributes above."
+msgstr ""
 
 #: includes/class-lsow-setup.php:57
-msgid "Top Padding for the row in tablet resolutions."
-msgstr "מרווח עליון של השורה ברזולוציית טאבלט"
+msgid "Bottom Padding in Tablet resolution (Deprecated)"
+msgstr ""
 
-#: includes/class-lsow-setup.php:62
-msgid "Bottom Padding in Tablet resolution"
-msgstr "מרווח תחתון ברזולוציית טאבלט"
+#: includes/class-lsow-setup.php:60
+msgid ""
+"Bottom Padding for the row in tablet resolutions. Deprecated - use native "
+"padding attributes above."
+msgstr ""
 
-#: includes/class-lsow-setup.php:65
-msgid "Bottom Padding for the row in tablet resolutions."
-msgstr "מרווח תחתון של השורה ברזולוציית טאבלט"
+#: includes/class-lsow-setup.php:64
+msgid "Top Padding in Mobile resolution (Deprecated)"
+msgstr ""
 
-#: includes/class-lsow-setup.php:70
-msgid "Top Padding in Mobile resolution"
-msgstr "מרווח עליון ברזולוציית טלפון נייד"
+#: includes/class-lsow-setup.php:67
+msgid ""
+"Top Padding for the row in mobile resolutions. Deprecated - use native "
+"padding attributes above."
+msgstr ""
 
-#: includes/class-lsow-setup.php:73
-msgid "Top Padding for the row in mobile resolutions."
-msgstr "מרווח עליון של השורה ברזולוציית טלפון נייד"
+#: includes/class-lsow-setup.php:71
+msgid "Bottom Padding in Mobile resolution (Deprecated)"
+msgstr ""
 
-#: includes/class-lsow-setup.php:78
-msgid "Bottom Padding in Mobile resolution"
-msgstr "מרווח תחתון ברזולוציית טלפון נייד"
+#: includes/class-lsow-setup.php:74
+msgid ""
+"Bottom Padding for the row in mobile resolutions. Deprecated - use native "
+"padding attributes above."
+msgstr ""
 
-#: includes/class-lsow-setup.php:81
-msgid "Bottom Padding for the row in mobile resolutions."
-msgstr "מרווח תחתון של השורה ברזולוציית טלפון נייד"
-
-#: includes/class-lsow-setup.php:88
+#: includes/class-lsow-setup.php:79
 msgid "Dark Background?"
 msgstr "רקע כהה?"
 
-#: includes/class-lsow-setup.php:91
+#: includes/class-lsow-setup.php:82
 msgid ""
 "Indicate if this row has a dark background color. Dark color scheme will be "
 "applied for all widgets in this row."
 msgstr ""
 
-#: includes/helper-functions.php:123
-msgid "M d, Y"
-msgstr ""
-
-#: includes/helper-functions.php:125 includes/helper-functions.php:129
+#: includes/helper-functions.php:125 includes/helper-functions.php:127
 msgid "l, F, Y, g:i a"
 msgstr "l, F, Y, g:i a"
 
-#: includes/helper-functions.php:129
+#: includes/helper-functions.php:127
 msgid "Y"
 msgstr "Y"
 
-#: includes/helper-functions.php:129
+#: includes/helper-functions.php:127
 msgid "m"
 msgstr "Y"
 
-#: includes/helper-functions.php:129
+#: includes/helper-functions.php:127
 msgid "d"
 msgstr "d"
 
-#: includes/helper-functions.php:135
+#: includes/helper-functions.php:133
 msgid "By "
 msgstr "ע\"י"
 
-#: includes/helper-functions.php:154
+#: includes/helper-functions.php:140
+msgid "Read more"
+msgstr ""
+
+#: includes/helper-functions.php:166
 msgid "All"
 msgstr "הכל"
 
-#: includes/helper-functions.php:159
+#: includes/helper-functions.php:169
 msgid "View all items filed under "
 msgstr "הצגת שדה כל הפריטים ב "
 
+#: includes/helper-functions.php:447
+#: includes/widgets/lsow-button-widget/lsow-button-widget.php:57
+#: includes/widgets/lsow-button-widget/lsow-button-widget.php:163
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:77
+msgid "None"
+msgstr "ללא"
+
+#: includes/helper-functions.php:448
+msgid "Fade In"
+msgstr ""
+
+#: includes/helper-functions.php:449
+msgid "Fade In Left"
+msgstr ""
+
+#: includes/helper-functions.php:450
+msgid "Fade In Right"
+msgstr ""
+
 #: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:15
-msgid "Livemesh Accordion"
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:53
+msgid "Accordion"
 msgstr "אקורדיאון"
 
 #: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:17
@@ -435,12 +470,12 @@ msgstr "הצגת תיבות תוכן סגירות המאפשרות לנציג מ
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:55
 #: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:25
 #: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:25
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:88
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:78
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:54
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:79
 #: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:25
 #: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:96
 #: includes/widgets/lsow-services-widget/lsow-services-widget.php:25
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:56
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:72
 #: includes/widgets/lsow-stats-bar-widget/lsow-stats-bar-widget.php:25
 #: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:25
 #: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:25
@@ -449,65 +484,83 @@ msgstr "הצגת תיבות תוכן סגירות המאפשרות לנציג מ
 msgid "Title"
 msgstr "כותרת"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:30
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:29
 msgid "Choose Accordion Style"
 msgstr "בחירת עיצוב אקורדיאון"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:37
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:36
 #: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:38
 #: includes/widgets/lsow-services-widget/lsow-services-widget.php:37
 #: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:37
 msgid "Style 1"
 msgstr "עיצוב 1"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:38
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:37
 #: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:39
 #: includes/widgets/lsow-services-widget/lsow-services-widget.php:38
 #: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:38
 msgid "Style 2"
 msgstr "עיצוב 2"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:39
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:38
 #: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:40
 #: includes/widgets/lsow-services-widget/lsow-services-widget.php:39
 msgid "Style 3"
 msgstr "עיצוב 3"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:45
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:43
 msgid "Allow to function like toggle?"
 msgstr "לאפשר תפקוד מיתוג?"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:46
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:44
 msgid "Check if multiple elements can be open at the same time."
 msgstr "לסמן כדי לאפשר פתיחת כמה תיבות בו זמנית"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:51
-msgid "Accordion"
-msgstr "אקורדיאון"
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:48
+msgid "Start expanded?"
+msgstr ""
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:52
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:49
+msgid ""
+"Check if you need all elements to be expanded initially. Works only if "
+"toggle flag above is checked and hence multiple accordion elements can be "
+"open at the same time."
+msgstr ""
+
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:54
 msgid "Panel"
 msgstr "לוח"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:61
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:63
 msgid "Panel Title"
 msgstr "כותרת הלוח"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:62
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:64
 msgid "The title for the panel."
 msgstr "הכותרת של הלוח"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:67
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:68
+msgid "Panel ID"
+msgstr ""
+
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:69
+msgid ""
+"The Panel ID is required to link to a panel. It must be unique across the "
+"page, must begin with a letter and may be followed by any number of letters, "
+"digits, hyphens or underscores."
+msgstr ""
+
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:74
 msgid "Panel Content"
 msgstr "תוכן הלוח"
 
-#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:68
+#: includes/widgets/lsow-accordion-widget/lsow-accordion-widget.php:75
 msgid "The collapsible content of the panel in the accordion."
 msgstr "התוכן הנסתר של הלוח באקורדיאון"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:21
-msgid "Livemesh Button"
-msgstr "כפתור"
+msgid "Button"
+msgstr ""
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:23
 msgid "Flat style buttons with rich set of customization options."
@@ -519,6 +572,7 @@ msgstr "הכתובת אליה מפנה הכפתור"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:38
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:80
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:79
 msgid "Target URL"
 msgstr "כתובת יעד"
 
@@ -541,44 +595,36 @@ msgstr "קניה"
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:50
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:30
 #: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:58
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:62
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:69
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:47
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:65
 msgid "Choose Icon Type"
 msgstr "בחירת סוג צלמית"
-
-#: includes/widgets/lsow-button-widget/lsow-button-widget.php:57
-#: includes/widgets/lsow-button-widget/lsow-button-widget.php:163
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:81
-msgid "None"
-msgstr "ללא"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:58
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:37
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:45
 #: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:65
 #: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:104
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:69
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:82
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:54
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:78
 msgid "Icon"
 msgstr "צלמית"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:59
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:38
 #: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:66
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:70
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:83
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:55
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:79
 msgid "Icon Image"
 msgstr "תמונת צלמית"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:65
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:76
-msgid "Service Image."
-msgstr "תמונת שירות"
+msgid "Button Image."
+msgstr ""
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:74
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:85
-msgid "Service Icon."
-msgstr "צלמית שירות"
+msgid "Button Icon."
+msgstr ""
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:89
 msgid "The CSS class name for the button element."
@@ -605,7 +651,7 @@ msgid "Color"
 msgstr "צבע"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:105
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:149
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:155
 msgid "Default"
 msgstr "ברירת מחדל"
 
@@ -675,17 +721,17 @@ msgid "Button Size"
 msgstr "גודל הכפתור"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:142
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:151
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:157
 msgid "Medium"
 msgstr "בינוני"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:143
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:152
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:158
 msgid "Large"
 msgstr "גדול"
 
 #: includes/widgets/lsow-button-widget/lsow-button-widget.php:144
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:150
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:156
 msgid "Small"
 msgstr "קטן"
 
@@ -724,9 +770,19 @@ msgstr "שמאל"
 msgid "Right"
 msgstr "ימין"
 
+#: includes/widgets/lsow-button-widget/lsow-button-widget.php:173
+#: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:89
+#: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:140
+#: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:147
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:109
+#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:133
+#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:62
+msgid "Choose Animation Type"
+msgstr ""
+
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:17
-msgid "Livemesh Carousel"
-msgstr "קרוסלה"
+msgid "Carousel"
+msgstr ""
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:19
 msgid "Display a collection of html elements as a carousel."
@@ -760,7 +816,7 @@ msgid "The HTML content for the carousel item."
 msgstr "תוכן ה HTML עבור פריט הקרוסלה"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:56
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:88
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:89
 msgid "General Settings"
 msgstr "הגדרות כלליות"
 
@@ -771,148 +827,141 @@ msgid ""
 msgstr "Eטד עיצוב CSS עבור מצגת רכיבי HTML. יוטמע בשורה בעמוד."
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:69
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:148
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:165
 msgid "Carousel Settings"
 msgstr "הגדרות קרוסלה"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:74
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:153
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:170
 msgid "Prev/Next Arrows?"
 msgstr "חצי הקודם/הבא?"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:80
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:159
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:176
 msgid "Show dot indicators for navigation?"
 msgstr "להציג ניווט נקודות?"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:85
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:164
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:181
 msgid "Autoplay?"
 msgstr "הפעלה אוטומטית?"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:86
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:165
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:182
 msgid "Should the carousel autoplay as in a slideshow."
 msgstr "האם הקרוסלה צריכה לפעול אוטומטית כמצגת שקופיות?"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:93
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:172
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:189
 msgid "Autoplay speed in ms"
 msgstr "מהירות הקרוסלה באלפיות השניה"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:100
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:179
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:196
 msgid "Autoplay animation speed in ms"
 msgstr "מהירות האנימציה באלפיות השניה"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:106
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:185
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:202
 msgid "Pause on mouse hover?"
 msgstr "לעצור בריחוף עכבר?"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:112
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:146
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:181
-#: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:64
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:182
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:191
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:225
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:260
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:108
-#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:145
-#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:69
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:146
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:208
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:242
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:277
 msgid "Columns per row"
 msgstr "מספר עמודות בשורה"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:121
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:154
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:189
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:200
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:233
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:268
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:217
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:250
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:285
 msgid "Columns to scroll"
 msgstr "עמודות לגלילה"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:130
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:162
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:197
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:191
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:208
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:229
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:209
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:241
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:276
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:170
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:185
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:204
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:226
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:258
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:293
 msgid "Gutter"
 msgstr "גאטר"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:131
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:163
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:198
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:209
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:230
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:210
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:242
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:277
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:186
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:205
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:227
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:259
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:294
 msgid "Space between columns."
 msgstr "מרווח בין עמודות"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:137
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:259
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:198
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:216
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:265
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:176
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:233
 msgid "Responsive"
 msgstr "רספונסיבי"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:142
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:264
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:203
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:221
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:270
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:181
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:238
 msgid "Tablet"
 msgstr "טאבלט"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:168
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:203
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:280
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:305
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:215
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:236
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:247
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:282
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:286
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:311
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:191
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:210
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:264
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:299
 msgid "Resolution"
 msgstr "רזולוציה"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:169
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:281
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:216
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:248
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:287
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:192
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:265
 msgid "The resolution to treat as a tablet resolution."
 msgstr "הרזולוציה להתייחסות כאל רזולוציית טאבלט"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:177
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:289
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:224
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:256
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:295
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:200
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:273
 msgid "Mobile Phone"
 msgstr "טלפון נייד"
 
 #: includes/widgets/lsow-carousel-widget/lsow-carousel-widget.php:204
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:306
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:237
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:283
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:312
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:211
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:300
 msgid "The resolution to treat as a mobile resolution."
 msgstr "הרזולוציה להתייחסות כאל טלפון נייד"
 
 #: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:15
-msgid "Livemesh Clients"
+#: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:30
+msgid "Clients"
 msgstr "לקוחות"
 
 #: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:17
 msgid "Display one or more clients in a multi-column grid."
 msgstr "להצגת לקוח אחד או יותר ברשת עמודות"
-
-#: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:30
-msgid "Clients"
-msgstr "לקוחות"
 
 #: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:31
 msgid "Client"
@@ -942,9 +991,21 @@ msgstr "הלוגו של הלקוח"
 msgid "The logo image for the client/customer."
 msgstr "תמונת הלוגו של הלקוח"
 
+#: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:64
+msgid "Clients per row"
+msgstr ""
+
+#: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:72
+msgid "Clients per row in Tablet Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-clients-widget/lsow-clients-widget.php:80
+msgid "Clients per row in Mobile Resolution"
+msgstr ""
+
 #: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:16
-msgid "Livemesh Heading"
-msgstr "כותרת"
+msgid "Heading"
+msgstr ""
 
 #: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:18
 msgid "Create heading for display on the top of a section."
@@ -961,32 +1022,41 @@ msgid "Alignment of the heading."
 msgstr "יישור הכותרת"
 
 #: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:57
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:79
+msgid "Heading font"
+msgstr ""
+
+#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:63
 msgid "Heading Title"
 msgstr "כותרת הכותר"
 
-#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:58
+#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:64
 msgid "Title for the heading."
 msgstr "הכותרת של הכותר"
 
-#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:63
+#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:69
 msgid "Subheading"
 msgstr "כותרת משנה"
 
-#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:64
+#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:70
 msgid "A subtitle displayed above the title heading."
 msgstr "כותרת משנה להצגה מעל הכותרת"
 
-#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:73
+#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:79
 msgid "Short Text"
 msgstr "טקסט קצר"
 
-#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:74
+#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:80
 msgid "Short text generally displayed below the heading title."
 msgstr "טקסט קצר שבדרך כלל מוצג מתחת לכותרת"
 
+#: includes/widgets/lsow-heading-widget/lsow-heading-widget.php:94
+msgid "Choose Animation"
+msgstr ""
+
 #: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:15
-msgid "Livemesh Hero Header"
-msgstr "כותרת מלכותית"
+msgid "Hero Header"
+msgstr ""
 
 #: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:17
 msgid "Display a hero background with video or image background."
@@ -1022,27 +1092,27 @@ msgstr "כותרת רגילה"
 msgid "Header text"
 msgstr "טקסט הכותרת"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:79
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:85
 msgid "Sub-heading text"
 msgstr "טקסט כותרת המשנה"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:85
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:91
 msgid "Button text"
 msgstr "טקסט הכפתור"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:90
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:96
 msgid "Button URL"
 msgstr "כתובת הכפתור"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:95
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:101
 msgid "Open URL in a new window"
 msgstr "פתיחת הקישור בחלון חדש"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:102
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:108
 msgid "URL for Pointer Down"
 msgstr "כתובת URL עבור המצביע מטה"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:103
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:109
 msgid ""
 "If an URL for the pointer down is specified, the hero image will sport a "
 "pointer down indicator to help user smooth scroll to the section indicated "
@@ -1051,130 +1121,131 @@ msgstr ""
 "אם תצוין כתובת URL עבור המצביע מטה, על התמונה המלכותית יוצג מצביע מטהשיאפשר "
 "למשתמש לבצע גלילה חלקה למקטע שאליו מפנה כתובת URL זו."
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:108
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:114
 msgid "Background"
 msgstr "רקע"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:113
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:119
 msgid "Background Type"
 msgstr "סוג רקע"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:120
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:126
 msgid "Cover Image"
 msgstr "תמונת רקע"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:121
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:127
 msgid "Parallax Image"
 msgstr "תמונת פאראלקס"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:122
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:128
 msgid "YouTube Video"
 msgstr "סרטון יוטיוב"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:123
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:129
 msgid "HTML5 Video"
 msgstr "סרטון HTML5"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:129
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:135
 msgid "YouTube Background Video"
 msgstr "סרטון רקע מיוטיוב"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:139
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:145
 msgid "YouTube URL"
 msgstr "כתובת יוטיוב"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:140
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:146
 msgid ""
 "An URL of the YouTube video that will act as background video for this "
 "section."
 msgstr "כתובת URL של הסרטון ביוטיוב שישמש כסרטון רקע עבור מקטע זה"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:145
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:151
 msgid "Choose the YouTube video quality"
 msgstr "בחירת איכות הסרטון מיוטיוב"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:148
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:154
 msgid "High Resolution"
 msgstr "רזולוציה גבוהה"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:153
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:159
 msgid "HD 720p"
 msgstr "HD 720p"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:154
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:160
 msgid "HD 1080p"
 msgstr "HD 1080p"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:160
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:166
 msgid "Aspect ratio of the YouTube video"
 msgstr "יחס הרוחב והגובה של הסרטון מיוטיוב"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:163
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:169
 msgid "16/9"
 msgstr "16/9"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:164
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:170
 msgid "Auto"
 msgstr "אוטומט"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:165
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:171
 msgid "4/3"
 msgstr "4/3"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:174
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:180
 msgid "HTML5 Background videos"
 msgstr "סרטון רקע HTML5"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:184
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:190
 msgid "MP4 Video file"
 msgstr "קובץ סרטון MP4"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:189
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:195
 msgid "WebM Video file"
 msgstr "קובץ סרטון WebM"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:194
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:200
 msgid "Ogg Video file"
 msgstr "קובץ סרטון Ogg"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:202
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:207
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:208
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:213
 msgid "Background Image"
 msgstr "תמונת רקע"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:208
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:214
 msgid ""
 "This background image will be used as a placeholder image if YouTube or "
 "HTML5 video background option is chosen."
 msgstr ""
 "תמונת הרקע תשמש כתמונת צוין מיקום אם נבחרה אפשרות של סרטון רקע מסוג HTML5"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:217
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:223
 msgid "Background Overlay"
 msgstr "שכבה מעל הרקע"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:222
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:228
 msgid "Overlay color"
 msgstr "צבע השכבה מעל"
 
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:227
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:233
 msgid "Overlay opacity"
 msgstr "שקיפות השכבה מעל"
-
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:246
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:268
-#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:293
-msgid "Top padding"
-msgstr "מרווח עליון"
 
 #: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:252
 #: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:274
 #: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:299
+msgid "Top padding"
+msgstr "מרווח עליון"
+
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:258
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:280
+#: includes/widgets/lsow-hero-image-widget/lsow-hero-image-widget.php:305
 msgid "Bottom padding"
 msgstr "מרווח תחתון"
 
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:15
-msgid "Livemesh Icon List"
+#: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:44
+msgid "Icon List"
 msgstr "רשימת צלמיות"
 
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:17
@@ -1184,10 +1255,6 @@ msgid ""
 msgstr ""
 "שימוש בגופני צלמית או תמונה ליצירת רשימת צלמיות מדיה חברתית, אפשרויות תשלום "
 "וכדומה."
-
-#: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:44
-msgid "Icon List"
-msgstr "רשימת צלמיות"
 
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:56
 msgid "Title for the Icon."
@@ -1218,6 +1285,7 @@ msgid "Icon hover color"
 msgstr "צבע הצלמית בריחוף עכבר"
 
 #: includes/widgets/lsow-icon-list-widget/lsow-icon-list-widget.php:123
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:151
 msgid "Open the links in new window"
 msgstr "פתיחת הקישור בחלון חדש"
 
@@ -1226,16 +1294,13 @@ msgid "Alignment"
 msgstr "יישור"
 
 #: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:15
-msgid "Livemesh Odometers"
+#: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:30
+msgid "Odometers"
 msgstr "מדדים"
 
 #: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:17
 msgid "Display statistics as animated odometers in a multi-column grid."
 msgstr "הצגת סטטיסטיקה כאנימציית מד מרחק ברשת עמודות"
-
-#: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:30
-msgid "Odometers"
-msgstr "מדדים"
 
 #: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:31
 msgid "Odometer"
@@ -1300,17 +1365,22 @@ msgstr "מחרוזת הסיומת עבור סטטיסטיקת המדד. לדוג
 msgid "Odometers per row"
 msgstr "מספר מדדים בשורה"
 
+#: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:118
+msgid "Odometers per row in Tablet Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-odometers-widget/lsow-odometers-widget.php:127
+msgid "Odometers per row in Mobile Resolution"
+msgstr ""
+
 #: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:15
-msgid "Livemesh Piecharts"
+#: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:30
+msgid "Piecharts"
 msgstr "תרשימי עוגה"
 
 #: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:17
 msgid "Display statistics or skills as a percentage piechart."
 msgstr "הצגת סטטיסטיקה או כישורים בתרשימי עוגה"
-
-#: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:30
-msgid "Piecharts"
-msgstr "תרשימי עוגה"
 
 #: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:31
 msgid "Piechart"
@@ -1343,26 +1413,34 @@ msgstr "צבע הדרך"
 msgid "Piecharts per row"
 msgstr "מספר התרשימים בשורה"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:15
-msgid "Livemesh Grid"
-msgstr "רשת"
+#: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:80
+msgid "Piecharts per row in Tablet Resolution"
+msgstr ""
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:17
+#: includes/widgets/lsow-piecharts-widget/lsow-piecharts-widget.php:89
+msgid "Piecharts per row in Mobile Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:9
+msgid "Posts Grid"
+msgstr ""
+
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:11
 msgid ""
 "Showcase your work or posts or any custom post types with a filterable "
 "portfolio layout. Make sure that Portfolio Post Type plugin is activated"
 msgstr "תצוגת רשת של העבודה שלך או של כל סוג פוסט בפריסה מסוננת."
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:93
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:58
 msgid "Heading for the grid"
 msgstr "כותרת הרשת"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:98
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:83
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:62
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:84
 msgid "Posts query"
 msgstr "שאילתת הפוסטים"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:99
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:63
 msgid ""
 "After you build the query, make sure you choose the right taxonomy below to "
 "display for your posts and filter on, based on the post type selected during "
@@ -1371,11 +1449,11 @@ msgstr ""
 "עם סיום בניית השאילתה, נא לוודא שבחרת את הטקסונומיה הנכונה להצגת הפוסטים "
 "הנכונים בהתבסס על סוג הפוסט שבחרת"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:104
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:67
 msgid "Choose the taxonomy to display and filter on."
 msgstr "בחירת טקסונומיה לסינון הצגת הפוסטים"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:105
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:68
 msgid ""
 "Choose the taxonomy information to display for posts/portfolio and the "
 "taxonomy that is used to filter the portfolio/post. Takes effect only if no "
@@ -1384,99 +1462,137 @@ msgstr ""
 "בחירת מידע הטקסונומיה לסינון הצגת הפוסטים. בשימוש רק אם לא צוין מסנן "
 "טקסונומי בשאילתה"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:117
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:78
 msgid "Filterable?"
 msgstr "בר סינון?"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:123
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:83
 msgid "Choose a layout for the grid"
 msgstr "בחירת פריסה עבור הרשת"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:130
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:90
 msgid "Fit Rows"
 msgstr "מותאם לשורה"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:131
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:91
 msgid "Masonry"
 msgstr "בניה"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:137
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:96
 msgid "Link the image to the post/portfolio?"
 msgstr "לקשר את התמונה לפוסט?"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:143
-msgid "Display project title below the post/portfolio?"
-msgstr "להציג את הכותרת מתחת לפוסט?"
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:101
+msgid "Post Link Target"
+msgstr ""
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:149
-msgid "Display project excerpt/summary below the post/portfolio?"
-msgstr "להציג למטה תקציר?"
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:104
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:117
+msgid "Same Window"
+msgstr ""
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:155
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:119
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:105
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:118
+msgid "New Window"
+msgstr ""
+
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:110
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:108
+#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:188
+msgid "Image Size"
+msgstr ""
+
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:115
+msgid "Display project title for the post/portfolio?"
+msgstr ""
+
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:120
+msgid "Display project excerpt/summary for the post/portfolio?"
+msgstr ""
+
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:125
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:136
 msgid "Post Meta"
 msgstr "תיאור פוסט"
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:160
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:124
-msgid "Display post author info below the post item?"
-msgstr "האם להציג את מחבר הפוסט מתחת לפריט?"
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:129
+msgid "Display post author info for the post item?"
+msgstr ""
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:166
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:130
-msgid "Display post date info below the post item?"
-msgstr "האם להציג את תאריך הפוסט מתחת לפריט?"
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:134
+msgid "Display post date info for the post item?"
+msgstr ""
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:172
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:136
-msgid "Display taxonomy info below the post item?"
-msgstr "האם להציג מידע טקסונומיה מתחת לפריט?"
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:139
+msgid "Display taxonomy info for the post item?"
+msgstr ""
 
-#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:192
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:154
+msgid "Columns per row in Tablet Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:162
+msgid "Columns per row in Mobile Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-portfolio-widget/lsow-portfolio-widget.php:171
 msgid "Space between columns in masonry grid."
 msgstr "המרווח בין העמודות ברשת בניה"
 
 #: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:15
-msgid "Livemesh Posts Carousel"
-msgstr "קרוסלת פוסטים"
+msgid "Posts Carousel"
+msgstr ""
 
 #: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:17
 msgid "Display blog posts or custom post types as a carousel"
 msgstr "הצגת פוסטים או סוגי פוסט כקרוסלה"
 
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:93
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:94
 msgid "Choose the taxonomy to display info."
 msgstr "בחירת טקסונומיה למידע תצוגה"
 
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:94
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:95
 msgid ""
 "Choose the taxonomy to use for display of taxonomy information for posts/"
 "custom post types."
 msgstr "בחירת טקסונומיה לשימוש עבור מידע הטקסונומיה עבור סוגי פוסט"
 
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:101
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:102
 msgid "Link Images to Posts?"
 msgstr "האם לקשר את התמונות לפוסטים?"
 
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:107
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:114
+msgid "Link Target"
+msgstr ""
+
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:124
 msgid "Display posts title below the post item?"
 msgstr "הצגת כותרת פוסט מתחת לפריט?"
 
-#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:113
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:130
 msgid "Display post excerpt/summary below the post item?"
 msgstr "להציג למטה תקציר?"
 
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:141
+msgid "Display post author info below the post item?"
+msgstr "האם להציג את מחבר הפוסט מתחת לפריט?"
+
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:147
+msgid "Display post date info below the post item?"
+msgstr "האם להציג את תאריך הפוסט מתחת לפריט?"
+
+#: includes/widgets/lsow-posts-carousel-widget/lsow-posts-carousel-widget.php:153
+msgid "Display taxonomy info below the post item?"
+msgstr "האם להציג מידע טקסונומיה מתחת לפריט?"
+
 #: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:15
-msgid "Livemesh Pricing Table"
+#: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:30
+msgid "Pricing Table"
 msgstr "טבלת מחירים"
 
 #: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:17
 msgid "Display pricing table in a multi-column grid."
 msgstr "הצגת טבלת מחירם ברשת עמודות"
-
-#: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:30
-msgid "Pricing Table"
-msgstr "טבלת מחירים"
 
 #: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:31
 msgid "Pricing Plan"
@@ -1561,48 +1677,106 @@ msgid "Value"
 msgstr "ערך"
 
 #: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:120
-msgid "Pricing Columns per row"
-msgstr "מספר עמודות בשורה"
+msgid "Pricing Plans per row"
+msgstr ""
+
+#: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:129
+msgid "Pricing Plans per row in Tablet Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-pricing-table-widget/lsow-pricing-table-widget.php:138
+msgid "Pricing Plans per row in Mobile Resolution"
+msgstr ""
 
 #: includes/widgets/lsow-services-widget/lsow-services-widget.php:15
-msgid "Livemesh Services"
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:61
+msgid "Services"
 msgstr "שירותים"
 
 #: includes/widgets/lsow-services-widget/lsow-services-widget.php:17
 msgid "Create services to display in a column grid."
 msgstr "יצירת שירותים להצגה ברשת עמודות"
 
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:45
-msgid "Services"
-msgstr "שירותים"
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:40
+msgid "Style 4"
+msgstr ""
 
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:46
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:41
+msgid "Style 5"
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:62
 msgid "Service"
 msgstr "שירות"
 
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:57
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:73
 msgid "Title of the service."
 msgstr "כותרת השירות"
 
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:78
+msgid "The URL to which the service item should link to.(optional)"
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:85
+msgid "Service Image."
+msgstr "תמונת שירות"
+
 #: includes/widgets/lsow-services-widget/lsow-services-widget.php:94
+msgid "Service Icon."
+msgstr "צלמית שירות"
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:103
 msgid "Short description"
 msgstr "תיאור קצר"
 
-#: includes/widgets/lsow-services-widget/lsow-services-widget.php:95
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:104
 msgid "Provide a short description for the service"
 msgstr "תיאור קצר של השירות"
 
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:124
+msgid "Services per row"
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:133
+msgid "Services per row in Tablet Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:142
+msgid "Services per row in Mobile Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:157
+msgid "Icon Custom Size"
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:158
+msgid "Specify a custom size for the font icon in pixels."
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:168
+msgid "Icon Custom Color"
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:169
+msgid "Specify a custom color for the font icon."
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:179
+msgid "Icon Custom Hover Color"
+msgstr ""
+
+#: includes/widgets/lsow-services-widget/lsow-services-widget.php:180
+msgid "Specify a custom hover color for the font icon."
+msgstr ""
+
 #: includes/widgets/lsow-stats-bar-widget/lsow-stats-bar-widget.php:15
-msgid "Livemesh Stats Bars"
+#: includes/widgets/lsow-stats-bar-widget/lsow-stats-bar-widget.php:29
+msgid "Stats Bars"
 msgstr "לוחות סטטיסטיקה"
 
 #: includes/widgets/lsow-stats-bar-widget/lsow-stats-bar-widget.php:17
 msgid "Display statistics or skills as a percentage stats bar."
 msgstr "הצגת סטטיסטיקה או כישורים כאחוזים בלוחות סטטיסטיקה"
-
-#: includes/widgets/lsow-stats-bar-widget/lsow-stats-bar-widget.php:29
-msgid "Stats Bars"
-msgstr "לוחות סטטיסטיקה"
 
 #: includes/widgets/lsow-stats-bar-widget/lsow-stats-bar-widget.php:30
 msgid "Stats Bar"
@@ -1613,118 +1787,123 @@ msgid "The title for the stats bar"
 msgstr "הכותרת של לוח הסטטיסטיקה"
 
 #: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:15
-msgid "Livemesh Tabs"
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:84
+msgid "Tabs"
 msgstr "לשוניות"
 
 #: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:17
 msgid "Display tabbed content in variety of styles."
 msgstr "הצגת תוכן בלשוניות במגוון עיצובים"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:30
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:29
 msgid "Choose Tab Style"
 msgstr "בחירת עיצוב הלשונית"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:37
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:36
 msgid "Tab Style 1"
 msgstr "עיצוב 1"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:38
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:37
 msgid "Tab Style 2"
 msgstr "עיצוב 2"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:39
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:38
 msgid "Tab Style 3"
 msgstr "עיצוב 3"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:40
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:39
 msgid "Tab Style 4"
 msgstr "עיצוב 4"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:41
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:40
 msgid "Tab Style 5"
 msgstr "עיצוב 5"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:42
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:41
 msgid "Tab Style 6"
 msgstr "עיצוב 6"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:43
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:42
 msgid "Vertical Tab Style 1"
 msgstr "עיצוב אנכי 1"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:44
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:43
 msgid "Vertical Tab Style 2"
 msgstr "עיצוב אנכי 2"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:45
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:44
 msgid "Vertical Tab Style 3"
 msgstr "עיצוב אנכי 3"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:46
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:45
 msgid "Vertical Tab Style 4"
 msgstr "עיצוב אנכי 4"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:52
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:50
 msgid "Tab highlight color"
 msgstr "צבע הבלטת הלשונית"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:62
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:59
 msgid "Mobile Resolution"
 msgstr "רזולוציית טלפון נייד"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:63
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:60
 msgid ""
 "The resolution to treat as a mobile resolution for invoking responsive tabs."
 msgstr ""
 "הרזולוציה שתשמש להתייחסות כאל רזולוציית טלפון נייד בלשוניות רספונסיביות"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:70
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:66
 msgid "Some styles may ignore icons chosen."
 msgstr "חלק מן העיצובים עלולים להתעלם מן הצלמיות שנבחרו"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:89
-msgid "Tabs"
-msgstr "לשוניות"
-
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:90
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:85
 msgid "Single Tab"
 msgstr "לשונית יחידה"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:99
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:94
 msgid "Tab Title"
 msgstr "כותרת הלשונית"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:100
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:95
 msgid "The title for the tab shown as name for tab navigation."
 msgstr "הכותרת עבור הלשונית המוצגת כשם הלשונית בניווט הלשוניות"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:105
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:99
+msgid "Tab ID"
+msgstr ""
+
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:100
+msgid ""
+"The Tab ID is required to link to a tab. It must be unique across the page, "
+"must begin with a letter and may be followed by any number of letters, "
+"digits, hyphens or underscores."
+msgstr ""
+
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:104
 msgid "Tab Image."
 msgstr "תמונת הלשונית"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:115
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:113
 msgid "Tab Icon."
 msgstr "צלמית הלשונית"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:125
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:122
 msgid "Tab Content"
 msgstr "תוכן הלשונית"
 
-#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:126
+#: includes/widgets/lsow-tabs-widget/lsow-tabs-widget.php:123
 msgid "The content of the tab."
 msgstr "תוכן הלשונית"
 
 #: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:15
-msgid "Livemesh Team Members"
+#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:44
+msgid "Team Members"
 msgstr "צוות"
 
 #: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:17
 msgid "Create team members to display in a column grid."
 msgstr "יצירת חברי צוות להצגה ברשת עמודות"
-
-#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:44
-msgid "Team Members"
-msgstr "צוות"
 
 #: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:45
 msgid "Team Member"
@@ -1822,6 +2001,18 @@ msgstr "כתובת ה URL באינסטגרם"
 msgid "URL of the Instagram feed for the team member."
 msgstr "כתובת ה URL של הזנת האינסטגרם של חבר הצוות"
 
+#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:149
+msgid "Team Members per row"
+msgstr ""
+
+#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:162
+msgid "Team Members per row in Tablet Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-team-members-widget/lsow-team-members-widget.php:175
+msgid "Team Members per row in Mobile Resolution"
+msgstr ""
+
 #: includes/widgets/lsow-team-members-widget/tpl/social-profile.php:24
 msgid "Send an email"
 msgstr "שליחת אימייל"
@@ -1855,14 +2046,15 @@ msgid "View Dribbble Portfolio"
 msgstr "הצגת תיק עבודות Dribbble"
 
 #: includes/widgets/lsow-testimonials-slider-widget/lsow-testimonials-slider-widget.php:15
-msgid "Livemesh Testimonials Slider"
-msgstr "סליידר משובים"
+msgid "Testimonials Slider"
+msgstr ""
 
 #: includes/widgets/lsow-testimonials-slider-widget/lsow-testimonials-slider-widget.php:17
 msgid "Share your product/service testimonials in a responsive slider."
 msgstr "שיתוף המשובים על השירות/מוצר שלך בסליידר רספונסיבי"
 
 #: includes/widgets/lsow-testimonials-slider-widget/lsow-testimonials-slider-widget.php:29
+#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:15
 #: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:29
 msgid "Testimonials"
 msgstr "משובים"
@@ -1943,14 +2135,127 @@ msgstr "בקרי ניווט"
 msgid "Should the slider have navigation controls."
 msgstr "האם להציג בקרי ניווט"
 
-#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:15
-msgid "Livemesh Testimonials"
-msgstr "משובים"
-
 #: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:17
 msgid "Display testimonials in a responsive multi-column grid."
 msgstr "הצגת משובים בתצוגת רשת עמודות רספונסיבית"
 
-#: livemesh-so-widgets.php:75 livemesh-so-widgets.php:84
+#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:76
+msgid "Testimonials per row"
+msgstr ""
+
+#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:85
+msgid "Testimonials per row in Tablet Resolution"
+msgstr ""
+
+#: includes/widgets/lsow-testimonials-widget/lsow-testimonials-widget.php:94
+msgid "Testimonials per row in Mobile Resolution"
+msgstr ""
+
+#: plugin.php:45 plugin.php:55
 msgid "Cheatin&#8217; huh?"
 msgstr "מרמה, אה?"
+
+#~ msgid "Livemesh Accordion"
+#~ msgstr "אקורדיאון"
+
+#~ msgid "Livemesh Button"
+#~ msgstr "כפתור"
+
+#~ msgid "Livemesh Carousel"
+#~ msgstr "קרוסלה"
+
+#~ msgid "Livemesh Clients"
+#~ msgstr "לקוחות"
+
+#~ msgid "Livemesh Heading"
+#~ msgstr "כותרת"
+
+#~ msgid "Livemesh Hero Header"
+#~ msgstr "כותרת מלכותית"
+
+#~ msgid "Livemesh Icon List"
+#~ msgstr "רשימת צלמיות"
+
+#~ msgid "Livemesh Odometers"
+#~ msgstr "מדדים"
+
+#~ msgid "Livemesh Piecharts"
+#~ msgstr "תרשימי עוגה"
+
+#~ msgid "Livemesh Grid"
+#~ msgstr "רשת"
+
+#~ msgid "Display project title below the post/portfolio?"
+#~ msgstr "להציג את הכותרת מתחת לפוסט?"
+
+#~ msgid "Display project excerpt/summary below the post/portfolio?"
+#~ msgstr "להציג למטה תקציר?"
+
+#~ msgid "Livemesh Posts Carousel"
+#~ msgstr "קרוסלת פוסטים"
+
+#~ msgid "Livemesh Pricing Table"
+#~ msgstr "טבלת מחירים"
+
+#~ msgid "Pricing Columns per row"
+#~ msgstr "מספר עמודות בשורה"
+
+#~ msgid "Livemesh Services"
+#~ msgstr "שירותים"
+
+#~ msgid "Livemesh Stats Bars"
+#~ msgstr "לוחות סטטיסטיקה"
+
+#~ msgid "Livemesh Tabs"
+#~ msgstr "לשוניות"
+
+#~ msgid "Livemesh Team Members"
+#~ msgstr "צוות"
+
+#~ msgid "Livemesh Testimonials Slider"
+#~ msgstr "סליידר משובים"
+
+#~ msgid "Livemesh Testimonials"
+#~ msgstr "משובים"
+
+#~ msgid "Premium Upgrade"
+#~ msgstr "שדרוג לגרסת פרו"
+
+#~ msgid "Why upgrade to Premium Version of the plugin?"
+#~ msgstr "למה לשדרג לגרסת הפרימיום של התוסף?"
+
+#~ msgid "Top Padding"
+#~ msgstr "מרווח עליון"
+
+#~ msgid "Top Padding for the row."
+#~ msgstr "מרווח עליון של השורה"
+
+#~ msgid "Bottom Padding"
+#~ msgstr "מרווח תחתון"
+
+#~ msgid "Bottom Padding for the row."
+#~ msgstr "מרווח תחתון של השורה"
+
+#~ msgid "Top Padding in Tablet resolution"
+#~ msgstr "מרווח עליון ברזולוציית טאבלט"
+
+#~ msgid "Top Padding for the row in tablet resolutions."
+#~ msgstr "מרווח עליון של השורה ברזולוציית טאבלט"
+
+#~ msgid "Bottom Padding in Tablet resolution"
+#~ msgstr "מרווח תחתון ברזולוציית טאבלט"
+
+#~ msgid "Bottom Padding for the row in tablet resolutions."
+#~ msgstr "מרווח תחתון של השורה ברזולוציית טאבלט"
+
+#~ msgid "Top Padding in Mobile resolution"
+#~ msgstr "מרווח עליון ברזולוציית טלפון נייד"
+
+#~ msgid "Top Padding for the row in mobile resolutions."
+#~ msgstr "מרווח עליון של השורה ברזולוציית טלפון נייד"
+
+#~ msgid "Bottom Padding in Mobile resolution"
+#~ msgstr "מרווח תחתון ברזולוציית טלפון נייד"
+
+#~ msgid "Bottom Padding for the row in mobile resolutions."
+#~ msgstr "מרווח תחתון של השורה ברזולוציית טלפון נייד"

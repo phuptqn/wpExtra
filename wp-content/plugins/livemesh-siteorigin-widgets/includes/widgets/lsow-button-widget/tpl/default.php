@@ -18,6 +18,8 @@
  * @var $settings
  */
 
+list($animate_class, $animation_attr) = lsow_get_animation_atts($settings['animation']);
+
 $icon_html = '';
 
 $id = (!empty($id)) ? ' id="' . $id . '"' : '';
@@ -58,7 +60,7 @@ if ($icon_type == 'icon_image')
 elseif ($icon_type == 'icon')
     $icon_html = siteorigin_widget_get_icon($icon);
 
-$button_content = '<a' . $id . ' class= "lsow-button ' . ((!empty($icon_html)) ? ' lsow-with-icon' : '') . esc_attr($class) . $color_class . $type . $rounded . '"' . $style . $color_attr . $hover_color_attr . ' href="' . sow_esc_url($href) . '"' . esc_html($target) . '>' . $icon_html . esc_html($text) . '</a>';
+$button_content = '<a' . $id . ' class= "lsow-button ' . ((!empty($icon_html)) ? ' lsow-with-icon' : '') . esc_attr($class) . $color_class . $type . $rounded . $animate_class . '"' . $style . $color_attr . $hover_color_attr . $animation_attr . ' href="' . sow_esc_url($href) . '"' . esc_html($target) . '>' . $icon_html . esc_html($text) . '</a>';
 
 if ($align != 'none')
     $button_content = '<div class="lsow-button-wrap" style="clear: both; text-align:' . esc_attr($align) . ';">' . $button_content . '</div>';

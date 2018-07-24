@@ -1,7 +1,6 @@
 @import "bourbon";
 @import "neat";
 
-
 @import "../../../assets/css/lsow-lib";
 
 
@@ -110,7 +109,7 @@ label.lsow-inline {
   border-top-right-radius: 4px;
   border-bottom-width: 0;
   white-space: nowrap;
-  transition: all .4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out;
   }
 .lsow-menu-options .lsow-tab {
   padding: 15px;
@@ -356,3 +355,9 @@ input.lsow-checkbox:checked + label:after {
   box-sizing: content-box;
   }
 
+.wrap.lsow-license-wrap form.lsow-license-box {
+  max-width: 700px;
+  background: white;
+  margin: 20px 0;
+  padding: 20px 30px;
+  }

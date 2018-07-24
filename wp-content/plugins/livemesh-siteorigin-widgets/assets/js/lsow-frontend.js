@@ -18,6 +18,24 @@ if (typeof (jQuery) != 'undefined') {
                     this.carousel();
                     this.setup_parallax();
                     this.setup_ytp();
+                    this.setup_animations();
+                },
+
+                setup_animations: function () {
+
+                    /* Hide the elements if required to prepare for animation */
+                    $(".lsow-visible-on-scroll:not(.animated)").css('opacity', 0);
+
+                    "function" != typeof window.lsow_animate_widgets && (window.lsow_animate_widgets = function () {
+                        "undefined" != typeof $.fn.waypoint && $(".lsow-animate-on-scroll:not(.animated)").waypoint(function () {
+                            var animateClass = $(this.element).data("animation");
+                            $(this.element).addClass("animated " + animateClass).css('opacity', 1);
+                        }, {
+                            offset: "85%"
+                        })
+                    });
+
+                    window.setTimeout(lsow_animate_widgets, 500)
                 },
 
                 output_custom_css: function () {

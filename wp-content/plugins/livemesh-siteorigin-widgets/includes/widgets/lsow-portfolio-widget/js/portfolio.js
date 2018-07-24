@@ -11,14 +11,13 @@ jQuery(function ($) {
 
         var options = html_content.data('settings');
 
-        html_content.isotope({
-            itemSelector: options.itemSelector,
-            layoutMode: options.layoutMode,
-            transitionDuration: '0.8s'
-        });
-
         html_content.imagesLoaded(function () {
-            html_content.isotope('layout');
+
+            html_content.isotope({
+                itemSelector: options.itemSelector,
+                layoutMode: options.layoutMode,
+                transitionDuration: '0.8s'
+            });
         });
 
         var container = $(this).find('.lsow-portfolio');

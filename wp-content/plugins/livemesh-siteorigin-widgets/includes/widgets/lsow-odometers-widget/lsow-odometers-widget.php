@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Odometers
+Widget Name: Odometers
 Description: Display one or more animated odometer statistics in a multi-column grid.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Odometer_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-odometers',
-            __('Livemesh Odometers', 'livemesh-so-widgets'),
+            __('Odometers', 'livemesh-so-widgets'),
             array(
                 'description' => __('Display statistics as animated odometers in a multi-column grid.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -108,10 +108,29 @@ class LSOW_Odometer_Widget extends SiteOrigin_Widget {
                             'type' => 'slider',
                             'label' => __('Odometers per row', 'livemesh-so-widgets'),
                             'min' => 1,
-                            'max' => 5,
+                            'max' => 6,
                             'integer' => true,
                             'default' => 4
                         ),
+
+                        'per_line_tablet' => array(
+                            'type' => 'slider',
+                            'label' => __('Odometers per row in Tablet Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 6,
+                            'integer' => true,
+                            'default' => 2
+                        ),
+
+                        'per_line_mobile' => array(
+                            'type' => 'slider',
+                            'label' => __('Odometers per row in Mobile Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 4,
+                            'integer' => true,
+                            'default' => 1
+                        ),
+
                     )
                 ),
 

@@ -16,7 +16,7 @@
       font-size: 15px;
       line-height: 26px;
       }
-    }
+  }
   &.lsow-alignleft, &.lsow-alignright {
     margin: 0;
     .lsow-text {
@@ -29,7 +29,7 @@
   &.lsow-alignright {
     text-align: right;
     }
-  }
+}
 
 .lsow-heading {
   .lsow-title {
@@ -44,15 +44,15 @@
       line-height: 32px;
       }
     }
-  .lsow-dark-bg  & {
-    .lsow-title {
-      color: #e5e5e5;
+    .lsow-dark-bg  & {
+      .lsow-title {
+        color: #e5e5e5;
       }
-    .lsow-subtitle {
-      color: #B0B0B0;
+      .lsow-subtitle {
+        color: #B0B0B0;
       }
-    .lsow-text {
-      color: #909090;
+      .lsow-text {
+        color: #909090;
       }
     }
 
@@ -96,7 +96,7 @@
 
 
 .lsow-heading.lsow-style3 {
-  margin: 0 auto 30px;
+   margin: 0 auto 30px;
   .lsow-title {
     font-size: 22px;
     line-height: 32px;
@@ -107,8 +107,8 @@
       margin: 10px auto 20px;
       .lsow-dark-bg & {
         background: #909090;
-        }
       }
+    }
     @include respond-to-max(767) {
       font-size: 16px;
       line-height: 24px;

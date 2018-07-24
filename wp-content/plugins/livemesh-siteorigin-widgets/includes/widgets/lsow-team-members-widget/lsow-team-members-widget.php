@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Team Members
+Widget Name: Team Members
 Description: Display a list of your team members optionally in a multi-column grid.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Team_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-team-members',
-            __('Livemesh Team Members', 'livemesh-so-widgets'),
+            __('Team Members', 'livemesh-so-widgets'),
             array(
                 'description' => __('Create team members to display in a column grid.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -128,25 +128,65 @@ class LSOW_Team_Widget extends SiteOrigin_Widget {
                             )
                         ),
 
+                        'animation' => array(
+                            'type' => 'select',
+                            'label' => __('Choose Animation Type', 'livemesh-so-widgets'),
+                            'default' => 'none',
+                            'options' => lsow_get_animation_options(),
+                        ),
+
                     )
                 ),
 
                 'settings' => array(
                     'type' => 'section',
                     'label' => __('Settings', 'livemesh-so-widgets'),
-                    'state_handler' => array(
-                        'style[style1]' => array('show'),
-                        'style[style2]' => array('hide'),
-                    ),
                     'fields' => array(
+
 
                         'per_line' => array(
                             'type' => 'slider',
-                            'label' => __('Columns per row', 'livemesh-so-widgets'),
+                            'label' => __('Team Members per row', 'livemesh-so-widgets'),
+                            'state_handler' => array(
+                                'style[style1]' => array('show'),
+                                'style[style2]' => array('hide'),
+                            ),
                             'min' => 1,
-                            'max' => 5,
+                            'max' => 6,
                             'integer' => true,
                             'default' => 3
+                        ),
+
+                        'per_line_tablet' => array(
+                            'type' => 'slider',
+                            'label' => __('Team Members per row in Tablet Resolution', 'livemesh-so-widgets'),
+                            'state_handler' => array(
+                                'style[style1]' => array('show'),
+                                'style[style2]' => array('hide'),
+                            ),
+                            'min' => 1,
+                            'max' => 6,
+                            'integer' => true,
+                            'default' => 2
+                        ),
+
+                        'per_line_mobile' => array(
+                            'type' => 'slider',
+                            'label' => __('Team Members per row in Mobile Resolution', 'livemesh-so-widgets'),
+                            'state_handler' => array(
+                                'style[style1]' => array('show'),
+                                'style[style2]' => array('hide'),
+                            ),
+                            'min' => 1,
+                            'max' => 4,
+                            'integer' => true,
+                            'default' => 1
+                        ),
+
+                        'image_size'    => array(
+                            'type'          => 'image-size',
+                            'label'         => __( 'Image Size', 'livemesh-so-widgets' ),
+                            'default'       => 'large',
                         ),
                     )
                 ),

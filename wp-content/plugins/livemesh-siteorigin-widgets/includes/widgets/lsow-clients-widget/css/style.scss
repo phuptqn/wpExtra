@@ -1,7 +1,160 @@
 @import "../../../../assets/css/lsow-lib";
 .lsow-clients {
+  clear: both;
   overflow: hidden;
   margin: 0 auto;
+
+  @include grid-media($lsow-mobile-only-grid) {
+    .lsow-grid-mobile-1 {
+      .lsow-grid-item:nth-child(1n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 1) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-mobile-2 {
+      .lsow-grid-item:nth-child(2n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 2) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-mobile-3 {
+      .lsow-grid-item:nth-child(3n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 3) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-mobile-4 {
+      .lsow-grid-item:nth-child(4n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 4) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-mobile-5 {
+      .lsow-grid-item:nth-child(5n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 5) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-mobile-6 {
+      .lsow-grid-item:nth-child(6n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 6) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    }
+  @include grid-media($lsow-tablet-only-grid) {
+
+    .lsow-grid-tablet-1 {
+      .lsow-grid-item:nth-child(1n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 1) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-tablet-2 {
+      .lsow-grid-item:nth-child(2n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 2) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-tablet-3 {
+      .lsow-grid-item:nth-child(3n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 3) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-tablet-4 {
+      .lsow-grid-item:nth-child(4n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 4) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-tablet-5 {
+      .lsow-grid-item:nth-child(5n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 5) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-tablet-6 {
+      .lsow-grid-item:nth-child(6n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 6) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    }
+  @include grid-media($lsow-desktop-grid) {
+    .lsow-grid-desktop-1 {
+      .lsow-grid-item:nth-child(1n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 1) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-desktop-2 {
+      .lsow-grid-item:nth-child(2n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 2) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-desktop-3 {
+      .lsow-grid-item:nth-child(3n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 3) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-desktop-4 {
+      .lsow-grid-item:nth-child(4n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 4) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-desktop-5 {
+      .lsow-grid-item:nth-child(5n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 5) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    .lsow-grid-desktop-6 {
+      .lsow-grid-item:nth-child(6n + 1) {
+        border-left: 1px solid #ddd;
+        }
+      .lsow-grid-item:nth-child(-n + 6) {
+        border-top: 1px solid #ddd;
+        }
+      }
+    }
   .lsow-client {
     position: relative;
     border-right: 1px solid #ddd;
@@ -9,50 +162,6 @@
     overflow: hidden;
     .lsow-dark-bg & {
       border-color: #505050 !important;
-      }
-    &.lsow-twocol:nth-child(6n + 1) {
-      border-left: 1px solid #ddd;
-      }
-    &.lsow-twocol:nth-child(-n + 6) {
-      border-top: 1px solid #ddd;
-      }
-    &.lsow-onefifth:nth-child(5n + 1) {
-      border-left: 1px solid #ddd;
-      }
-    &.lsow-onefifth:nth-child(-n + 5) {
-      border-top: 1px solid #ddd;
-      }
-    &.lsow-threecol:nth-child(4n + 1) {
-      border-left: 1px solid #ddd;
-      }
-    &.lsow-threecol:nth-child(-n + 4) {
-      border-top: 1px solid #ddd;
-      }
-    &.lsow-fourcol:nth-child(3n + 1) {
-      border-left: 1px solid #ddd;
-      }
-    &.lsow-fourcol:nth-child(-n + 3) {
-      border-top: 1px solid #ddd;
-      }
-    &.lsow-sixcol:nth-child(2n + 1) {
-      border-left: 1px solid #ddd;
-      }
-    &.lsow-sixcol:nth-child(-n + 2) {
-      border-top: 1px solid #ddd;
-      }
-    @include respond-to-max(800) {
-      &.lsow-twocol:nth-child(n), &.lsow-threecol:nth-child(n), &.lsow-fourcol:nth-child(n), &.lsow-onefifth:nth-child(n), &.lsow-sixcol:nth-child(n) {
-        border-left: none;
-        border-top: none;
-        width: 50%;
-        float: left;
-        }
-      &.lsow-twocol:nth-child(2n + 1), &.lsow-threecol:nth-child(2n + 1), &.lsow-fourcol:nth-child(2n + 1), &.lsow-onefifth:nth-child(2n + 1), &.lsow-sixcol:nth-child(2n + 1) {
-        border-left: 1px solid #ddd;
-        }
-      &.lsow-twocol:nth-child(-n + 2), &.lsow-threecol:nth-child(-n + 2), &.lsow-fourcol:nth-child(-n + 2), &.lsow-onefifth:nth-child(-n + 2), &.lsow-sixcol:nth-child(-n + 2) {
-        border-top: 1px solid #ddd;
-        }
       }
     img {
       -webkit-transition: all 0.3s ease-in-out 0s;
@@ -66,7 +175,6 @@
       position: absolute;
       z-index: 2;
       top: 50%;
-      left: 0;
       text-align: center;
       width: 100%;
       height: 100%;
@@ -74,7 +182,7 @@
       color: #fff;
       font-size: 18px;
       line-height: 26px;
-      transition: opacity .4s ease-in-out 0s;
+      transition: opacity 0.4s ease-in-out 0s;
       opacity: 0;
       a {
         color: #fff;
@@ -92,7 +200,7 @@
       filter: alpha(opacity=0);
       -moz-opacity: 0;
       opacity: 0;
-      transition: opacity .4s ease-in-out 0s;
+      transition: opacity 0.4s ease-in-out 0s;
       }
     &:hover {
       .lsow-image-overlay {

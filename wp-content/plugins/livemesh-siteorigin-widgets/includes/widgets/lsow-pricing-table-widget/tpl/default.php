@@ -8,9 +8,9 @@
 
 <?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
 
-<?php $column_style = lsow_get_column_class(intval($settings['per_line'])); ?>
+<?php list($animate_class, $animation_attr) = lsow_get_animation_atts($settings['animation']); ?>
 
-<div class="lsow-pricing-table lsow-grid-container">
+<div class="lsow-pricing-table lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?>">
 
     <?php
 
@@ -30,7 +30,7 @@
         ?>
 
         <div
-            class="lsow-pricing-plan <?php echo(!empty($highlight) ? ' lsow-highlight' : ''); ?> <?php echo $column_style; ?>">
+            class="lsow-grid-item lsow-pricing-plan <?php echo(!empty($highlight) ? ' lsow-highlight' : ''); ?> <?php echo $animate_class; ?>"<?php echo $animation_attr; ?>>
 
             <div class="lsow-top-header">
 

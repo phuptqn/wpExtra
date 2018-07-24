@@ -2,7 +2,7 @@ jQuery(function ($) {
 
     $('.lsow-odometers').waypoint(function (direction) {
 
-        $(this).find('.lsow-odometer .lsow-number').each(function () {
+        $(this.element).find('.lsow-odometer .lsow-number').each(function () {
 
             var odometer = $(this);
 
@@ -15,7 +15,7 @@ jQuery(function ($) {
 
         });
 
-    }, { offset: $.waypoints('viewportHeight') - 100,
+    }, { offset: Waypoint.viewportHeight() - 100,
         triggerOnce: true});
 
 

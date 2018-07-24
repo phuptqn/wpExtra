@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Piecharts
+Widget Name: Piecharts
 Description: Display one or more piecharts depicting a percentage value in a multi-column grid.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Piechart_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-piecharts',
-            __('Livemesh Piecharts', 'livemesh-so-widgets'),
+            __('Piecharts', 'livemesh-so-widgets'),
             array(
                 'description' => __('Display statistics or skills as a percentage piechart.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -68,12 +68,31 @@ class LSOW_Piechart_Widget extends SiteOrigin_Widget {
 
                         'per_line' => array(
                             'type' => 'slider',
-                            'label' => __( 'Piecharts per row', 'livemesh-so-widgets' ),
+                            'label' => __('Piecharts per row', 'livemesh-so-widgets'),
                             'min' => 1,
-                            'max' => 5,
+                            'max' => 6,
                             'integer' => true,
                             'default' => 4
                         ),
+
+                        'per_line_tablet' => array(
+                            'type' => 'slider',
+                            'label' => __('Piecharts per row in Tablet Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 6,
+                            'integer' => true,
+                            'default' => 2
+                        ),
+
+                        'per_line_mobile' => array(
+                            'type' => 'slider',
+                            'label' => __('Piecharts per row in Mobile Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 4,
+                            'integer' => true,
+                            'default' => 1
+                        ),
+
                     )
                 ),
 

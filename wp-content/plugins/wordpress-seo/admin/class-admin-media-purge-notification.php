@@ -38,7 +38,9 @@ class WPSEO_Admin_Media_Purge_Notification implements WPSEO_WordPress_Integratio
 	 * To make sure the setting is not reverted to the default when -anything-
 	 * is saved on the entire page (not just the media tab).
 	 *
-	 * @return void
+	 * @param string|null $input Current filter value.
+	 *
+	 * @return string|null
 	 */
 	public function output_hidden_setting( $input ) {
 		$form = Yoast_Form::get_instance();
@@ -53,27 +55,7 @@ class WPSEO_Admin_Media_Purge_Notification implements WPSEO_WordPress_Integratio
 	 * @return void
 	 */
 	public function manage_notification() {
-		if ( ! WPSEO_Options::get( 'is-media-purge-relevant' ) ) {
-			$this->remove_notification();
-
-			return;
-		}
-
-		// This is the desired behaviour, remove any notifications and carry on.
-		if ( WPSEO_Options::get( 'disable-attachment' ) === true ) {
-			$this->remove_notification();
-
-			return;
-		}
-
-		// When the attachments are no-indexed, this is acceptable.
-		if ( WPSEO_Options::get( 'noindex-attachment' ) === true ) {
-			$this->remove_notification();
-
-			return;
-		}
-
-		$this->add_notification();
+		$this->remove_notification();
 	}
 
 	/**

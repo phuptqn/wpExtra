@@ -9,16 +9,15 @@
 
 <?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
 
-
-<?php $column_style = ''; ?>
+<?php $item_style = ''; ?>
 
 <?php $container_style = 'lsow-container'; ?>
 
 <?php if ($style == 'style1'): ?>
 
-    <?php $column_style = lsow_get_column_class(intval($settings['per_line'])); ?>
+    <?php $item_style = 'lsow-grid-item'; ?>
 
-    <?php $container_style = 'lsow-grid-container'; ?>
+    <?php $container_style = 'lsow-grid-container ' . lsow_get_grid_classes($settings); ?>
 
 <?php endif; ?>
 
@@ -26,13 +25,15 @@
 
     <?php foreach ($team_members as $team_member): ?>
 
-        <div class="lsow-team-member-wrapper <?php echo $column_style; ?>">
+        <div class="<?php echo $item_style; ?> lsow-team-member-wrapper">
 
-            <div class="lsow-team-member">
+            <?php list($animate_class, $animation_attr) = lsow_get_animation_atts($team_member['animation']); ?>
+
+            <div class="lsow-team-member <?php echo $animate_class; ?>" <?php echo $animation_attr; ?>>
 
                 <div class="lsow-image-wrapper">
 
-                    <?php echo wp_get_attachment_image($team_member['image'], 'full', false, array('class' => 'lsow-image full')); ?>
+                    <?php echo wp_get_attachment_image($team_member['image'], $settings['image_size'], false, array('class' => 'lsow-image')); ?>
 
                     <?php if ($style == 'style1'): ?>
 
@@ -70,7 +71,7 @@
 
         </div>
 
-    <?php
+        <?php
 
     endforeach;
 

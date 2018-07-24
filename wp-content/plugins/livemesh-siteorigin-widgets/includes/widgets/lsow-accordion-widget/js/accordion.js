@@ -1,13 +1,16 @@
-
 jQuery(function ($) {
 
-    $('.lsow-accordion').each(function () {
+    // Don't do any of this if there are no accordions present here
+    if ($('.lsow-accordion').length) {
 
-        var accordion = $(this);
+        $('.lsow-accordion').each(function () {
 
-        new LSOW_Accordion(accordion);
+            var accordion = $(this);
 
-    });
+            new LSOW_Accordion(accordion);
+
+        });
+    }
 
 });
 
@@ -18,8 +21,13 @@ var LSOW_Accordion = function (accordion) {
 
     this.toggle = false;
 
+    this.expanded = false;
+
     if (accordion.data('toggle') == true)
         this.toggle = true;
+
+    if (accordion.data('expanded') == true)
+        this.expanded = true;
 
     this.current = null;
 
@@ -75,13 +83,41 @@ LSOW_Accordion.prototype.initEvents = function () {
 
     var self = this;
 
+    if (this.expanded && this.toggle) {
+
+        // Display all panels
+        this.panels.each(function () {
+
+            var panel = jQuery(this);
+
+            self.show(panel);
+
+        });
+    }
+
     this.panels.find('.lsow-panel-title').click(function (event) {
 
         event.preventDefault();
 
-        var panel = jQuery(this).parent();
+        var $panel = jQuery(this).parent();
 
-        self.show(panel);
+        // Do not disturb existing location URL if you are going to close an accordion panel that is currently open
+        if (!$panel.hasClass('lsow-active')) {
+
+            var target = $panel.attr("id");
+
+            history.pushState ? history.pushState(null, null, "#" + target) : window.location.hash = "#" + target;
+
+        }
+        else {
+            var target = $panel.attr("id");
+
+            if (window.location.hash == '#' + target)
+                history.pushState ? history.pushState(null, null, '#') : window.location.hash = "#";
+        }
+
+        self.show($panel);
+
     });
 };
 

@@ -1,15 +1,14 @@
 <?php
 /**
  * @var $odometers
+ * @var $settings
  */
 
 ?>
 
 <?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
 
-<?php $column_style = lsow_get_column_class(intval($settings['per_line'])); ?>
-
-<div class="lsow-odometers lsow-grid-container">
+<div class="lsow-odometers lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?>">
 
     <?php foreach ($odometers as $odometer): ?>
 
@@ -20,7 +19,7 @@
 
         ?>
 
-        <div class="lsow-odometer <?php echo $column_style; ?>">
+        <div class="lsow-grid-item lsow-odometer">
 
             <?php echo (!empty ($odometer['prefix'])) ? '<span class="lsow-prefix">' . $odometer['prefix'] . '</span>' : ''; ?>
 

@@ -1,11 +1,11 @@
 === Livemesh SiteOrigin Widgets ===
 Author URI: https://www.livemeshthemes.com/siteorigin-widgets
 Plugin URI: https://www.livemeshthemes.com/siteorigin-widgets
-Contributors: livemesh
+Contributors: livemesh, freemius
 Tags: widget, siteorigin, siteorigin widgets bundle, siteorigin page builder, siteorigin widgets, grid, gallery, video background, portfolio, carousel, shortcode, tabs, admin, plugin, page
 Requires at least: 4.5
 Tested up to: 4.9
-Stable Tag: 1.7.3
+Stable Tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,8 +60,8 @@ The <strong><a href="https://www.livemeshthemes.com/siteorigin-widgets/" title="
 <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/features-widget/" title="Features Widget">Features Widget</a> for showcasing product features or services provided by an agency/business.</li>
 <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/services-advanced/" title="Advanced Services">Advanced Services</a> with additional styles and animations for services widget.</li>
 <li>Countdown widget to display a countdown timer on your site pages such as those that feature events or under construction/coming soon pages.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/portfolio-grid-pro/" title="Livemesh Grid">Lazy Load</a> - The portfolio/post grid and image gallery widgets incorporate option to lazy load posts/images with the click of a Load More button.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/portfolio-grid-pro/" title="Livemesh Grid">Pagination</a> - Create a grid of posts or custom post types with AJAX based pagination support. </li>
+<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/portfolio-grid-pro/" title="Posts Grid">Lazy Load</a> - The portfolio/post grid and image gallery widgets incorporate option to lazy load posts/images with the click of a Load More button.</li>
+<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/portfolio-grid-pro/" title="Posts Grid">Pagination</a> - Create a grid of posts or custom post types with AJAX based pagination support. </li>
 <li>Lightbox Support - The premium version of Livemesh SiteOrigin Widgets plugin comes with support for Lightbox for grid and carousel widgets.</li>
 <li>Customizations - Ability to choose custom font size, color or hover color for certain widgets. More coming.</li>
 <li>Custom Fonts - Ability to choose custom fonts from Google Fonts library for headings in heading widget and the hero header widget.</li>
@@ -70,7 +70,7 @@ The <strong><a href="https://www.livemeshthemes.com/siteorigin-widgets/" title="
 <li>Premium Support - The customers will be provided access to a dedicated support forum with searchable content, private tickets, with threads attended to within 24 hours.</li>
 </ul>
 
-<strong>Important: You must activate widgets you need to use from Plugins &gt; SiteOrigin Widgets so that they can be available to use.</strong>. 
+<strong>Important: You must activate widgets you need to use from Plugins &gt; SiteOrigin Widgets so that they can be available to use.</strong>.
 
 Do you have suggestions to make or want to be notified of important updates? Reach out to us on Twitter -
 http://twitter.com/live_mesh
@@ -116,8 +116,25 @@ Pls install and activate the <a href="https://wordpress.org/plugins/portfolio-po
 
 == Changelog ==
 
+= 2.2.1 =
+* Fixed - Bug fixes.
+
+= 2.2 =
+* Added – Seamless control of number of columns at all device resolutions for all those elements that involve grid – posts/portfolio grid, clients, services, testimonials, team, charts, pricing table etc.
+* Added - Sample animations for services, clients, testimonials, team and pricing table.
+
+= 2.1 =
+* Added – New simpler grid system for all elements that use grid.
+
+= 2.0 =
+* Moved to a single code base for premium and free versions
+
+= 1.7.4 =
+* Fixed – Posts Grid columns will not align in fit rows patterns in certain sites.
+* Updated - The waypoints script to 4.x version
+
 = 1.7.3 =
-* Fixed – Livemesh Grid columns can break in certain resolutions in FireFox.
+* Fixed – Posts Grid columns can break in certain resolutions in FireFox.
 * Fixed - The piechart value is not being rounded.
 * Fixed - The post grid and posts carousel date format not reflecting the user preference specified in Settings page.
 

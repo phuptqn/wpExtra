@@ -41,7 +41,7 @@ $custom_css = lsow_get_option('lsow_custom_css', '');
                             class="lsow-icon dashicons dashicons-warning"></i><?php echo __('Debugging', 'livemesh-so-widgets') ?>
                     </li>
                     <li class="lsow-tab" data-target="premium-version"><i
-                            class="lsow-icon dashicons dashicons-yes"></i><?php echo __('Premium Upgrade', 'livemesh-so-widgets') ?>
+                            class="lsow-icon dashicons dashicons-yes"></i><?php echo __('Premium Version', 'livemesh-so-widgets') ?>
                     </li>
                 </ul>
 
@@ -201,14 +201,19 @@ $custom_css = lsow_get_option('lsow_custom_css', '');
 
                         <div class="lsow-row lsow-field lsow_premium_version">
 
-                            <label
-                                class="lsow-label"><?php echo __('Why upgrade to Premium Version of the plugin?', 'livemesh-so-widgets') ?></label>
+                            <?php if (lsow_fs()->is_not_paying()): ?>
 
+                                <label class="lsow-label"><?php echo __('Why upgrade to Premium Version of the plugin?!', 'livemesh-so-widgets') ?></label>
+
+                            <?php else: ?>
+
+                                <label class="lsow-label"><?php echo __('Thanks for upgrading to the Premium Version of the plugin!', 'livemesh-so-widgets') ?></label>
+
+                            <?php endif; ?>
+                            
                             <p>The premium version helps us to continue development of this plugin incorporating even
-                                more
-                                features and enhancements along with offering more responsive support. Following are
-                                some of the reasons why you may want to upgrade to the premium version of this
-                                plugin.</p>
+                                more features and enhancements along with offering more responsive support. Following are
+                                some of the benefits you enjoy by upgrading to the premium version of this plugin.</p>
 
                             <label class="lsow-label">New Premium Widgets</label>
 
@@ -217,47 +222,41 @@ $custom_css = lsow_get_option('lsow_custom_css', '');
                                 version does even more.</p>
 
                             <ul>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/posts-block/" title="Post Blocks Widget" target="_blank">Post
-                                        Blocks!</a> - Present your blog posts, events, news items or portfolio in a dozen creative ways. Comes with AJAX filtering,
-                                    pagination and load more features to help visitors navigate your entire collection of blog posts or custom post types and
-                                    their categories without reloading the page.
-                                </li>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/livemesh-sliders/" title="Image Slider Widget" target="_blank">Image
-                                        Slider</a> - Create a responsive slider of images with support
+                                <li><strong>Image Slider</strong> - Create a responsive slider of images with support
                                     for captions,
                                     multiple slider types like Nivo, Flex, Slick and lightweight sliders, thumbnail
                                     navigation etc.
                                 </li>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/image-gallery/" title="Image Gallery Widget" target="_blank">Image
-                                        Gallery</a> - Create a gallery of images with options for masonry
+                                <li><strong>Image Gallery</strong> - Create a gallery of images with options for masonry
                                     or fit rows, pagination, lazy load, lightbox support etc.
                                 </li>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/video-gallery/" title="Video Gallery Widget" target="_blank">Video
-                                        Gallery</a> - Create a beautiful gallery of videos to help
+                                <li><strong>Video Gallery</strong> - Create a beautiful gallery of videos to help
                                     showcase a collection of YouTube/Vimeo videos on your site.
                                 </li>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/gallery-carousel/" title="Image Carousel" target="_blank">Image
-                                        Carousel</a> - Build a responsive carousel of images.</li>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/gallery-carousel/" title="Video Carousel" target="_blank">Video
-                                        Carousel</a> - Build a responsive carousel of YouTube/Vimeo
+                                <li><strong>Image Carousel</strong> - Build a responsive carousel of images.</li>
+                                <li><strong>Video Carousel</strong> - Build a responsive carousel of YouTube/Vimeo
                                     videos.
                                 </li>
                                 <li><strong>Countdown</strong> - Use countdown widget to display a countdown timer on
                                     your site pages
                                     such as those that feature events or under construction/coming soon pages.
                                 </li>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/services/" title="FAQ Widget" target="_blank">FAQ</a> - Create a set of Frequently Asked Questions for display in a
+                                <li><strong>FAQ</strong> - Create a set of Frequently Asked Questions for display in a
                                     page.
                                 </li>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/features/" title="Features Widget" target="_blank">Features Widget</a> for showcasing product features or services provided by an agency/business..
+                                <li><strong>Features Widget</strong> for showcasing product features or services provided by an agency/business..
                                 </li>
                             </ul>
 
                             <div class="lsow-spacer" style="height: 15px"></div>
 
-                            <a class="lsow-button purchase" href="https://www.livemeshthemes.com/siteorigin-widgets/pricing/"><i class="dashicons dashicons-cart"></i><?php echo __('Purchase Now', 'livemesh-so-widgets'); ?></a>
+                            <?php if (lsow_fs()->is_not_paying()): ?>
 
-                            <div class="lsow-spacer" style="height: 25px"></div>
+                                <a class="lsow-button purchase" href="<?php echo lsow_fs()->get_upgrade_url(); ?>"><i class="dashicons dashicons-cart"></i><?php echo __('Purchase Now', 'livemesh-so-widgets'); ?></a>
+
+                                <div class="lsow-spacer" style="height: 25px"></div>
+
+                            <?php endif; ?>
 
                             <label class="lsow-label">Additional Features</label>
 
@@ -265,10 +264,10 @@ $custom_css = lsow_get_option('lsow_custom_css', '');
                                 updated with additional features for existing widgets -</p>
 
                             <ul>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/livemesh-grid/" title="Livemesh Grid" target="_blank">Lazy Load</a> - The portfolio/post grid and image gallery widgets
+                                <li><strong>Lazy Load</strong> - The portfolio/post grid and image gallery widgets
                                     incorporate option to lazy load posts/images with the click of a Load More button.
                                 </li>
-                                <li><a href="https://www.livemeshthemes.com/siteorigin-widgets/livemesh-grid/" title="Livemesh Grid" target="_blank">Pagination</a> - Create a grid of posts or custom post types with AJAX
+                                <li><strong>Pagination</strong> - Create a grid of posts or custom post types with AJAX
                                     based pagination support.
                                 </li>
                                 <li><strong>Lightbox Support</strong> - The premium version comes with support for
@@ -313,6 +312,17 @@ $custom_css = lsow_get_option('lsow_custom_css', '');
                                 </li>
                             </ul>
 
+                            <div class="lsow-spacer" style="height: 25px"></div>
+
+                            <?php if (lsow_fs()->is_not_paying()): ?>
+
+                                <a class="lsow-button purchase" href="<?php echo lsow_fs()->get_upgrade_url(); ?>"><i class="dashicons dashicons-cart"></i><?php echo __('Go Premium', 'livemesh-so-widgets'); ?></a>
+
+                            <?php else: ?>
+
+                                <a class="lsow-button know-more" href="https://www.livemeshthemes.com/siteorigin-widgets/"><i class="dashicons dashicons-external"></i><?php echo __('Know More', 'livemesh-so-widgets'); ?></a>
+
+                            <?php endif; ?>
                         </div>
 
                     </div>

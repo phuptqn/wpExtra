@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Hero Header
+Widget Name: Hero Header
 Description: Display custom header content with option to set HTML5/YouTube video or parallax image background.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Hero_Image_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-hero-image',
-            __('Livemesh Hero Header', 'livemesh-so-widgets'),
+            __('Hero Header', 'livemesh-so-widgets'),
             array(
                 'description' => __('Display a hero background with video or image background.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -72,6 +72,12 @@ class LSOW_Hero_Image_Widget extends SiteOrigin_Widget {
                         'heading' => array(
                             'type' => 'text',
                             'label' => __('Header text', 'livemesh-so-widgets'),
+                        ),
+
+                        'heading_font' => array(
+                            'type' => 'font',
+                            'label' => __('Heading font', 'livemesh-so-widgets'),
+                            'default' => '',
                         ),
 
                         'subheading' => array(
@@ -373,19 +379,38 @@ class LSOW_Hero_Image_Widget extends SiteOrigin_Widget {
 
 
     function get_less_variables($instance) {
-        return array(
-            'top_padding' => intval($instance['settings']['top_padding']) . 'px',
-            'bottom_padding' => intval($instance['settings']['bottom_padding']) . 'px',
 
-            'tablet_width' => intval($instance['settings']['responsive']['tablet']['width']) . 'px',
-            'mobile_width' => intval($instance['settings']['responsive']['mobile']['width']) . 'px',
+        $font = siteorigin_widget_get_font( $instance['standard_header']['heading_font'] );
+        $less['heading_font'] = $font['family'];
+        if ( ! empty( $font['weight'] ) ) {
+            $less['heading_font_weight'] = $font['weight'];
+        }
+         
+        $less['top_padding'] = intval($instance['settings']['top_padding']) . 'px';
+        $less['bottom_padding'] = intval($instance['settings']['bottom_padding']) . 'px';
 
-            'tablet_top_padding' => intval($instance['settings']['responsive']['tablet']['top_padding']) . 'px',
-            'tablet_bottom_padding' => intval($instance['settings']['responsive']['tablet']['bottom_padding']) . 'px',
+        $less['tablet_width'] = intval($instance['settings']['responsive']['tablet']['width']) . 'px';
+        $less['mobile_width'] = intval($instance['settings']['responsive']['mobile']['width']) . 'px';
 
-            'mobile_top_padding' => intval($instance['settings']['responsive']['mobile']['top_padding']) . 'px',
-            'mobile_bottom_padding' => intval($instance['settings']['responsive']['mobile']['bottom_padding']) . 'px',
-        );
+        $less['tablet_top_padding'] = intval($instance['settings']['responsive']['tablet']['top_padding']) . 'px';
+        $less['tablet_bottom_padding'] = intval($instance['settings']['responsive']['tablet']['bottom_padding']) . 'px';
+
+        $less['mobile_top_padding'] = intval($instance['settings']['responsive']['mobile']['top_padding']) . 'px';
+        $less['mobile_bottom_padding'] = intval($instance['settings']['responsive']['mobile']['bottom_padding']) . 'px';
+        
+        return $less;
+    }
+
+    /**
+     * Less function for importing Google web fonts.
+     */
+    function less_import_google_font($instance, $args) {
+        if( empty( $instance ) ) return;
+
+        $font_import = siteorigin_widget_get_font( $instance['standard_header']['heading_font'] );
+        if( !empty( $font_import['css_import'] ) ) {
+            return  $font_import['css_import'];
+        }
     }
 
     function get_template_variables($instance, $args) {

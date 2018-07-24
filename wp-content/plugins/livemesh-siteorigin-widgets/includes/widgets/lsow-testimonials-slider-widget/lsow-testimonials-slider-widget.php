@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Testimonials Slider
+Widget Name: Testimonials Slider
 Description: Display responsive touch friendly slider of testimonials from clients/customers.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Testimonials_Slider_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-testimonials-slider',
-            __('Livemesh Testimonials Slider', 'livemesh-so-widgets'),
+            __('Testimonials Slider', 'livemesh-so-widgets'),
             array(
                 'description' => __('Share your product/service testimonials in a responsive slider.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',

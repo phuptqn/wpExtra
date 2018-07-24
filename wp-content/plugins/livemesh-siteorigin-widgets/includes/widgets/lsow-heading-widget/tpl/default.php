@@ -5,11 +5,14 @@
  * @var $heading
  * @var $subtitle
  * @var $short_text
+ * @var $settings
  */
 
 ?>
 
-<div class="lsow-heading lsow-<?php echo $style; ?> lsow-align<?php echo $align; ?>">
+<?php list($animate_class, $animation_attr) = lsow_get_animation_atts($settings['animation']); ?>
+
+<div class="lsow-heading lsow-<?php echo $style; ?> lsow-align<?php echo $align; ?><?php echo $animate_class; ?>" <?php echo $animation_attr; ?>>
 
     <?php if ($style == 'style2' && !empty($subtitle)): ?>
 

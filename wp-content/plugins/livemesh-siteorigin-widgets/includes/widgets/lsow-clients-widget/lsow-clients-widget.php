@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Clients
+Widget Name: Clients
 Description: Display list of your clients in a multi-column grid.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Client_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-clients',
-            __('Livemesh Clients', 'livemesh-so-widgets'),
+            __('Clients', 'livemesh-so-widgets'),
             array(
                 'description' => __('Display one or more clients in a multi-column grid.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -61,11 +61,34 @@ class LSOW_Client_Widget extends SiteOrigin_Widget {
 
                         'per_line' => array(
                             'type' => 'slider',
-                            'label' => __('Columns per row', 'livemesh-so-widgets'),
+                            'label' => __('Clients per row', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 6,
+                            'integer' => true,
+                            'default' => 5
+                        ),
+                        'per_line_tablet' => array(
+                            'type' => 'slider',
+                            'label' => __('Clients per row in Tablet Resolution', 'livemesh-so-widgets'),
                             'min' => 1,
                             'max' => 6,
                             'integer' => true,
                             'default' => 4
+                        ),
+                        'per_line_mobile' => array(
+                            'type' => 'slider',
+                            'label' => __('Clients per row in Mobile Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 4,
+                            'integer' => true,
+                            'default' => 2
+                        ),
+
+                        'animation' => array(
+                            'type' => 'select',
+                            'label' => __('Choose Animation Type', 'livemesh-so-widgets'),
+                            'default' => 'none',
+                            'options' => lsow_get_animation_options(),
                         ),
                     )
                 ),

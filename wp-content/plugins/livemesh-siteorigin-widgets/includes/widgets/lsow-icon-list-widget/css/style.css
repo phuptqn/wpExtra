@@ -21,16 +21,16 @@
       font-size: 32px;
       line-height: 1;
       color: #666;
-      -webkit-transition: color .3s ease-in-out 0s;
-      transition: color .3s ease-in-out 0s; }
+      -webkit-transition: color 0.3s ease-in-out 0s;
+      transition: color 0.3s ease-in-out 0s; }
     .lsow-icon-list .lsow-icon-list-item .lsow-image-wrapper img {
       display: block;
       max-width: 100%;
       width: 32px;
       height: auto;
       margin: 0 auto;
-      -webkit-transition: all .4s ease-in-out 0s;
-      transition: all .4s ease-in-out 0s; }
+      -webkit-transition: all 0.4s ease-in-out 0s;
+      transition: all 0.4s ease-in-out 0s; }
     .lsow-icon-list .lsow-icon-list-item:hover .lsow-image-wrapper img {
       opacity: 0.8; }
     .lsow-icon-list .lsow-icon-list-item:hover .lsow-icon-wrapper span {

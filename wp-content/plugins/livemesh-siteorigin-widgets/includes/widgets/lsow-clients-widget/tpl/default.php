@@ -6,44 +6,49 @@
 
 ?>
 
-<?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
+<?php list($animate_class, $animation_attr) = lsow_get_animation_atts($settings['animation']); ?>
 
-<?php $num_of_columns = intval($settings['per_line']); ?>
+<?php if (!empty($instance['title']))
+    echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
 
-<?php $column_style = lsow_get_column_class($num_of_columns); ?>
+<div class="lsow-clients lsow-gapless-grid">
 
-<div class="lsow-clients lsow-grid-container lsow-gapless-grid">
+    <div class="lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?> ">
 
-    <?php $column_count = 0; ?>
+        <?php $column_count = 0; ?>
 
-    <?php foreach ($clients as $client): ?>
+        <?php foreach ($clients as $client): ?>
 
-        <div class="lsow-client <?php echo $column_style; ?>">
+            <div class="lsow-grid-item lsow-client <?php echo $animate_class; ?>" <?php echo $animation_attr; ?>>
 
-            <?php echo wp_get_attachment_image($client['image'], 'full', false, array('class' => 'lsow-image full', 'alt' => $client['name'])); ?>
+                <?php echo wp_get_attachment_image($client['image'], 'full', false, array('class' => 'lsow-image full', 'alt' => $client['name'])); ?>
 
-            <div class="lsow-client-name">
+                <div class="lsow-client-name">
 
-                <?php if (!empty($client['link'])): ?>
+                    <?php if (!empty($client['link'])): ?>
 
-                    <a href="<?php echo sow_esc_url($client['link']); ?>" title="<?php echo esc_html($client['name']); ?>" target="_blank"><?php echo esc_html($client['name']); ?></a>
+                        <a href="<?php echo sow_esc_url($client['link']); ?>"
+                           title="<?php echo esc_html($client['name']); ?>"
+                           target="_blank"><?php echo esc_html($client['name']); ?></a>
 
-                <?php else: ?>
+                    <?php else: ?>
 
-                    <?php echo esc_html($client['name']); ?>
+                        <?php echo esc_html($client['name']); ?>
 
-                <?php endif; ?>
+                    <?php endif; ?>
+
+                </div>
+
+                <div class="lsow-image-overlay"></div>
 
             </div>
 
-            <div class="lsow-image-overlay"></div>
+        <?php
 
-        </div>
+        endforeach;
 
-    <?php
+        ?>
 
-    endforeach;
-
-    ?>
+    </div>
 
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Testimonials
+Widget Name: Testimonials
 Description: Display testimonials from your clients/customers in a multi-column grid.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Testimonials_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-testimonials',
-            __('Livemesh Testimonials', 'livemesh-so-widgets'),
+            __('Testimonials', 'livemesh-so-widgets'),
             array(
                 'description' => __('Display testimonials in a responsive multi-column grid.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -56,6 +56,13 @@ class LSOW_Testimonials_Widget extends SiteOrigin_Widget {
                             'label' => __('Text', 'livemesh-so-widgets'),
                             'description' => __('What your customer had to say', 'livemesh-so-widgets'),
                         ),
+
+                        'animation' => array(
+                            'type' => 'select',
+                            'label' => __('Choose Animation Type', 'livemesh-so-widgets'),
+                            'default' => 'none',
+                            'options' => lsow_get_animation_options(),
+                        ),
                     )
                 ),
 
@@ -66,12 +73,31 @@ class LSOW_Testimonials_Widget extends SiteOrigin_Widget {
 
                         'per_line' => array(
                             'type' => 'slider',
-                            'label' => __('Columns per row', 'livemesh-so-widgets'),
+                            'label' => __('Testimonials per row', 'livemesh-so-widgets'),
                             'min' => 1,
-                            'max' => 5,
+                            'max' => 6,
                             'integer' => true,
                             'default' => 3
                         ),
+
+                        'per_line_tablet' => array(
+                            'type' => 'slider',
+                            'label' => __('Testimonials per row in Tablet Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 6,
+                            'integer' => true,
+                            'default' => 2
+                        ),
+
+                        'per_line_mobile' => array(
+                            'type' => 'slider',
+                            'label' => __('Testimonials per row in Mobile Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 4,
+                            'integer' => true,
+                            'default' => 1
+                        ),
+
                     )
                 ),
             )

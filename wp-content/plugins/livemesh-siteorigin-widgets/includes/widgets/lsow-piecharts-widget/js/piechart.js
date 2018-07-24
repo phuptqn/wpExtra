@@ -2,7 +2,7 @@ jQuery(function ($) {
 
     $('.lsow-piecharts').waypoint(function (direction) {
 
-        $(this).find('.lsow-piechart .lsow-percentage').each(function () {
+        $(this.element).find('.lsow-piechart .lsow-percentage').each(function () {
 
             var track_color = $(this).data('track-color');
             var bar_color = $(this).data('bar-color');
@@ -20,7 +20,7 @@ jQuery(function ($) {
 
         });
 
-    }, { offset: $.waypoints('viewportHeight') - 100,
+    }, { offset: Waypoint.viewportHeight() - 100,
         triggerOnce: true});
 
 

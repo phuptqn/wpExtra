@@ -2,46 +2,91 @@
 /**
  * @var $settings
  * @var $style
+ * @var $icon_type
  * @var $services
  */
 
+if (!empty($settings['target']))
+    $target = 'target="_blank"';
+else
+    $target = '';
+
 ?>
 
-<?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
+<?php if (!empty($instance['title']))
+    echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
 
-<?php $column_style = lsow_get_column_class(intval($settings['per_line'])); ?>
+<?php $id = 'id="' . $this->id . '"'; ?>
 
-<div class="lsow-services lsow-<?php echo $style; ?> lsow-grid-container">
+<div <?php echo $id; ?> class="lsow-services lsow-<?php echo $style; ?> lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?>">
 
     <?php foreach ($services as $service): ?>
 
-        <?php $icon_type = esc_html($service['icon_type']); ?>
+        <?php list($animate_class, $animation_attr) = lsow_get_animation_atts($service['animation']); ?>
 
-        <div class="lsow-service-wrapper <?php echo $column_style; ?>">
+        <?php $service_url = sow_esc_url($service['href']); ?>
 
-            <div class="lsow-service">
+        <div class="lsow-grid-item lsow-service-wrapper">
+
+            <div class="lsow-service <?php echo $animate_class; ?>" <?php echo $animation_attr; ?>>
 
                 <?php if ($icon_type == 'icon_image') : ?>
 
-                    <div class="lsow-image-wrapper">
+                    <?php if (empty($service_url)) : ?>
 
-                        <?php echo wp_get_attachment_image($service['icon_image'], 'full', false, array('class' => 'lsow-image full')); ?>
+                        <div class="lsow-image-wrapper">
 
-                    </div>
+                            <?php echo wp_get_attachment_image($service['icon_image'], 'full', false, array('class' => 'lsow-image full')); ?>
+
+                        </div>
+
+                    <?php else : ?>
+
+                        <a class="lsow-image-wrapper" href="<?php echo $service_url; ?>" <?php echo $target; ?>>
+
+                            <?php echo wp_get_attachment_image($service['icon_image'], 'full', false, array('class' => 'lsow-image full')); ?>
+
+                        </a>
+
+                    <?php endif; ?>
 
                 <?php else : ?>
 
-                    <div class="lsow-icon-wrapper">
+                    <?php if (empty($service_url)) : ?>
 
-                        <?php echo siteorigin_widget_get_icon($service['icon']); ?>
+                        <div class="lsow-icon-wrapper">
 
-                    </div>
+                            <?php echo siteorigin_widget_get_icon($service['icon']); ?>
+
+                        </div>
+
+                    <?php else : ?>
+
+                        <a class="lsow-icon-wrapper" href="<?php echo $service_url; ?>" <?php echo $target; ?>>
+
+                            <?php echo siteorigin_widget_get_icon($service['icon']); ?>
+
+                        </a>
+
+                    <?php endif; ?>
 
                 <?php endif; ?>
 
                 <div class="lsow-service-text">
 
-                    <h3 class="lsow-title"><?php echo esc_html($service['title']) ?></h3>
+                    <?php if (empty($service_url)) : ?>
+
+                        <h3 class="lsow-title"><?php echo esc_html($service['title']) ?></h3>
+
+                    <?php else : ?>
+
+                        <a class="lsow-title-link" href="<?php echo $service_url; ?>" <?php echo $target; ?>>
+
+                            <h3 class="lsow-title"><?php echo esc_html($service['title']) ?></h3>
+
+                        </a>
+
+                    <?php endif; ?>
 
                     <div class="lsow-service-details"><?php echo wp_kses_post($service['excerpt']) ?></div>
 
@@ -51,7 +96,7 @@
 
         </div>
 
-    <?php
+        <?php
 
     endforeach;
 

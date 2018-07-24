@@ -9,14 +9,14 @@
       font-size: 96px;
       line-height: 1;
       margin-bottom: 20px;
-      color: #aaa;
+      transition: color 0.4s ease-in-out 0s;
       }
     .lsow-image-wrapper img {
       display: block;
       max-width: 100%;
       text-align: center;
       margin: 0 auto 25px;
-      transition: all .4s ease-in-out 0s;
+      transition: all 0.4s ease-in-out 0s;
       }
     .lsow-service-text {
       text-align: center;
@@ -124,22 +124,97 @@
       }
     }
   }
+
+/* Style 4 */
+
+.lsow-services.lsow-style4 {
+  .lsow-service {
+    margin-bottom: 60px;
+    .lsow-image-wrapper img, .lsow-icon-wrapper span {
+      display: block;
+      margin-bottom: 20px;
+      text-align: left;
+      }
+    .lsow-icon-wrapper span {
+      font-size: 36px;
+      line-height: 1;
+      color: #888;
+      }
+    .lsow-service-text .lsow-title {
+      @include lsow-heading-style();
+      }
+    }
+  }
+
+/* Style 5 */
+.lsow-services.lsow-style5 {
+  .lsow-service {
+    margin-bottom: 80px;
+    @include respond-to-max(767) {
+      margin-bottom: 50px;
+      }
+    .lsow-icon-wrapper span {
+      display: block;
+      text-align: center;
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 15px;
+      color: #999;
+      transition: color 0.4s ease-in-out 0s;
+      }
+    .lsow-image-wrapper img {
+      display: block;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 auto 25px;
+      transition: all 0.4s ease-in-out 0s;
+      }
+    .lsow-service-text {
+      text-align: center;
+      max-width: 300px;
+      margin: 0 auto;
+      .lsow-title {
+        @include lsow-heading-style();
+        font-size: 16px;
+        line-height: 26px;
+        margin-bottom: 10px;
+        }
+      }
+    &:hover {
+      .lsow-image-wrapper img {
+        transform: scale(0.9, 0.9);
+        }
+      }
+    }
+  }
+
 /* -------- General services -------- */
 
 .lsow-services {
   .lsow-service {
     margin-bottom: 50px;
     .lsow-icon-wrapper span {
-      transition: color .4s ease-in-out 0s;
+      transition: color 0.4s ease-in-out 0s;
+      }
+    .lsow-image-wrapper img {
+      transition: all 0.4s ease-in-out 0s;
       }
     .lsow-service-text {
       font-size: 15px;
       line-height: 24px;
+      .lsow-title-link:hover .lsow-title {
+        text-decoration: underline;
+        }
       .lsow-dark-bg & {
         color: #909090;
         .lsow-title {
           color: #e5e5e5;
           }
+        }
+      }
+    &:hover {
+      .lsow-image-wrapper img {
+        opacity: 0.8;
         }
       }
     }

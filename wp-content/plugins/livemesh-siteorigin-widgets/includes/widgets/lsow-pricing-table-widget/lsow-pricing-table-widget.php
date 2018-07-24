@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Pricing Table
+Widget Name: Pricing Table
 Description: Display pricing plans in a multi-column grid.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Pricing_Table_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-pricing-plans',
-            __('Livemesh Pricing Table', 'livemesh-so-widgets'),
+            __('Pricing Table', 'livemesh-so-widgets'),
             array(
                 'description' => __('Display pricing table in a multi-column grid.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -117,11 +117,36 @@ class LSOW_Pricing_Table_Widget extends SiteOrigin_Widget {
 
                         'per_line' => array(
                             'type' => 'slider',
-                            'label' => __('Pricing Columns per row', 'livemesh-so-widgets'),
+                            'label' => __('Pricing Plans per row', 'livemesh-so-widgets'),
                             'min' => 1,
-                            'max' => 5,
+                            'max' => 6,
                             'integer' => true,
                             'default' => 4
+                        ),
+
+                        'per_line_tablet' => array(
+                            'type' => 'slider',
+                            'label' => __('Pricing Plans per row in Tablet Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 6,
+                            'integer' => true,
+                            'default' => 2
+                        ),
+
+                        'per_line_mobile' => array(
+                            'type' => 'slider',
+                            'label' => __('Pricing Plans per row in Mobile Resolution', 'livemesh-so-widgets'),
+                            'min' => 1,
+                            'max' => 4,
+                            'integer' => true,
+                            'default' => 1
+                        ),
+
+                        'animation' => array(
+                            'type' => 'select',
+                            'label' => __('Choose Animation Type', 'livemesh-so-widgets'),
+                            'default' => 'none',
+                            'options' => lsow_get_animation_options(),
                         ),
                     )
                 ),

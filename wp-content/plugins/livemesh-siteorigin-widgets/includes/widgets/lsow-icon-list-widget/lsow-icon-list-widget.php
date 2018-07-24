@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Icon List
+Widget Name: Icon List
 Description: Use images or icon fonts to create social icons list, show payment options etc.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Icon_List_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-icon-list',
-            __('Livemesh Icon List', 'livemesh-so-widgets'),
+            __('Icon List', 'livemesh-so-widgets'),
             array(
                 'description' => __('Use images or icon fonts to create social icons list, show payment options etc.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -133,6 +133,13 @@ class LSOW_Icon_List_Widget extends SiteOrigin_Widget {
                                 'right' => __('Right', 'livemesh-so-widgets'),
                                 'center' => __('Center', 'livemesh-so-widgets'),
                             )
+                        ),
+
+                        'animation' => array(
+                            'type' => 'select',
+                            'label' => __('Choose Animation Type', 'livemesh-so-widgets'),
+                            'default' => 'none',
+                            'options' => lsow_get_animation_options(),
                         ),
                     )
                 ),

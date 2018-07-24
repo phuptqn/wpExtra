@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Carousel
+Widget Name: Carousel
 Description: Display a list of custom HTML content as a carousel.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -14,7 +14,7 @@ class LSOW_Carousel_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-carousel',
-            __('Livemesh Carousel', 'livemesh-so-widgets'),
+            __('Carousel', 'livemesh-so-widgets'),
             array(
                 'description' => __('Display a collection of html elements as a carousel.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',

@@ -13,7 +13,7 @@
       border: none;
       padding: 0;
       margin: 0;
-      transition: box-shadow .25s ease 0s;
+      transition: box-shadow 0.25s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       &:hover {
@@ -23,10 +23,13 @@
     .lsow-project-image {
       position: relative;
       overflow: hidden;
+      .fl-photo-content {
+        width: 100%;
+        }
       img {
         width: 100%;
         display: block;
-        transition: all .4s ease-in-out 0s;
+        transition: all 0.4s ease-in-out 0s;
         max-width: 100%;
         }
       &:hover {
@@ -56,7 +59,7 @@
           font-weight: 400;
           color: #fff;
           opacity: 0;
-          transition: opacity .4s ease-in-out 0s;
+          transition: opacity 0.4s ease-in-out 0s;
           @include respond-to-max(1024) {
             font-size: 18px;
             line-height: 26px;
@@ -64,7 +67,7 @@
           a {
             display: inline;
             color: #fff;
-            transition: all .3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
             border-bottom: 1px solid transparent;
             &:hover {
               border-bottom: 2px solid #ccc;
@@ -74,8 +77,6 @@
         .lsow-terms {
           display: block;
           color: #f9f9f9;
-          font-size: 14px;
-          line-height: 22px;
           opacity: 0;
           transition: opacity .4s ease-in-out 0s;
           a {
@@ -84,9 +85,9 @@
             display: inline;
             zoom: 1;
             font-size: 14px;
-            line-height: 22px;
+            line-height: 26px;
             font-style: italic;
-            transition: all .4s ease-in-out 0s;
+            transition: all 0.4s ease-in-out 0s;
             &:hover {
               color: #fff;
               }
@@ -116,7 +117,7 @@
           }
         a {
           color: #333333;
-          transition: all .4s ease-in-out 0s;
+          transition: all 0.4s ease-in-out 0s;
           &:hover {
             color: #888;
             }
@@ -163,7 +164,7 @@
       .lsow-category-list {
 
         @include bottom-line(35, 1, #aaa);
-        transition: all .4s ease-in-out 0s;
+        transition: all 0.4s ease-in-out 0s;
         &:after {
           text-align: center;
           margin: 10px auto 10px;
@@ -171,7 +172,7 @@
         }
       .lsow-category-list a {
         font-style: italic;
-        transition: all .4s ease-in-out 0s;
+        transition: all 0.4s ease-in-out 0s;
         }
       }
     .type-post .lsow-entry-text-wrap .entry-summary:before {

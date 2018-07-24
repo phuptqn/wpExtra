@@ -1,13 +1,12 @@
 <?php
 /**
  * @var $piecharts
+ * @var $settings
  */
 
 ?>
 
 <?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
-
-<?php $column_style = lsow_get_column_class(intval($settings['per_line'])); ?>
 
 <?php
 
@@ -16,11 +15,11 @@ $track_color = ' data-track-color="' . esc_attr($settings['track_color']) . '"';
 
 ?>
 
-<div class="lsow-piecharts lsow-grid-container">
+<div class="lsow-piecharts lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?>">
 
     <?php foreach ($piecharts as $piechart): ?>
 
-        <div class="lsow-piechart <?php echo $column_style; ?>">
+        <div class="lsow-grid-item lsow-piechart">
 
             <div class="lsow-percentage" <?php echo $bar_color; ?> <?php echo $track_color; ?>
                  data-percent="<?php echo round($piechart['percentage']); ?>">

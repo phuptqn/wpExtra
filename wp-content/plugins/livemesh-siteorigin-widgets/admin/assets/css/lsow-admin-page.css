@@ -1,13 +1,4 @@
 /* ================= Wrapper DIVs ============================== */
-.wrap > *,
-#wpbody-content > * {
-  display: none; }
-
-#wpbody-content > .wrap,
-.wrap > form {
-  display: block;
-  overflow: hidden; }
-
 #wpbody-content .lsow-wrap {
   position: relative;
   display: block;

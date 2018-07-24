@@ -23,8 +23,6 @@ if ($loop->have_posts()) : ?>
 
     <div class="lsow-portfolio-wrap lsow-gapless-grid">
 
-        <?php $column_style = lsow_get_column_class(intval($settings['per_line'])); ?>
-
         <?php
         // Check if any taxonomy filter has been applied
         list($chosen_terms, $taxonomies) = lsow_get_chosen_terms($query_args);
@@ -56,7 +54,7 @@ if ($loop->have_posts()) : ?>
 
         <?php endif; ?>
 
-        <div class="lsow-portfolio js-isotope lsow-<?php echo $settings['layout_mode']; ?> lsow-grid-container"
+        <div class="lsow-portfolio js-isotope lsow-<?php echo $settings['layout_mode']; ?> lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?>"
              data-settings='{ "itemSelector": ".lsow-portfolio-item", "layoutMode": "<?php echo esc_attr($settings['layout_mode']); ?>" }'>
 
             <?php while ($loop->have_posts()) : $loop->the_post(); ?>
@@ -84,7 +82,7 @@ if ($loop->have_posts()) : ?>
                 ?>
 
                 <div data-id="id-<?php the_ID(); ?>"
-                     class="lsow-portfolio-item <?php echo $style; ?> <?php echo $column_style; ?>">
+                     class="lsow-grid-item lsow-portfolio-item <?php echo $style; ?>">
 
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -94,11 +92,12 @@ if ($loop->have_posts()) : ?>
 
                                 <?php if ($settings['image_linkable']): ?>
 
-                                    <a href="<?php the_permalink(); ?>"> <?php the_post_thumbnail('large'); ?> </a>
+                                <a href="<?php the_permalink(); ?>"
+                                   target="<?php echo $settings['link_target']; ?>"><?php the_post_thumbnail($settings['image_size']); ?></a>
 
                                 <?php else: ?>
 
-                                    <?php the_post_thumbnail('large'); ?>
+                                <?php the_post_thumbnail($settings['image_size']); ?>
 
                                 <?php endif; ?>
 
@@ -106,7 +105,7 @@ if ($loop->have_posts()) : ?>
 
                                     <div class="lsow-entry-info">
 
-                                        <?php the_title('<h3 class="lsow-post-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '"
+                                    <?php the_title('<h3 class="lsow-post-title"><a target="' . $settings["link_target"] . '" href="' . get_permalink() . '" title="' . get_the_title() . '"
                                                rel="bookmark">', '</a></h3>'); ?>
 
                                         <?php echo lsow_get_info_for_taxonomies($taxonomies); ?>
@@ -125,7 +124,7 @@ if ($loop->have_posts()) : ?>
 
                                 <?php if ($settings['display_title']) : ?>
 
-                                    <?php the_title('<h3 class="entry-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '"
+                                <?php the_title('<h3 class="entry-title"><a target="' . $settings["link_target"] . '" href="' . get_permalink() . '" title="' . get_the_title() . '"
                                                rel="bookmark">', '</a></h3>'); ?>
 
                                 <?php endif; ?>

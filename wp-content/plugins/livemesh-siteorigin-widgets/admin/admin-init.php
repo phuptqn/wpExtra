@@ -20,13 +20,7 @@ class LSOW_Admin {
     public function includes() {
 
         // load class admin ajax function
-        require_once(LSOW_PLUGIN_DIR . 'admin/admin-ajax.php');
-
-        /**
-         * Classes responsible for displaying admin notices.
-         */
-        require_once LSOW_PLUGIN_DIR . 'admin/notices/admin-notice.php';
-        require_once LSOW_PLUGIN_DIR . 'admin/notices/admin-notice-rate.php';
+        require_once(LSOW_PLUGIN_DIR . '/admin/admin-ajax.php');
 
     }
 
@@ -39,16 +33,6 @@ class LSOW_Admin {
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 
         add_action('current_screen', array($this, 'remove_admin_notices'));
-
-
-        /**
-         * Notice: Rate plugin
-         */
-        $rate = new LSOW_Notice_Rate('rate', LSOW_PLUGIN_DIR . 'admin/notices/templates/rate.php');
-
-        add_action('load-plugins.php', array($rate, 'defer_first_time'));
-        add_action('admin_notices', array($rate, 'display_notice'));
-        add_action('admin_post_lsow_dismiss_notice', array($rate, 'dismiss_notice'));
 
     }
 
@@ -107,16 +91,6 @@ class LSOW_Admin {
             array($this, 'display_plugin_documentation')
         );
 
-        // add global settings submenu page
-        add_submenu_page(
-            $this->plugin_slug,
-            'Upgrade to Pro Version',
-            __('Upgrade to Pro', 'livemesh-so-widgets'),
-            'manage_options',
-            $this->plugin_slug . '_pro_upgrade',
-            array($this, 'display_plugin_premium_upgrade')
-        );
-
     }
 
     public function display_settings_page() {
@@ -134,16 +108,6 @@ class LSOW_Admin {
         require_once('views/admin-header.php');
         require_once('views/admin-banner1.php');
         require_once('views/documentation.php');
-        require_once('views/admin-footer.php');
-
-    }
-
-    public function display_plugin_premium_upgrade() {
-
-
-        require_once('views/admin-header.php');
-        require_once('views/admin-banner3.php');
-        require_once('views/premium-upgrade.php');
         require_once('views/admin-footer.php');
 
     }
@@ -174,7 +138,7 @@ class LSOW_Admin {
             wp_enqueue_style('lsow-admin-page-styles');
         }
 
-        if (strpos($screen->id, $this->plugin_slug . '_documentation') !== false || strpos($screen->id, $this->plugin_slug . '_pro_upgrade') !== false) {
+        if (strpos($screen->id, $this->plugin_slug . '_documentation') !== false) {
 
             // Load scripts and styles for documentation
             wp_register_script('lsow-doc-scripts', LSOW_PLUGIN_URL . 'admin/assets/js/documentation' . $suffix . '.js', array(), LSOW_VERSION, true);
@@ -185,17 +149,6 @@ class LSOW_Admin {
 
             // Thickbox
             add_thickbox();
-
-        }
-
-        if (strpos($screen->id, $this->plugin_slug . '_pro_upgrade') !== false) {
-
-            // Load scripts and styles for premium upgrade
-            wp_register_script('lsow-pro-upgrade-scripts', LSOW_PLUGIN_URL . 'admin/assets/js/premium-upgrade' . $suffix . '.js', array(), LSOW_VERSION, true);
-            wp_enqueue_script('lsow-pro-upgrade-scripts');
-
-            wp_register_style('lsow-pro-upgrade-styles', LSOW_PLUGIN_URL . 'admin/assets/css/premium-upgrade.css', array(), LSOW_VERSION);
-            wp_enqueue_style('lsow-pro-upgrade-styles');
 
         }
 

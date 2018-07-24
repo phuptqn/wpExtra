@@ -26,7 +26,7 @@
       font-size: 32px;
       line-height: 1;
       color: #666;
-      transition: color .3s ease-in-out 0s;
+      transition: color 0.3s ease-in-out 0s;
       }
     .lsow-image-wrapper img {
       display: block;
@@ -34,7 +34,7 @@
       width: 32px;
       height: auto;
       margin: 0 auto;
-      transition: all .4s ease-in-out 0s;
+      transition: all 0.4s ease-in-out 0s;
       }
     &:hover {
       .lsow-image-wrapper img {

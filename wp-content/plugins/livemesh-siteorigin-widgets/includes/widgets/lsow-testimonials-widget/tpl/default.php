@@ -7,13 +7,13 @@
 
 <?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
 
-<?php $column_style = lsow_get_column_class(intval($settings['per_line'])); ?>
-
-<div class="lsow-testimonials lsow-grid-container">
+<div class="lsow-testimonials lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?>">
 
     <?php foreach ($testimonials as $testimonial) : ?>
 
-        <div class="lsow-testimonial <?php echo $column_style; ?>">
+        <?php list($animate_class, $animation_attr) = lsow_get_animation_atts($testimonial['animation']); ?>
+
+        <div class="lsow-grid-item lsow-testimonial <?php echo $animate_class; ?>" <?php echo $animation_attr; ?>>
 
             <div class="lsow-testimonial-text">
                 <?php echo wp_kses_post($testimonial['text']) ?>

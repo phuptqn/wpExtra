@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Heading
+Widget Name: Heading
 Description: Create heading for display on the top of a section.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -13,7 +13,7 @@ class LSOW_Heading_Widget extends SiteOrigin_Widget {
 
         parent::__construct(
             'lsow-heading',
-            __('Livemesh Heading', 'livemesh-so-widgets'),
+            __('Heading', 'livemesh-so-widgets'),
             array(
                 'description' => __('Create heading for display on the top of a section.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
@@ -52,6 +52,12 @@ class LSOW_Heading_Widget extends SiteOrigin_Widget {
                     'default' => 'center'
                 ),
 
+                'heading_font' => array(
+                    'type' => 'font',
+                    'label' => __('Heading font', 'livemesh-so-widgets'),
+                    'default' => 'default'
+                ),
+
                 'heading' => array(
                     'type' => 'text',
                     'label' => __('Heading Title', 'livemesh-so-widgets'),
@@ -78,6 +84,20 @@ class LSOW_Heading_Widget extends SiteOrigin_Widget {
                     ),
                 ),
 
+                'settings' => array(
+                    'type' => 'section',
+                    'label' => esc_html__('Settings', 'livemesh-so-widgets'),
+                    'fields' => array(
+
+                        'animation' => array(
+                            'type' => 'select',
+                            'label' => __('Choose Animation', 'livemesh-so-widgets'),
+                            'default' => 'none',
+                            'options' => lsow_get_animation_options(),
+                        ),
+                    )
+                ),
+
             )
         );
     }
@@ -98,8 +118,35 @@ class LSOW_Heading_Widget extends SiteOrigin_Widget {
             'align' => $instance['align'],
             'heading' => $instance['heading'],
             'short_text' => !empty($instance['short_text']) ? $instance['short_text'] : '',
-            'subtitle' => !empty($instance['subtitle']) ? $instance['subtitle'] : ''
+            'subtitle' => !empty($instance['subtitle']) ? $instance['subtitle'] : '',
+
+            'heading' => $instance['heading'],
+            'settings' => $instance['settings']
         );
+    }
+
+    function get_less_variables($instance) {
+        $less = array();
+
+        $font = siteorigin_widget_get_font( $instance['heading_font'] );
+        $less['heading_font'] = $font['family'];
+        if ( ! empty( $font['weight'] ) ) {
+            $less['heading_font_weight'] = $font['weight'];
+        }
+
+        return $less;
+    }
+
+    /**
+     * Less function for importing Google web fonts.
+     */
+    function less_import_google_font($instance, $args) {
+        if( empty( $instance ) ) return;
+
+        $font_import = siteorigin_widget_get_font( $instance['heading_font'] );
+        if( !empty( $font_import['css_import'] ) ) {
+            return  $font_import['css_import'];
+        }
     }
 
 }

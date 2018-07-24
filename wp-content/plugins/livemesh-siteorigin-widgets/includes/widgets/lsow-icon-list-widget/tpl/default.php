@@ -14,6 +14,8 @@ else
 
 <?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
 
+<?php list($animate_class, $animation_attr) = lsow_get_animation_atts($settings['animation']); ?>
+
 <div class="lsow-icon-list lsow-align<?php echo $settings['align']; ?>">
 
     <?php foreach ($icon_list as $icon_item): ?>
@@ -24,7 +26,7 @@ else
 
         <?php $icon_url = sow_esc_url($icon_item['href']); ?>
 
-        <div class="lsow-icon-list-item" title="<?php echo $icon_title; ?>">
+        <div class="lsow-icon-list-item<?php echo $animate_class; ?>" <?php echo $animation_attr; ?> title="<?php echo $icon_title; ?>">
 
             <?php if ($icon_type == 'icon_image') : ?>
 

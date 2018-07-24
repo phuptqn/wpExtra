@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Button
+Widget Name: Button
 Description: Flat style buttons with rich set of customization options.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -18,7 +18,7 @@ class LSOW_Button_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             "lsow-button",
-            __("Livemesh Button", "livemesh-so-widgets"),
+            __("Button", "livemesh-so-widgets"),
             array(
                 "description" => __("Flat style buttons with rich set of customization options.", "livemesh-so-widgets"),
                 "panels_icon" => "dashicons dashicons-minus",
@@ -62,7 +62,7 @@ class LSOW_Button_Widget extends SiteOrigin_Widget {
 
                 'icon_image' => array(
                     'type' => 'media',
-                    'label' => __('Service Image.', 'livemesh-so-widgets'),
+                    'label' => __('Button Image.', 'livemesh-so-widgets'),
                     'state_handler' => array(
                         'icon_type[icon_image]' => array('show'),
                         '_else[icon_type]' => array('hide'),
@@ -71,7 +71,7 @@ class LSOW_Button_Widget extends SiteOrigin_Widget {
 
                 'icon' => array(
                     'type' => 'icon',
-                    'label' => __('Service Icon.', 'livemesh-so-widgets'),
+                    'label' => __('Button Icon.', 'livemesh-so-widgets'),
                     'state_handler' => array(
                         'icon_type[icon]' => array('show'),
                         '_else[icon_type]' => array('hide'),
@@ -167,6 +167,13 @@ class LSOW_Button_Widget extends SiteOrigin_Widget {
                             ),
                             'default' => 'none'
                         ),
+
+                        'animation' => array(
+                            'type' => 'select',
+                            'label' => __('Choose Animation Type', 'livemesh-so-widgets'),
+                            'default' => 'none',
+                            'options' => lsow_get_animation_options(),
+                        ),
                     )
                 ),
             )
@@ -177,48 +184,17 @@ class LSOW_Button_Widget extends SiteOrigin_Widget {
 
         wp_enqueue_style('lsow-button', siteorigin_widget_get_plugin_dir_url('lsow-button') . 'css/style.css', array(), LSOW_VERSION);
 
-        $custom_css = $this->custom_css($instance);
-        if (!empty($custom_css))
-            wp_add_inline_style('lsow-button', $custom_css);
-
         parent::enqueue_frontend_scripts($instance);
     }
 
-    /**
-     * Generate the custom layout CSS required
-     */
-    protected function custom_css($instance) {
+    function get_less_variables($instance) {
+        if( empty( $instance ) || empty( $instance['settings'] ) ) return array();
 
-        $custom_css = '';
-
-        $this->element_id = uniqid('lsow-button-');
-
-        $id_selector = '#' . $this->element_id;
-
-        $button_color = $instance['settings']["color"];
-
-        $custom_color = $instance['settings']["custom_color"];
-
-        $hover_color = $instance['settings']["hover_color"];
-
-        if ($button_color == "custom") {
-            if (!empty($custom_color)) {
-
-                $custom_css .= $id_selector . '.lsow-button { background-color:' . $custom_color . '; }' . "\n";
-
-                // Automatically set a hover color for custom color if none specified by user
-                if (empty($hover_color)) {
-                    $hover_color = lsow_color_luminance($custom_color, 0.05);
-                }
-            }
-        }
-
-        // Apply the hover color for button of any color provided one is specified
-        if (!empty($hover_color)) {
-            $custom_css .= $id_selector . '.lsow-button:hover { background-color:' . $hover_color . '; }';
-        }
-
-        return $custom_css;
+        return array(
+            'color' => $instance['settings']['color'],
+            'custom_color' => $instance['settings']['custom_color'],
+            'hover_color' => $instance['settings']['hover_color']
+        );
     }
 
     function get_template_variables($instance, $args) {

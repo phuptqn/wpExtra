@@ -1,7 +1,7 @@
 <?php
 
 /*
-Widget Name: Livemesh Stats Bars
+Widget Name: Stats Bars
 Description: Display multiple stats bars that talk about skills or other percentage stats.
 Author: LiveMesh
 Author URI: https://www.livemeshthemes.com
@@ -12,7 +12,7 @@ class LSOW_Stats_Bars_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'lsow-stats-bars',
-            __('Livemesh Stats Bars', 'livemesh-so-widgets'),
+            __('Stats Bars', 'livemesh-so-widgets'),
             array(
                 'description' => __('Display statistics or skills as a percentage stats bar.', 'livemesh-so-widgets'),
                 'panels_icon' => 'dashicons dashicons-minus',
