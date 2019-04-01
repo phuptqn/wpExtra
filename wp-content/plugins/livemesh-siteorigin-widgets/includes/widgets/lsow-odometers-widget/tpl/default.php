@@ -1,60 +1,65 @@
 <?php
 /**
- * @var $odometers
  * @var $settings
  */
 
 ?>
 
-<?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
+<?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'];
 
-<div class="lsow-odometers lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?>">
+$settings = apply_filters('lsow_odometers_' . $this->id . '_settings', $settings);
 
-    <?php foreach ($odometers as $odometer): ?>
+$output = '<div class="lsow-odometers lsow-grid-container ' . lsow_get_grid_classes($settings) . '">';
 
-        <?php
+foreach ($settings['odometers'] as $odometer):
 
-        $prefix = (!empty ($odometer['prefix'])) ? '<span class="prefix">' . $odometer['prefix'] . '</span>' : '';
-        $suffix = (!empty ($odometer['suffix'])) ? '<span class="suffix">' . $odometer['suffix'] . '</span>' : '';
+    $prefix = (!empty ($odometer['prefix'])) ? '<span class="prefix">' . $odometer['prefix'] . '</span>' : '';
+    $suffix = (!empty ($odometer['suffix'])) ? '<span class="suffix">' . $odometer['suffix'] . '</span>' : '';
 
-        ?>
+    $child_output = '<div class="lsow-grid-item lsow-odometer">';
 
-        <div class="lsow-grid-item lsow-odometer">
+    $child_output .= (!empty ($odometer['prefix'])) ? '<span class="lsow-prefix">' . $odometer['prefix'] . '</span>' : '';
 
-            <?php echo (!empty ($odometer['prefix'])) ? '<span class="lsow-prefix">' . $odometer['prefix'] . '</span>' : ''; ?>
+    $child_output .= '<div class="lsow-number odometer" data-stop="' . intval($odometer['stop_value']) . '">';
 
-            <div class="lsow-number odometer" data-stop="<?php echo intval($odometer['stop_value']); ?>">
+    $child_output .= intval($odometer['start_value']);
 
-                <?php echo intval($odometer['start_value']); ?>
+    $child_output .= '</div><!-- .lsow-number -->';
 
-            </div>
+    $child_output .= (!empty ($odometer['suffix'])) ? '<span class="lsow-suffix">' . $odometer['suffix'] . '</span>' : '';
 
-            <?php echo (!empty ($odometer['suffix'])) ? '<span class="lsow-suffix">' . $odometer['suffix'] . '</span>' : ''; ?>
+    $icon_type = esc_html($odometer['icon_type']);
 
-            <?php $icon_type = esc_html($odometer['icon_type']); ?>
+    if ($icon_type == 'icon_image') :
 
-            <?php if ($icon_type == 'icon_image') : ?>
+        $icon_image = $odometer['icon_image'];
 
-                <?php $icon_html = '<span class="lsow-image-wrapper">' . wp_get_attachment_image($odometer['icon_image'], 'full', false, array('class' => 'lsow-image full')) . '</span>'; ?>
+        if (!empty($icon_image)):
 
-            <?php else : ?>
+            $icon_html = '<span class="lsow-image-wrapper">' . wp_get_attachment_image($icon_image, 'full', false, array('class' => 'lsow-image full')) . '</span>';
 
-                <?php $icon_html = '<span class="lsow-icon-wrapper">' . siteorigin_widget_get_icon($odometer['icon']) . '</span>'; ?>
+        endif;
 
-            <?php endif; ?>
+    else :
 
-            <div class="lsow-stats-title-wrap">
+        $icon_html = '<span class="lsow-icon-wrapper">' . siteorigin_widget_get_icon($odometer['icon']) . '</span>';
 
-                <div class="lsow-stats-title"><?php echo $icon_html . esc_html($odometer['stats_title']); ?></div>
+    endif;
 
-            </div>
+    $child_output .= '<div class="lsow-stats-title-wrap">';
 
-        </div>
+    $child_output .= '<div class="lsow-stats-title">' . $icon_html . esc_html($odometer['stats_title']) . '</div>';
 
-    <?php
+    $child_output .= '</div>';
 
-    endforeach;
+    $child_output .= '</div><!-- .lsow-odometer -->';
 
-    ?>
+    $output .= apply_filters('lsow_odometer_output', $child_output, $odometer, $settings);
 
-</div>
+endforeach;
+
+$output .= '</div><!-- .lsow-odometers -->';
+
+$output .= '<div class="lsow-clear"></div>';
+
+echo apply_filters('lsow_odometers_output', $output, $settings);

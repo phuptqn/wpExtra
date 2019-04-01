@@ -91,11 +91,22 @@ abstract class SiteOrigin_Widget_Base_Slider extends SiteOrigin_Widget {
 				'default' => '25',
 			),
 
+			'nav_always_show_mobile' => array(
+				'type' => 'checkbox',
+				'label' => __( 'Always show navigation on mobile', 'so-widgets-bundle' ),
+			),
+			
 			'swipe' => array(
 				'type' => 'checkbox',
-				'label' => __( 'Swipe Control', 'so-widgets-bundle' ),
+				'label' => __( 'Swipe control', 'so-widgets-bundle' ),
 				'description' => __( 'Allow users to swipe through frames on mobile devices.', 'so-widgets-bundle' ),
 				'default' => true,
+			),
+
+			'background_video_mobile' => array(
+				'type' => 'checkbox',
+				'label' => __( 'Show slide background videos on mobile', 'so-widgets-bundle' ),
+				'description' => __( 'Allow slide background videos to appear on mobile devices that support autoplay.', 'so-widgets-bundle' ),
 			)
 		);
 	}
@@ -141,12 +152,25 @@ abstract class SiteOrigin_Widget_Base_Slider extends SiteOrigin_Widget {
 		);
 	}
 
+	function get_settings_form() {
+		return array(
+			'responsive_breakpoint' => array(
+				'type'        => 'measurement',
+				'label'       => __( 'Responsive Breakpoint', 'so-widgets-bundle' ),
+				'default'     => '780px',
+				'description' => __( "This setting controls when the Slider will switch to the responsive mode. This breakpoint will only be used if always show navigation on mobile is enabled. The default value is 780px.", 'so-widgets-bundle' )
+			)
+		);
+	}
+
 	function slider_settings( $controls ){
 		return array(
-			'pagination' => true,
-			'speed'      => empty( $controls['speed'] ) ? 1 : $controls['speed'],
-			'timeout'    => $controls['timeout'],
-			'swipe'      => $controls['swipe'],
+			'pagination'               => true,
+			'speed'                    => empty( $controls['speed'] ) ? 1 : $controls['speed'],
+			'timeout'                  => $controls['timeout'],
+			'swipe'                    => $controls['swipe'],
+			'nav_always_show_mobile'   => ! empty( $controls['nav_always_show_mobile'] ) ? true : '',
+			'breakpoint'               => ! empty( $controls['breakpoint'] ) ? $controls['breakpoint'] : '780px',
 		);
 	}
 
@@ -155,7 +179,7 @@ abstract class SiteOrigin_Widget_Base_Slider extends SiteOrigin_Widget {
 		$this->render_template_part('before_slides', $controls, $frames);
 
 		foreach( $frames as $i => $frame ) {
-			$this->render_frame( $i, $frame );
+			$this->render_frame( $i, $frame, $controls );
 		}
 
 		$this->render_template_part('after_slides', $controls, $frames);
@@ -219,7 +243,7 @@ abstract class SiteOrigin_Widget_Base_Slider extends SiteOrigin_Widget {
 	 * @param $i
 	 * @param $frame
 	 */
-	function render_frame( $i, $frame ){
+	function render_frame( $i, $frame, $controls ){
 		$background = wp_parse_args( $this->get_frame_background( $i, $frame ), array(
 			'color' => false,
 			'image' => false,
@@ -271,7 +295,13 @@ abstract class SiteOrigin_Widget_Base_Slider extends SiteOrigin_Widget {
 			<?php
 			$this->render_frame_contents( $i, $frame );
 			if( !empty( $background['videos'] ) ) {
-				$this->video_code( $background['videos'], array('sow-' . $background['video-sizing'] . '-element') );
+
+				$classes = array( 'sow-' . $background['video-sizing'] . '-element' );
+				if ( ! empty( $controls['background_video_mobile'] ) ) {
+					$classes[] = 'sow-mobile-video_enabled';
+				}
+
+				$this->video_code( $background['videos'], $classes );
 			}
 
 			if( $background['opacity'] < 1 && !empty($background['image']) ) {
@@ -312,7 +342,7 @@ abstract class SiteOrigin_Widget_Base_Slider extends SiteOrigin_Widget {
 	 */
 	function video_code( $videos, $classes = array() ){
 		if( empty( $videos ) ) return;
-		$video_element = '<video class="' . esc_attr( implode( ',', $classes ) ) . '" autoplay loop muted playsinline>';
+		$video_element = '<video class="' . esc_attr( implode( ' ', $classes ) ) . '" autoplay loop muted playsinline>';
 
 		$so_video = new SiteOrigin_Video();
 		foreach( $videos as $video ) {

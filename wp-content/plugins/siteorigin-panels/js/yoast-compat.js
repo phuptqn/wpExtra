@@ -41,9 +41,14 @@ jQuery(function($){
 			return data;
 		}
 
-		$data.find('.so-panel.widget').each(function(i, el){
-			var $widget = $(el),
-				match = re.exec( $widget.html() );
+		$data.find('.so-panel.widget').each(function(i, el) {
+			
+			var $widget = $(el);
+			// Style wrappers prevent us from matching the widget shortcode correctly.
+			if ( $widget.find( '> .panel-widget-style' ).length > 0 ) {
+				$widget = $widget.find( '> .panel-widget-style' );
+			}
+			var match = re.exec( $widget.html() );
 
 			try{
 				if( ! _.isNull( match ) && $widget.html().replace( re, '' ).trim() === '' ) {
@@ -77,6 +82,22 @@ jQuery(function($){
 									'alt': widgetInstance.alt,
 									'title': widgetInstance.image_title,
 								}).prop('outerHTML');
+								break;
+
+							case 'SiteOrigin_Widget_Accordion_Widget':
+							case 'SiteOrigin_Widget_Tabs_Widget':
+								var contentItems = widgetClass === 'SiteOrigin_Widget_Accordion_Widget' ? widgetInstance.panels : widgetInstance.tabs;
+								newHTML = $( '<div/>' );
+								for( var i = 0; i < contentItems.length; i++ ) {
+									var item = contentItems[ i ];
+									if ( item.content_type !== 'text' ) {
+										continue;
+									}
+									
+									newHTML.append( '<h3>' + item.title + '</h3>' );
+									newHTML.append( '<div>' + item.content_text + '</div>')
+								}
+								newHTML = newHTML.prop( 'outerHTML' );
 								break;
 						}
 					}

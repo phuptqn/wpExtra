@@ -1,10 +1,7 @@
 <?php
 
 /**
- * @var $accordion
- * @var $toggle
- * @var $expanded
- * @var $style
+ * @var $settings
  */
 ?>
 
@@ -12,41 +9,20 @@
 if ( !empty($instance['title']) ) {
     echo  $args['before_title'] . esc_html( $instance['title'] ) . $args['after_title'] ;
 }
-?>
-
-<div class="lsow-accordion <?php 
-echo  $style ;
-?>" data-toggle="<?php 
-echo  ( $toggle ? "true" : "false" ) ;
-?>"
-     data-expanded="<?php 
-echo  ( $expanded ? "true" : "false" ) ;
-?>">
-
-    <?php 
-foreach ( $accordion as $panel ) {
-    ?>
-
-        <?php 
+$settings = apply_filters( 'lsow_accordion_' . $this->id . '_settings', $settings );
+$output = '<div class="lsow-accordion ' . $settings['style'] . '" data-toggle="' . (( $settings['toggle'] ? "true" : "false" )) . '" data-expanded="' . (( $settings['expanded'] ? "true" : "false" )) . '">';
+foreach ( $settings['accordion'] as $panel ) {
     $panel_id = '';
-    ?>
-
-        <div class="lsow-panel" id="<?php 
-    echo  $panel_id ;
-    ?>">
-
-            <div class="lsow-panel-title"><?php 
-    echo  htmlspecialchars_decode( esc_html( $panel['title'] ) ) ;
-    ?></div>
-
-            <div class="lsow-panel-content"><?php 
-    echo  do_shortcode( $panel['panel_content'] ) ;
-    ?></div>
-
-        </div>
-
-    <?php 
+    $child_output = '<div class="lsow-panel" id="' . $panel_id . '">';
+    $child_output .= '<div class="lsow-panel-title">' . htmlspecialchars_decode( esc_html( $panel['title'] ) ) . '</div>';
+    $child_output .= '<div class="lsow-panel-content">' . do_shortcode( $panel['panel_content'] ) . '</div>';
+    $child_output .= '</div><!-- .lsow-panel -->';
+    $output .= apply_filters(
+        'lsow_accordion_item_output',
+        $child_output,
+        $panel,
+        $settings
+    );
 }
-?>
-
-</div>
+$output .= '</div><!-- .lsow-accordion -->';
+echo  apply_filters( 'lsow_accordion_output', $output, $settings ) ;

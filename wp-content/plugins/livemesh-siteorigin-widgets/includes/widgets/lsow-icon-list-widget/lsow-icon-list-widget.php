@@ -148,6 +148,18 @@ class LSOW_Icon_List_Widget extends SiteOrigin_Widget {
     }
 
     function initialize() {
+
+        $this->register_frontend_scripts(
+            array(
+                array(
+                    'lsow-waypoints',
+                    LSOW_PLUGIN_URL . 'assets/js/jquery.waypoints' . LSOW_JS_SUFFIX . '.js',
+                    array('jquery'),
+                    LSOW_VERSION
+                ),
+            )
+        );
+
         $this->register_frontend_scripts(
             array(
                 array(
@@ -165,6 +177,23 @@ class LSOW_Icon_List_Widget extends SiteOrigin_Widget {
                     plugin_dir_url(__FILE__) . 'js/icon-list' . LSOW_JS_SUFFIX . '.js',
                     array('jquery')
                 )
+            )
+        );
+
+        $this->register_frontend_styles(
+            array(
+                array(
+                    'lsow-animate',
+                    LSOW_PLUGIN_URL . 'assets/css/animate.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+                array(
+                    'lsow-frontend',
+                    LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+                    array(),
+                    LSOW_VERSION
+                ),
             )
         );
 
@@ -186,11 +215,14 @@ class LSOW_Icon_List_Widget extends SiteOrigin_Widget {
     }
 
     function get_template_variables($instance, $args) {
-        return array(
+        $settings = $instance['settings'];
+
+        $settings = array_merge($settings, array(
             'icon_type' => $instance['icon_type'],
-            'icon_list' => !empty($instance['icon_list']) ? $instance['icon_list'] : array(),
-            'settings' => $instance['settings']
-        );
+            'icon_list' => !empty($instance['icon_list']) ? $instance['icon_list'] : array()
+        ));
+
+        return array('settings' => $settings);
     }
 
 }

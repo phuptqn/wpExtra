@@ -270,7 +270,7 @@ class SiteOrigin_Panels_Admin_Layouts {
 			$return['title'] = sprintf( __( 'Clone %s', 'siteorigin-panels' ), esc_html( $post_type->labels->singular_name ) );
 			
 			global $wpdb;
-			$user_can_read_private = ( $post_type == 'post' && current_user_can( 'read_private_posts' ) || ( $post_type == 'page' && current_user_can( 'read_private_pages' ) ) );
+			$user_can_read_private = ( $post_type->name == 'post' && current_user_can( 'read_private_posts' ) || ( $post_type->name == 'page' && current_user_can( 'read_private_pages' ) ) );
 			$include_private       = $user_can_read_private ? "OR posts.post_status = 'private' " : "";
 			
 			// Select only the posts with the given post type that also have panels_data
@@ -420,6 +420,10 @@ class SiteOrigin_Panels_Admin_Layouts {
 		if ( ! empty( $_FILES['panels_import_data']['tmp_name'] ) ) {
 			header( 'content-type:application/json' );
 			$json = file_get_contents( $_FILES['panels_import_data']['tmp_name'] );
+			$panels_data = json_decode( $json, true );
+			$panels_data = apply_filters( 'siteorigin_panels_data', $panels_data, false );
+			$panels_data['widgets'] = SiteOrigin_Panels_Admin::single()->process_raw_widgets( $panels_data['widgets'], array(), true, true );
+			$json = json_encode( $panels_data );
 			@unlink( $_FILES['panels_import_data']['tmp_name'] );
 			echo $json;
 		}

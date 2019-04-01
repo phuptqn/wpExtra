@@ -180,11 +180,42 @@ class LSOW_Button_Widget extends SiteOrigin_Widget {
         );
     }
 
-    function enqueue_frontend_scripts($instance) {
+    function initialize() {
 
-        wp_enqueue_style('lsow-button', siteorigin_widget_get_plugin_dir_url('lsow-button') . 'css/style.css', array(), LSOW_VERSION);
+        $this->register_frontend_scripts(
+            array(
+                array(
+                    'lsow-waypoints',
+                    LSOW_PLUGIN_URL . 'assets/js/jquery.waypoints' . LSOW_JS_SUFFIX . '.js',
+                    array('jquery'),
+                    LSOW_VERSION
+                ),
+            )
+        );
 
-        parent::enqueue_frontend_scripts($instance);
+        $this->register_frontend_styles(
+            array(
+                array(
+                    'lsow-animate',
+                    LSOW_PLUGIN_URL . 'assets/css/animate.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+                array(
+                    'lsow-frontend',
+                    LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+            )
+        );
+
+        $this->register_frontend_styles(array(
+            array(
+                'lsow-button',
+                plugin_dir_url(__FILE__) . 'css/style.css'
+            )
+        ));
     }
 
     function get_less_variables($instance) {
@@ -198,24 +229,19 @@ class LSOW_Button_Widget extends SiteOrigin_Widget {
     }
 
     function get_template_variables($instance, $args) {
-        return array(
+
+        $settings = $instance['settings'];
+
+        $settings = array_merge($settings, array(
             "id" => $this->element_id,
-            "style" => $instance['settings']["style"],
-            "class" => $instance['settings']["class"],
-            "color" => $instance['settings']["color"],
-            "custom_color" => $instance['settings']["custom_color"],
-            "hover_color" => $instance['settings']["hover_color"],
-            "type" => $instance['settings']["type"],
-            "align" => $instance['settings']["align"],
-            "target" => $instance['settings']["target"],
-            "rounded" => $instance['settings']["rounded"],
             "href" => (!empty($instance['href'])) ? sow_esc_url($instance['href']) : '',
             "text" => $instance["text"],
             'icon_type' => $instance['icon_type'],
             'icon_image' => $instance['icon_image'],
-            'icon' => $instance['icon'],
-            'settings' => $instance['settings']
-        );
+            'icon' => $instance['icon']
+        ));
+
+        return array('settings' => $settings);
     }
 
 }

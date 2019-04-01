@@ -1,58 +1,79 @@
 <?php
 /**
  * @var $settings
- * @var $testimonials
  */
 
 ?>
 
-<?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
+<?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'];
 
-<div class="lsow-testimonials-slider lsow-flexslider lsow-container" <?php foreach ($settings as $key => $val) : ?>
-    <?php if (!empty($val)) : ?>
-        data-<?php echo $key . '="' . esc_attr($val) . '"' ?>
-    <?php endif ?>
-<?php endforeach; ?>>
+$settings = apply_filters('lsow_testimonials_slider_' . $this->id . '_settings', $settings);
 
-    <div class="lsow-slides">
+$slider_options = [
+    'slide_animation' => $settings['slide_animation'],
+    'direction' => 'horizontal',
+    'slideshow_speed' => absint($settings['slideshow_speed']),
+    'animation_speed' => absint($settings['animation_speed']),
+    'control_nav' => ($settings['control_nav']),
+    'direction_nav' => ($settings['direction_nav']),
+    'pause_on_hover' => ($settings['pause_on_hover']),
+    'pause_on_action' => ($settings['pause_on_action'])
+];
 
-        <?php foreach ($testimonials as $testimonial) : ?>
+$slider_options = apply_filters('lsow_testimonials_slider_options', $slider_options, $settings);
 
-            <div class="lsow-slide lsow-testimonial-wrapper">
+$output = '<div class="lsow-testimonials-slider lsow-flexslider lsow-container" data-settings=\'' . wp_json_encode($slider_options) . '\'>';
 
-                <div class="lsow-testimonial">
+$output .= '<div class="lsow-slides">';
 
-                    <div class="lsow-testimonial-text">
+foreach ($settings['testimonials'] as $testimonial) :
 
-                        <i class="lsow-icon-quote"></i>
+    $child_output = '<div class="lsow-slide lsow-testimonial-wrapper">';
 
-                        <?php echo wp_kses_post($testimonial['text']) ?>
+    $child_output .= '<div class="lsow-testimonial">';
 
-                    </div>
+    $child_output .= '<div class="lsow-testimonial-text">';
 
-                    <div class="lsow-testimonial-user">
+    $child_output .= '<i class="lsow-icon-quote"></i>';
 
-                        <div class="lsow-image-wrapper">
-                            <?php echo wp_get_attachment_image($testimonial['image'], 'thumbnail', false, array('class' => 'lsow-image full')); ?>
-                        </div>
+    $child_output .= do_shortcode($testimonial['text']);
 
-                        <div class="lsow-text">
-                            <h4 class="lsow-author-name"><?php echo esc_html($testimonial['name']) ?></h4>
-                            <div class="lsow-author-credentials"><?php echo wp_kses_post($testimonial['credentials']); ?></div>
-                        </div>
+    $child_output .= '</div>';
 
-                    </div>
+    $child_output .= '<div class="lsow-testimonial-user">';
 
-                </div>
+    $child_output .= '<div class="lsow-image-wrapper">';
 
-            </div>
+    $client_image = $testimonial['image'];
 
-        <?php
+    if (!empty($client_image)):
 
-        endforeach;
+        $child_output .= wp_get_attachment_image($client_image, 'thumbnail', false, array('class' => 'lsow-image full'));
 
-        ?>
+    endif;
 
-    </div>
+    $child_output .= '</div><!-- .lsow-image-wrapper -->';
 
-</div>
+    $child_output .= '<div class="lsow-text">';
+
+    $child_output .= '<h3 class="lsow-author-name">' . esc_html($testimonial['name']) . '</h3>';
+
+    $child_output .= '<div class="lsow-author-credentials">' . wp_kses_post($testimonial['credentials']) . '</div>';
+
+    $child_output .= '</div>';
+
+    $child_output .= '</div><!-- .lsow-testimonial-user -->';
+
+    $child_output .= '</div><!-- .lsow-testimonial -->';
+
+    $child_output .= '</div><!-- .lsow-testimonial-wrapper.lsow-slide -->';
+
+    $output .= apply_filters('lsow_testimonials_slide_output', $child_output, $testimonial, $settings);
+
+endforeach;
+
+$output .= '</div><!-- .lsow-slides -->';
+
+$output .= '</div><!-- .lsow-testimonials-slider -->';
+
+echo apply_filters('lsow_testimonials_slider_output', $output, $settings);

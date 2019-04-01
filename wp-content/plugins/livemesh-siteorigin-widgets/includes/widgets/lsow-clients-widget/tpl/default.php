@@ -1,54 +1,55 @@
 <?php
 /**
- * @var $clients
  * @var $settings
  */
 
-?>
+if (!empty($instance['title']))
+    echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'];
 
-<?php list($animate_class, $animation_attr) = lsow_get_animation_atts($settings['animation']); ?>
+$settings = apply_filters('lsow_clients_' . $this->id . '_settings', $settings);
 
-<?php if (!empty($instance['title']))
-    echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
+list($animate_class, $animation_attr) = lsow_get_animation_atts($settings['animation']);
 
-<div class="lsow-clients lsow-gapless-grid">
+$output = '<div class="lsow-clients lsow-gapless-grid">';
 
-    <div class="lsow-grid-container <?php echo lsow_get_grid_classes($settings); ?> ">
+    $output .= '<div class="lsow-grid-container ' . lsow_get_grid_classes($settings) . '">';
 
-        <?php $column_count = 0; ?>
+        foreach ($settings['clients'] as $client):
 
-        <?php foreach ($clients as $client): ?>
+        $child_output = '<div class="lsow-grid-item lsow-client ' . $animate_class . '" ' . $animation_attr . '>';
 
-            <div class="lsow-grid-item lsow-client <?php echo $animate_class; ?>" <?php echo $animation_attr; ?>>
+        if (!empty($client['image'])):
 
-                <?php echo wp_get_attachment_image($client['image'], 'full', false, array('class' => 'lsow-image full', 'alt' => $client['name'])); ?>
+        $child_output .= wp_get_attachment_image($client['image'], 'full', false, array('class' => 'lsow-image full', 'alt' => $client['name']));
 
-                <div class="lsow-client-name">
+        endif;
 
-                    <?php if (!empty($client['link'])): ?>
+        if (!empty($client['link'])):
 
-                        <a href="<?php echo sow_esc_url($client['link']); ?>"
-                           title="<?php echo esc_html($client['name']); ?>"
-                           target="_blank"><?php echo esc_html($client['name']); ?></a>
+        $child_output .= '<div class="lsow-client-name">';
 
-                    <?php else: ?>
+            $child_output .= '<a href="' . sow_esc_url($client['link'])
+                . ' " title="' . esc_html($client['name'])
+                . '" target="_blank">' . wp_kses_post($client['name']) . '</a>';
 
-                        <?php echo esc_html($client['name']); ?>
+            $child_output .= '</div>';
 
-                    <?php endif; ?>
+        else:
 
-                </div>
+        $child_output .= '<div class="lsow-client-name">' . wp_kses_post($client['name']) . '</div>';
 
-                <div class="lsow-image-overlay"></div>
+        endif;
 
-            </div>
+        $child_output .= '<div class="lsow-image-overlay"></div>';
 
-        <?php
+        $child_output .= '</div><!-- .lsow-client -->';
 
-        endforeach;
+    $output .= apply_filters('lsow_client_item_output', $child_output, $client, $settings);
 
-        ?>
+    endforeach;
 
-    </div>
+    $output .= '</div>';
 
-</div>
+$output .= '</div><!-- .lsow-clients -->';
+
+echo apply_filters('lsow_clients_output', $output, $settings);

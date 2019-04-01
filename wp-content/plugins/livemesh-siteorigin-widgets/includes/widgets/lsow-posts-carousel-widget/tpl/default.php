@@ -1,137 +1,165 @@
 <?php
 /**
- * @var $carousel_settings
  * @var $settings
- * @var $posts
  */
 
 if (!empty($instance['title']))
     echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'];
 
+
+$settings = apply_filters('lsow_posts_carousel_' . $this->id . '_settings', $settings);
+
 $taxonomies = array();
 
-$query_args = siteorigin_widget_post_selector_process_query($posts);
+$query_args = siteorigin_widget_post_selector_process_query($settings['posts']);
+
+$query_args = apply_filters('lsow_posts_carousel_'. $this->id . '_query_args', $query_args, $settings);
 
 // Use the processed post selector query to find posts.
 $loop = new WP_Query($query_args);
 
 // Loop through the posts and do something with them.
-if ($loop->have_posts()) : ?>
+if ($loop->have_posts()) :
 
-    <div class="lsow-posts-carousel lsow-container" <?php foreach ($carousel_settings as $key => $val) : ?>
-        <?php if (!empty($val)) : ?>
-            data-<?php echo $key . '="' . esc_attr($val) . '"' ?>
-        <?php endif ?>
-    <?php endforeach; ?>>
+    $output = '<div id="lsow-posts-carousel-' . uniqid()
+        . '" class="lsow-posts-carousel lsow-container" data-settings=\'' . wp_json_encode($settings['carousel_settings']) . '\'>';
 
-        <?php
-        // Check if any taxonomy filter has been applied
-        list($chosen_terms, $taxonomies) = lsow_get_chosen_terms($query_args);
-        if (empty($chosen_terms))
-            $taxonomies[] = $settings['taxonomy_chosen'];
+    // Check if any taxonomy filter has been applied
+    list($chosen_terms, $taxonomies) = lsow_get_chosen_terms($query_args);
+    if (empty($chosen_terms))
+        $taxonomies[] = $settings['taxonomy_chosen'];
 
-        ?>
+    while ($loop->have_posts()) : $loop->the_post();
 
-        <?php while ($loop->have_posts()) : $loop->the_post(); ?>
+        $post_id = get_the_ID();
 
-            <div data-id="id-<?php the_ID(); ?>" class="lsow-posts-carousel-item">
+        $entry_output = '<div data-id="id-' . $post_id . '" class="lsow-posts-carousel-item">';
 
-                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        $entry_output .= '<article id="post-' . $post_id . '" class="' . join(' ', get_post_class('', $post_id)) . '">';
 
-                    <?php if ($thumbnail_exists = has_post_thumbnail()): ?>
+        if ($thumbnail_exists = has_post_thumbnail()):
 
-                        <div class="lsow-project-image">
+            $entry_image = '<div class="lsow-project-image">';
 
-                            <?php if ($settings['image_linkable']): ?>
+            if ($settings['image_linkable']):
 
-                                <a href="<?php the_permalink(); ?>"
-                                   target="<?php echo $settings['link_target']; ?>"><?php the_post_thumbnail($settings['image_size']); ?></a>
+                $thumbnail_html = '<a href="' . get_the_permalink()
+                    . '" target="' . $settings['link_target']
+                    . '">' . get_the_post_thumbnail($post_id, $settings['image_size'])
+                    . '</a>';
 
-                            <?php else: ?>
+            else:
 
-                                <?php the_post_thumbnail($settings['image_size']); ?>
+                $thumbnail_html = get_the_post_thumbnail($post_id, $settings['image_size']);
 
-                            <?php endif; ?>
+            endif;
 
-                            <div class="lsow-image-info">
+            $entry_image .= apply_filters('lsow_posts_carousel_thumbnail_html', $thumbnail_html, $post_id, $settings);
 
-                                <div class="lsow-entry-info">
+            $image_info = '<div class="lsow-image-info">';
 
-                                    <?php the_title('<h3 class="lsow-post-title"><a target="' . $settings["link_target"] . '" href="' . get_permalink() . '" title="' . get_the_title() . '"
-                                               rel="bookmark">', '</a></h3>'); ?>
+            $image_info .= '<div class="lsow-entry-info">';
 
-                                    <?php echo lsow_get_info_for_taxonomies($taxonomies); ?>
+            $image_info .= '<h3 class="lsow-post-title">';
 
-                                </div>
+            $image_info .= '<a href="' . get_permalink()
+                . '" title="' . get_the_title()
+                . '" target="' . $settings["link_target"]
+                . '" rel="bookmark">' . get_the_title()
+                . '</a>';
 
-                            </div>
+            $image_info .= '</h3>';
 
-                            <div class="lsow-image-overlay"></div>
+            $image_info .= lsow_get_info_for_taxonomies($taxonomies);
 
-                        </div>
+            $image_info .= '</div>';
 
-                    <?php endif; ?>
+            $image_info .= '</div><!-- .lsow-image-info -->';
 
-                    <?php if ($settings['display_title'] || $settings['display_summary']) : ?>
+            $entry_image .= apply_filters('lsow_posts_carousel_image_info', $image_info, $post_id, $settings);
 
-                        <div class="lsow-entry-text-wrap <?php echo($thumbnail_exists ? '' : ' nothumbnail'); ?>">
+            $entry_image .= '</div>';
 
-                            <?php if ($settings['display_title']) : ?>
+            $entry_output .= apply_filters('lsow_posts_carousel_entry_image', $entry_image, $post_id, $settings);
 
-                                <?php the_title('<h3 class="entry-title"><a target="' . $settings["link_target"] . '" href="' . get_permalink() . '" title="' . get_the_title() . '"
-                                               rel="bookmark">', '</a></h3>'); ?>
+        endif;
 
-                            <?php endif; ?>
+        if (($settings['display_title']) || ($settings['display_summary'])) :
 
-                            <?php if ($settings['post_meta']['display_post_date'] || $settings['post_meta']['display_author'] || $settings['post_meta']['display_taxonomy']) : ?>
+            $entry_output .= '<div class="lsow-entry-text-wrap ' . ($thumbnail_exists ? '' : ' nothumbnail') . '">';
 
-                                <div class="lsow-entry-meta">
+            if ($settings['display_title']) :
 
-                                    <?php if ($settings['post_meta']['display_author']): ?>
+                $entry_title = '<h3 class="entry-title">';
 
-                                        <?php echo lsow_entry_author(); ?>
+                $entry_title .= '<a href="' . get_permalink()
+                    . '" title="' . get_the_title()
+                    . '" target="' . $settings["link_target"]
+                    . '" rel="bookmark">' . get_the_title()
+                    . '</a>';
 
-                                    <?php endif; ?>
+                $entry_title .= '</h3>';
 
-                                    <?php if ($settings['post_meta']['display_post_date']): ?>
+                $entry_output .= apply_filters('lsow_posts_carousel_entry_title', $entry_title, $post_id, $settings);
 
-                                        <?php echo lsow_entry_published(); ?>
+            endif;
 
-                                    <?php endif; ?>
+            if (($settings['post_meta']['display_post_date']) || ($settings['post_meta']['display_author']) || ($settings['post_meta']['display_taxonomy'])) :
 
-                                    <?php if ($settings['post_meta']['display_taxonomy']): ?>
+                $entry_meta = '<div class="lsow-entry-meta">';
 
-                                        <?php echo lsow_get_info_for_taxonomies($taxonomies); ?>
+                if ($settings['post_meta']['display_author']):
 
-                                    <?php endif; ?>
+                    $entry_meta .= lsow_entry_author();
 
-                                </div>
+                endif;
 
-                            <?php endif; ?>
+                if ($settings['post_meta']['display_post_date']):
 
-                            <?php if ($settings['display_summary']) : ?>
+                    $entry_meta .= lsow_entry_published();
 
-                                <div class="entry-summary">
+                endif;
 
-                                    <?php the_excerpt(); ?>
+                if ($settings['post_meta']['display_taxonomy']):
 
-                                </div>
+                    $entry_meta .= lsow_get_info_for_taxonomies($taxonomies);
 
-                            <?php endif; ?>
+                endif;
 
-                        </div>
+                $entry_meta .= '</div>';
 
-                    <?php endif; ?>
+                $entry_output .= apply_filters('lsow_posts_carousel_entry_meta', $entry_meta, $post_id, $settings);
 
-                </article>
-                <!-- .hentry -->
+            endif;
 
-            </div><!--.lsow-posts-carousel-item -->
+            if ($settings['display_summary']) :
 
-        <?php endwhile; ?>
+                $excerpt = '<div class="entry-summary">';
 
-        <?php wp_reset_postdata(); ?>
+                $excerpt .= get_the_excerpt();
 
-    </div> <!-- .lsow-posts-carousel -->
+                $excerpt .= '</div>';
 
-<?php endif; ?>
+                $entry_output .= apply_filters('lsow_posts_carousel_entry_excerpt', $excerpt, $post_id, $settings);
+
+            endif;
+
+            $entry_output .= '</div>';
+
+        endif;
+
+        $entry_output .= '</article><!-- .hentry -->';
+
+        $entry_output .= '</div><!-- .lsow-posts-carousel-item -->';
+
+        $output .= apply_filters('lsow_posts_carousel_entry_output', $entry_output, $post_id, $settings);
+
+    endwhile;
+
+    wp_reset_postdata();
+
+    $output .= '</div><!-- .lsow-posts-carousel -->';
+
+    echo apply_filters('lsow_posts_carousel_output', $output, $settings);
+
+endif;

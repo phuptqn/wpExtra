@@ -67,7 +67,6 @@ class LSOW_Accordion_Widget extends SiteOrigin_Widget
             'type'        => 'text',
             'label'       => __( 'Panel ID', 'livemesh-so-widgets' ),
             'description' => __( 'The Panel ID is required to link to a panel. It must be unique across the page, must begin with a letter and may be followed by any number of letters, digits, hyphens or underscores.', 'livemesh-so-widgets' ),
-            'connections' => array( 'string', 'html' ),
         ),
             'panel_content' => array(
             'type'        => 'tinymce',
@@ -83,16 +82,30 @@ class LSOW_Accordion_Widget extends SiteOrigin_Widget
     function initialize()
     {
         $this->register_frontend_scripts( array( array( 'lsow-accordion', plugin_dir_url( __FILE__ ) . 'js/accordion' . LSOW_JS_SUFFIX . '.js', array( 'jquery' ) ) ) );
+        $this->register_frontend_styles( array( array(
+            'lsow-icomoon',
+            LSOW_PLUGIN_URL . 'assets/css/icomoon.css',
+            array(),
+            LSOW_VERSION
+        ), array(
+            'lsow-frontend',
+            LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+            array(),
+            LSOW_VERSION
+        ) ) );
         $this->register_frontend_styles( array( array( 'lsow-accordion', plugin_dir_url( __FILE__ ) . 'css/style.css' ) ) );
     }
     
     function get_template_variables( $instance, $args )
     {
-        return array(
+        $settings = array(
             'style'     => $instance['style'],
             'toggle'    => $instance['toggle'],
             'expanded'  => $instance['expanded'],
             'accordion' => ( !empty($instance['accordion']) ? $instance['accordion'] : array() ),
+        );
+        return array(
+            'settings' => $settings,
         );
     }
 

@@ -110,6 +110,23 @@ class LSOW_Client_Widget extends SiteOrigin_Widget {
             )
         );
 
+        $this->register_frontend_styles(
+            array(
+                array(
+                    'lsow-animate',
+                    LSOW_PLUGIN_URL . 'assets/css/animate.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+                array(
+                    'lsow-frontend',
+                    LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+            )
+        );
+
         $this->register_frontend_styles(array(
             array(
                 'lsow-clients',
@@ -119,10 +136,14 @@ class LSOW_Client_Widget extends SiteOrigin_Widget {
     }
 
     function get_template_variables($instance, $args) {
-        return array(
+
+        $settings = $instance['settings'];
+
+        $settings = array_merge($settings, array(
             'clients' => !empty($instance['clients']) ? $instance['clients'] : array(),
-            'settings' => $instance['settings']
-        );
+        ));
+
+        return array('settings' => $settings);
     }
 
 }

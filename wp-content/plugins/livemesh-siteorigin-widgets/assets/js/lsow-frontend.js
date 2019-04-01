@@ -3,8 +3,6 @@
  */
 if (typeof (jQuery) != 'undefined') {
 
-    jQuery.noConflict(); // Reverts '$' variable back to other JS libraries
-
     (function ($) {
         "use strict";
 
@@ -27,7 +25,7 @@ if (typeof (jQuery) != 'undefined') {
                     $(".lsow-visible-on-scroll:not(.animated)").css('opacity', 0);
 
                     "function" != typeof window.lsow_animate_widgets && (window.lsow_animate_widgets = function () {
-                        "undefined" != typeof $.fn.waypoint && $(".lsow-animate-on-scroll:not(.animated)").waypoint(function () {
+                        "undefined" != typeof $.fn.livemeshWaypoint && $(".lsow-animate-on-scroll:not(.animated)").livemeshWaypoint(function () {
                             var animateClass = $(this.element).data("animation");
                             $(this.element).addClass("animated " + animateClass).css('opacity', 1);
                         }, {
@@ -83,37 +81,37 @@ if (typeof (jQuery) != 'undefined') {
 
                         var carousel_elem = $(this);
 
-                        var arrows = carousel_elem.data('arrows') ? true : false;
+                        var settings = carousel_elem.data('settings');
 
-                        var dots = carousel_elem.data('dots') ? true : false;
+                        var arrows = settings['arrows'];
 
-                        var autoplay = carousel_elem.data('autoplay') ? true : false;
+                        var dots = settings['dots'];
 
-                        var autoplay_speed = carousel_elem.data('autoplay_speed') || 3000;
+                        var autoplay = settings['autoplay'];
 
-                        var animation_speed = carousel_elem.data('animation_speed') || 300;
+                        var autoplay_speed = parseInt(settings['autoplay_speed']) || 3000;
 
-                        var fade = carousel_elem.data('fade') ? true : false;
+                        var animation_speed = parseInt(settings['animation_speed']) || 300;
 
-                        var pause_on_hover = carousel_elem.data('pause_on_hover') ? true : false;
+                        var fade = settings['fade'];
 
-                        var display_columns = carousel_elem.data('display_columns') || 4;
+                        var pause_on_hover = settings['pause_on_hover'];
 
-                        var scroll_columns = carousel_elem.data('scroll_columns') || 4;
+                        var display_columns = parseInt(settings['display_columns']) || 4;
 
-                        var gutter = carousel_elem.data('gutter') || 10;
+                        var scroll_columns = parseInt(settings['scroll_columns']) || 4;
 
-                        var tablet_width = carousel_elem.data('tablet_width') || 800;
+                        var tablet_width = parseInt(settings['tablet_width']) || 800;
 
-                        var tablet_display_columns = carousel_elem.data('tablet_display_columns') || 2;
+                        var tablet_display_columns = parseInt(settings['tablet_display_columns']) || 2;
 
-                        var tablet_scroll_columns = carousel_elem.data('tablet_scroll_columns') || 2;
+                        var tablet_scroll_columns = parseInt(settings['tablet_scroll_columns']) || 2;
 
-                        var mobile_width = carousel_elem.data('mobile_width') || 480;
+                        var mobile_width = parseInt(settings['mobile_width']) || 480;
 
-                        var mobile_display_columns = carousel_elem.data('mobile_display_columns') || 1;
+                        var mobile_display_columns = parseInt(settings['mobile_display_columns']) || 1;
 
-                        var mobile_scroll_columns = carousel_elem.data('mobile_scroll_columns') || 1;
+                        var mobile_scroll_columns = parseInt(settings['mobile_scroll_columns']) || 1;
 
                         carousel_elem.slick({
                             arrows: arrows,

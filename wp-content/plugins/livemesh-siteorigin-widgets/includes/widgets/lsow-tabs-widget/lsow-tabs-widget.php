@@ -131,7 +131,12 @@ class LSOW_Tabs_Widget extends SiteOrigin_Widget
     function initialize()
     {
         $this->register_frontend_scripts( array( array( 'lsow-tabs', plugin_dir_url( __FILE__ ) . 'js/tabs' . LSOW_JS_SUFFIX . '.js', array( 'jquery' ) ) ) );
-        $this->register_frontend_styles( array( array( 'lsow-tabs', plugin_dir_url( __FILE__ ) . 'css/style.css' ) ) );
+        $this->register_frontend_styles( array( array(
+            'lsow-frontend',
+            LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+            array(),
+            LSOW_VERSION
+        ), array( 'lsow-tabs', plugin_dir_url( __FILE__ ) . 'css/style.css' ) ) );
     }
     
     function get_less_variables( $instance )
@@ -143,11 +148,14 @@ class LSOW_Tabs_Widget extends SiteOrigin_Widget
     
     function get_template_variables( $instance, $args )
     {
-        return array(
+        $settings = array(
             'style'        => $instance['style'],
             'icon_type'    => $instance['icon_type'],
             'mobile_width' => intval( $instance['mobile_width'] ),
             'tabs'         => ( !empty($instance['tabs']) ? $instance['tabs'] : array() ),
+        );
+        return array(
+            'settings' => $settings,
         );
     }
 

@@ -68,13 +68,10 @@
     position: relative; }
     .lsow-tabs .lsow-tab-panes .lsow-tab-pane {
       padding: 40px;
-      display: block;
-      overflow: hidden;
-      position: absolute;
-      left: -9999px; }
+      display: none;
+      overflow: hidden; }
       .lsow-tabs .lsow-tab-panes .lsow-tab-pane.lsow-active {
-        position: static;
-        left: 0;
+        display: block;
         -webkit-animation: lsow-fade 0.3s ease-in-out;
                 animation: lsow-fade 0.3s ease-in-out; }
 

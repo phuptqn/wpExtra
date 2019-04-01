@@ -1,6 +1,6 @@
 jQuery(function ($) {
 
-    $('.lsow-piecharts').waypoint(function (direction) {
+    $('.lsow-piecharts').livemeshWaypoint(function (direction) {
 
         $(this.element).find('.lsow-piechart .lsow-percentage').each(function () {
 
@@ -20,7 +20,7 @@ jQuery(function ($) {
 
         });
 
-    }, { offset: Waypoint.viewportHeight() - 100,
+    }, { offset: (window.innerHeight || document.documentElement.clientHeight) - 100,
         triggerOnce: true});
 
 

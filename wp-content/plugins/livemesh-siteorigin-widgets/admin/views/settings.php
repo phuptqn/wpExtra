@@ -288,25 +288,21 @@ $custom_css = lsow_get_option('lsow_custom_css', '');
                             <p>We offer premium support for our paid customers with following benefits - </p>
 
                             <ul>
-                                <li><strong>Dedicated Forum</strong> - The customers will be provided access to a
-                                    dedicated support forum.
+                                <li><strong>Dedicated Support Portal</strong> - The customers will be provided access to a
+                                    dedicated support portal powered by Freshdesk.
                                 </li>
-                                <li><strong>Public and Private Tickets</strong> - Private tickets help you work with us
+                                <li><strong>Private Tickets</strong> - Private tickets help you work with us
                                     directly regarding the issues you are facing in your site by sharing the details of
                                     your site securely.
-                                </li>
-                                <li><strong>Searchable Topics</strong> - The support forum is searchable for public
-                                    topics helping you look for resolution of similar issues reported by other
-                                    customers.
                                 </li>
                                 </li>
                                 <li><strong>Faster turnaround</strong> - The threads opened by paid customers will be
                                     attended to within 24 hours of opening a ticket.
                                 </li>
                                 <li><strong>Bug fixes and Enhancements</strong> - Any fixes and enhancements made to the
-                                    widgets will be prioritized to arrive quicker on the premium version.
+                                    elements will be prioritized to arrive quicker on the premium version.
                                 </li>
-                                <li><strong>Proven Expertize</strong> - Having served over <strong>11,000+
+                                <li><strong>Proven Expertize</strong> - Having served over <strong>12,280+
                                         customers</strong> of our themes over past 3 years, the support provided by us
                                     is proven in competence and commitment.
                                 </li>

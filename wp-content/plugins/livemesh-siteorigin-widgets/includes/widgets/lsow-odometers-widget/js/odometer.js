@@ -1,6 +1,6 @@
 jQuery(function ($) {
 
-    $('.lsow-odometers').waypoint(function (direction) {
+    $('.lsow-odometers').livemeshWaypoint(function (direction) {
 
         $(this.element).find('.lsow-odometer .lsow-number').each(function () {
 
@@ -15,7 +15,7 @@ jQuery(function ($) {
 
         });
 
-    }, { offset: Waypoint.viewportHeight() - 100,
+    }, { offset: (window.innerHeight || document.documentElement.clientHeight) - 100,
         triggerOnce: true});
 
 

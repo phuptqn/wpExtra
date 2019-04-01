@@ -5,6 +5,7 @@ Widget Name: Icon
 Description: An iconic icon.
 Author: SiteOrigin
 Author URI: https://siteorigin.com
+Documentation: https://siteorigin.com/widgets-bundle/icon-widget/
 */
 
 class SiteOrigin_Widget_Icon_Widget extends SiteOrigin_Widget {
@@ -65,6 +66,9 @@ class SiteOrigin_Widget_Icon_Widget extends SiteOrigin_Widget {
 	}
 
 	function get_less_variables( $instance ) {
+		if ( empty( $instance ) ) {
+			return array();
+		}
 		return array(
 			'color'    => $instance['color'],
 			'alignment'    => $instance['alignment'],

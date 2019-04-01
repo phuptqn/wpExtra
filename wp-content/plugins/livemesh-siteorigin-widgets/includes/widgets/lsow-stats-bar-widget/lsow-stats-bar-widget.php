@@ -82,6 +82,12 @@ class LSOW_Stats_Bars_Widget extends SiteOrigin_Widget {
 
         $this->register_frontend_styles(array(
             array(
+                'lsow-frontend',
+                LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+                array(),
+                LSOW_VERSION
+            ),
+            array(
                 'lsow-stats-bar',
                 plugin_dir_url(__FILE__) . 'css/style.css'
             )
@@ -89,9 +95,11 @@ class LSOW_Stats_Bars_Widget extends SiteOrigin_Widget {
     }
 
     function get_template_variables($instance, $args) {
-        return array(
+        $settings = array(
             'stats_bars' => !empty($instance['stats-bars']) ? $instance['stats-bars'] : array()
         );
+
+        return array('settings' => $settings);
     }
 
 }

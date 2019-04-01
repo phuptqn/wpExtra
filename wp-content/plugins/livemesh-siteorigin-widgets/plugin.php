@@ -28,6 +28,7 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
                 add_action( 'plugins_loaded', array( self::$instance, 'load_plugin_textdomain' ) );
                 self::$instance->includes();
                 self::$instance->hooks();
+                self::$instance->template_hooks();
             }
             
             return self::$instance;
@@ -42,7 +43,7 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
         public function __clone()
         {
             // Cloning instances of the class is forbidden
-            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-so-widgets' ), '2.2.1' );
+            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-so-widgets' ), '2.5.2' );
         }
         
         /**
@@ -52,7 +53,7 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
         public function __wakeup()
         {
             // Unserializing instances of the class is forbidden
-            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-so-widgets' ), '2.2.1' );
+            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-so-widgets' ), '2.5.2' );
         }
         
         private function setup_debug_constants()
@@ -126,6 +127,45 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
             add_action( 'wp_enqueue_scripts', array( $this, 'localize_scripts' ), 999999 );
         }
         
+        private function template_hooks()
+        {
+            $addons = array(
+                'clients',
+                'carousel',
+                'heading',
+                'odometers',
+                'piecharts',
+                'posts_grid',
+                'posts_carousel',
+                'pricing_table',
+                'services',
+                'stats_bars',
+                'team_members',
+                'testimonials',
+                'testimonials_slider',
+                'tabs',
+                'accordion',
+                'button',
+                'icon_list'
+            );
+            foreach ( $addons as $addon ) {
+                add_filter(
+                    'lsow_' . $addon . '_output',
+                    function ( $default_output, $settings ) use( $addon ) {
+                    // Replace underscores with dashes for template file names
+                    $template_name = str_replace( '_', '-', $addon );
+                    $output = lsow_get_template_part( $template_name, $settings );
+                    if ( $output !== null ) {
+                        return $output;
+                    }
+                    return $default_output;
+                },
+                    10,
+                    2
+                );
+            }
+        }
+        
         /**
          * Load Frontend Scripts/Styles
          *
@@ -134,43 +174,6 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
         {
             // Use minified libraries if LSOW_SCRIPT_DEBUG is turned off
             $suffix = ( defined( 'LSOW_SCRIPT_DEBUG' ) && LSOW_SCRIPT_DEBUG ? '' : '.min' );
-            wp_register_style(
-                'lsow-animate-styles',
-                LSOW_PLUGIN_URL . 'assets/css/animate.css',
-                array(),
-                LSOW_VERSION
-            );
-            wp_enqueue_style( 'lsow-animate-styles' );
-            wp_register_style(
-                'lsow-frontend-styles',
-                LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
-                array(),
-                LSOW_VERSION
-            );
-            wp_enqueue_style( 'lsow-frontend-styles' );
-            wp_register_style(
-                'lsow-icomoon-styles',
-                LSOW_PLUGIN_URL . 'assets/css/icomoon.css',
-                array(),
-                LSOW_VERSION
-            );
-            wp_enqueue_style( 'lsow-icomoon-styles' );
-            wp_register_script(
-                'lsow-modernizr',
-                LSOW_PLUGIN_URL . 'assets/js/modernizr-custom' . $suffix . '.js',
-                array(),
-                LSOW_VERSION,
-                true
-            );
-            wp_enqueue_script( 'lsow-modernizr' );
-            wp_register_script(
-                'lsow-waypoints',
-                LSOW_PLUGIN_URL . 'assets/js/jquery.waypoints' . $suffix . '.js',
-                array( 'jquery' ),
-                LSOW_VERSION,
-                true
-            );
-            wp_enqueue_script( 'lsow-waypoints' );
             wp_register_script(
                 'lsow-frontend-scripts',
                 LSOW_PLUGIN_URL . 'assets/js/lsow-frontend' . $suffix . '.js',

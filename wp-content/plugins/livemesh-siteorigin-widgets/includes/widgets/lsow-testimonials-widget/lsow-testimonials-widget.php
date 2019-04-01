@@ -106,6 +106,34 @@ class LSOW_Testimonials_Widget extends SiteOrigin_Widget {
 
     function initialize() {
 
+        $this->register_frontend_scripts(
+            array(
+                array(
+                    'lsow-waypoints',
+                    LSOW_PLUGIN_URL . 'assets/js/jquery.waypoints' . LSOW_JS_SUFFIX . '.js',
+                    array('jquery'),
+                    LSOW_VERSION
+                ),
+            )
+        );
+
+        $this->register_frontend_styles(
+            array(
+                array(
+                    'lsow-animate',
+                    LSOW_PLUGIN_URL . 'assets/css/animate.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+                array(
+                    'lsow-frontend',
+                    LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+            )
+        );
+
         $this->register_frontend_styles(array(
             array(
                 'lsow-testimonials',
@@ -115,10 +143,12 @@ class LSOW_Testimonials_Widget extends SiteOrigin_Widget {
     }
 
     function get_template_variables($instance, $args) {
-        return array(
+        $settings = $instance['settings'];
+
+        $settings = array_merge($settings, array(
             'testimonials' => !empty($instance['testimonials']) ? $instance['testimonials'] : array(),
-            'settings' => $instance['settings']
-        );
+        ));
+        return array('settings' => $settings);
     }
 
 }

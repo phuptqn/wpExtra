@@ -22,6 +22,16 @@ class LSOW_Admin {
         // load class admin ajax function
         require_once(LSOW_PLUGIN_DIR . '/admin/admin-ajax.php');
 
+        /**
+         * Classes responsible for displaying admin notices.
+         */
+        if (lsow_fs()->is_not_paying()) {
+
+            require_once LSOW_PLUGIN_DIR . 'admin/notices/admin-notice.php';
+
+            require_once LSOW_PLUGIN_DIR . 'admin/notices/admin-notice-rate.php';
+        }
+
     }
 
     public function init_hooks() {
@@ -33,6 +43,18 @@ class LSOW_Admin {
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 
         add_action('current_screen', array($this, 'remove_admin_notices'));
+
+
+        /**
+         * Notice: Rate plugin
+         */
+        if (lsow_fs()->is_not_paying()) {
+            $rate = new LSOW_Notice_Rate('rate', LSOW_PLUGIN_DIR . 'admin/notices/templates/rate.php');
+
+            add_action('load-plugins.php', array($rate, 'defer_first_time'));
+            add_action('admin_notices', array($rate, 'display_notice'));
+            add_action('admin_post_lsow_dismiss_notice', array($rate, 'dismiss_notice'));
+        }
 
     }
 

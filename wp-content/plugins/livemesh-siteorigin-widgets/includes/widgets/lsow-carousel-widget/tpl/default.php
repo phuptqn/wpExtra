@@ -1,35 +1,32 @@
 <?php
 /**
- * @var $carousel_settings
  * @var $settings
- * @var $elements
  */
 
 if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'];
 
-// Loop through the elements and do something with them.
+$settings = apply_filters('lsow_carousel_' . $this->id . '_settings', $settings);
 
-if (!empty($elements)) : ?>
+$carousel_settings = $settings['carousel_settings'];
 
-    <div
-        class="lsow-carousel lsow-container"  <?php foreach ($carousel_settings as $key => $val) : ?>
+if (!empty($settings['elements'])) :
 
-        <?php if (!empty($val)) : ?>
-            data-<?php echo $key . '="' . esc_attr($val) . '"' ?>
-        <?php endif ?>
+    $output = '<div id="lsow-carousel-' . $this->id . '" class="lsow-carousel lsow-container" data-settings=\'' . wp_json_encode($carousel_settings) . '\'>';
 
-    <?php endforeach; ?>>
+    foreach ($settings['elements'] as $element) :
 
-        <?php foreach ($elements as $element) : ?>
+        $child_output = '<div class="lsow-carousel-item">';
 
-            <div class="lsow-carousel-item">
+        $child_output .= do_shortcode(wp_kses_post($element['text']));
 
-                <?php echo do_shortcode(wp_kses_post($element['text'])); ?>
+        $child_output .= '</div><!-- .lsow-carousel-item -->';
 
-            </div><!--.lsow-carousel-item -->
+        $output .= apply_filters('lsow_carousel_item_output', $child_output, $element, $settings);
 
-        <?php endforeach; ?>
+    endforeach;
 
-    </div> <!-- .lsow-carousel -->
+    $output .= '</div><!-- .lsow-carousel -->';
 
-<?php endif; ?>
+    echo apply_filters('lsow_carousel_output', $output, $settings);
+
+endif;

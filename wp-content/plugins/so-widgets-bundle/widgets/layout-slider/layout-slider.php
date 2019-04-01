@@ -4,6 +4,7 @@ Widget Name: Layout Slider
 Description: A slider that allows you to create responsive columnized content for each slide.
 Author: SiteOrigin
 Author URI: https://siteorigin.com
+Documentation: https://siteorigin.com/widgets-bundle/layout-slider-widget/
 */
 
 if( !class_exists( 'SiteOrigin_Widget_Base_Slider' ) ) include_once plugin_dir_path(SOW_BUNDLE_BASE_FILE) . '/base/inc/widgets/base-slider.class.php';
@@ -122,7 +123,11 @@ class SiteOrigin_Widget_LayoutSlider_Widget extends SiteOrigin_Widget_Base_Slide
 					'height' => array(
 						'type' => 'measurement',
 						'label' => __( 'Height', 'so-widgets-bundle' ),
-						'default' => 'default',
+					),
+
+					'height_responsive' => array(
+						'type' => 'measurement',
+						'label' => __( 'Responsive Height', 'so-widgets-bundle' ),
 					),
 
 					'padding' => array(
@@ -188,7 +193,7 @@ class SiteOrigin_Widget_LayoutSlider_Widget extends SiteOrigin_Widget_Base_Slide
 	}
 
 	function form( $instance, $form_type = 'widget' ) {
-		if( is_admin() && defined('SITEORIGIN_PANELS_VERSION') ) {
+		if ( ( is_admin() || ( defined('REST_REQUEST' ) && function_exists( 'register_block_type' ) ) ) && defined('SITEORIGIN_PANELS_VERSION') ) {
 			parent::form( $instance, $form_type );
 		} else {
 			?>
@@ -285,6 +290,9 @@ class SiteOrigin_Widget_LayoutSlider_Widget extends SiteOrigin_Widget_Base_Slide
 		$meas_options['slide_padding_sides'] = $instance['design']['padding_sides'];
 		$meas_options['slide_width'] = $instance['design']['width'];
 		$meas_options['slide_height'] = $instance['design']['height'];
+		if ( ! empty( $instance['design']['height_responsive'] ) ) {
+			$meas_options['slide_height_responsive'] = $instance['design']['height_responsive'];
+		}
 
 		$meas_options['heading_size'] = $instance['design']['heading_size'];
 		$meas_options['text_size'] = $instance['design']['text_size'];
@@ -297,6 +305,13 @@ class SiteOrigin_Widget_LayoutSlider_Widget extends SiteOrigin_Widget_Base_Slide
 
 		$less['heading_color'] = $instance['design']['heading_color'];
 		$less['text_color'] = $instance['design']['text_color'];
+
+		$global_settings = $this->get_global_settings();
+
+		if ( ! empty( $global_settings['responsive_breakpoint'] ) ) {
+			$less['responsive_breakpoint'] = $global_settings['responsive_breakpoint'];
+		}
+
 
 		return $less;
 	}

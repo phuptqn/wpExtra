@@ -2,7 +2,7 @@
 /*
 Plugin Name: SiteOrigin Widgets Bundle
 Description: A collection of all widgets, neatly bundled into a single plugin. It's also a framework to code your own widgets on top of.
-Version: 1.12.1
+Version: 1.15.4
 Text Domain: so-widgets-bundle
 Domain Path: /lang
 Author: SiteOrigin
@@ -12,7 +12,7 @@ License: GPL3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 */
 
-define('SOW_BUNDLE_VERSION', '1.12.1');
+define('SOW_BUNDLE_VERSION', '1.15.4');
 define('SOW_BUNDLE_BASE_FILE', __FILE__);
 
 // Allow JS suffix to be pre-set
@@ -540,7 +540,8 @@ class SiteOrigin_Widgets_Bundle {
 	 */
 	function activate_widget( $widget_id, $include = true ){
 		$exists = false;
-		foreach( $this->widget_folders as $folder ) {
+		$widget_folders = $this->get_widget_folders();
+		foreach( $widget_folders as $folder ) {
 			if( !file_exists($folder . $widget_id . '/' . $widget_id . '.php') ) continue;
 			$exists = true;
 		}
@@ -560,7 +561,7 @@ class SiteOrigin_Widgets_Bundle {
 		// Now, lets actually include the files
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-		foreach( $this->widget_folders as $folder ) {
+		foreach( $widget_folders as $folder ) {
 			if( !file_exists($folder . $widget_id . '/' . $widget_id . '.php') ) continue;
 			include_once $folder . $widget_id . '/' . $widget_id . '.php';
 
@@ -617,6 +618,7 @@ class SiteOrigin_Widgets_Bundle {
 			'AuthorURI' => 'Author URI',
 			'WidgetURI' => 'Widget URI',
 			'VideoURI' => 'Video URI',
+			'Documentation' => 'Documentation',
 		);
 
 		$widgets = array();
@@ -629,6 +631,11 @@ class SiteOrigin_Widgets_Bundle {
 				if ( empty( $widget['Name'] ) ) {
 					continue;
 				}
+
+				foreach ( array( 'Name', 'Description' ) as $field ) {
+					$widget[ $field ] = translate( $widget[ $field ], 'so-widgets-bundle' );
+				}
+
 				$f = pathinfo($file);
 				$id = $f['filename'];
 
@@ -742,7 +749,9 @@ class SiteOrigin_Widgets_Bundle {
 	 * Add action links.
 	 */
 	function plugin_action_links($links){
-		unset( $links['edit'] );
+		if ( isset( $links['edit'] ) ) {
+			unset( $links['edit'] );
+		}
 		$links['manage'] = '<a href="' . admin_url('plugins.php?page=so-widgets-plugins') . '">'.__('Manage Widgets', 'so-widgets-bundle').'</a>';
 		$links['support'] = '<a href="https://siteorigin.com/thread/" target="_blank" rel="noopener noreferrer">'.__('Support', 'so-widgets-bundle').'</a>';
 		return $links;
@@ -812,12 +821,44 @@ class SiteOrigin_Widgets_Bundle {
 							preg_match( '/-([0-9]+$)/', $id, $num_match );
 							$widget_instance = $opt_wid[ $num_match[1] ];
 							$widget->enqueue_frontend_scripts( $widget_instance);
+							// TODO: Should be calling modify_instance here before generating the CSS.
 							$widget->generate_and_enqueue_instance_styles( $widget_instance );
 						}
 					}
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Enqueue scripts for registered widgets, by calling their form and/or widget functions.
+	 *
+	 * @param bool $front_end Whether to enqueue scripts for the front end.
+	 * @param bool $admin Whether to enqueue scripts for admin.
+	 */
+	function enqueue_registered_widgets_scripts( $front_end = true, $admin = true ) {
+		
+		global $wp_widget_factory, $post;
+		// Store a reference to the $post global to allow any secondary queries to run without affecting it.
+		$global_post = $post;
+		
+		foreach ( $wp_widget_factory->widgets as $class => $widget_obj ) {
+			if ( ! empty( $widget_obj ) && is_object( $widget_obj ) && is_subclass_of( $widget_obj, 'SiteOrigin_Widget' ) ) {
+				/* @var $widget_obj SiteOrigin_Widget */
+				ob_start();
+				if ( $admin ) {
+					$widget_obj->enqueue_scripts( 'widget' );
+				}
+				if ( $front_end ) {
+					// Enqueue scripts for previews.
+					$widget_obj->enqueue_frontend_scripts( array() );
+				}
+				ob_clean();
+			}
+		}
+		
+		// Reset the $post global back to what it was before any secondary queries.
+		$post = $global_post;
 	}
 }
 

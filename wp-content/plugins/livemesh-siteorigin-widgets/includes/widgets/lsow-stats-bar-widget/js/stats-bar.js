@@ -1,7 +1,7 @@
 jQuery(function ($) {
 
 
-    $('.lsow-stats-bars').waypoint(function (direction) {
+    $('.lsow-stats-bars').livemeshWaypoint(function (direction) {
 
         $(this.element).find('.lsow-stats-bar-content').each(function () {
 
@@ -10,7 +10,7 @@ jQuery(function ($) {
 
         });
 
-    }, { offset: Waypoint.viewportHeight() - 150,
+    }, { offset: (window.innerHeight || document.documentElement.clientHeight) - 150,
         triggerOnce: true});
 
 

@@ -341,6 +341,12 @@ class LSOW_Hero_Image_Widget extends SiteOrigin_Widget {
 
         $this->register_frontend_styles(array(
             array(
+                'lsow-frontend',
+                LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+                array(),
+                LSOW_VERSION
+            ),
+            array(
                 'lsow-hero-image',
                 plugin_dir_url(__FILE__) . 'css/style.css'
             )
@@ -414,14 +420,18 @@ class LSOW_Hero_Image_Widget extends SiteOrigin_Widget {
     }
 
     function get_template_variables($instance, $args) {
-        return array(
+
+        $settings = $instance['settings'];
+
+        $settings = array_merge($settings, array(
             'header_type' => $instance['header_type'],
             'custom_header' => $instance['custom_header'],
             'standard_header' => $instance['standard_header'],
             'pointer_down_url' => $instance['pointer_down_url'],
             'background' => $instance['background'],
-            'settings' => $instance['settings']
-        );
+        ));
+
+        return array('settings' => $settings);
     }
 
 }

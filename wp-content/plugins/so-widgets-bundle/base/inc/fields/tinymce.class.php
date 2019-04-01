@@ -308,6 +308,7 @@ class SiteOrigin_Widget_Field_TinyMCE extends SiteOrigin_Widget_Field_Text_Input
 	protected function get_input_classes() {
 		$classes = parent::get_input_classes();
 		$classes[] = 'wp-editor-area';
+		$classes[] = 'wp-exclude-emoji';
 		return $classes;
 	}
 	
@@ -414,6 +415,11 @@ class SiteOrigin_Widget_Field_TinyMCE extends SiteOrigin_Widget_Field_Text_Input
 		if ( false !== stripos( $value, 'textarea' ) ) {
 			$value = preg_replace( '%</textarea%i', '&lt;/textarea', $value );
 		}
+		
+		$media_buttons = $this->render_media_buttons( $this->element_id );
+		
+		$settings['baseURL'] = includes_url( 'js/tinymce' );
+		$settings['suffix'] = SCRIPT_DEBUG ? '' : '.min';
 		
 		?><div class="siteorigin-widget-tinymce-container"
 			<?php if ( ! empty( $media_buttons ) ) : ?>

@@ -6,10 +6,15 @@ jQuery(function ($) {
 
     $('.lsow-portfolio-wrap').each(function () {
 
+        var container = $(this).find('.lsow-portfolio');
+        if (container.length === 0) {
+            return; // no items to filter or load and hence don't continue
+        }
+
         // layout Isotope after all images have loaded
         var html_content = $(this).find('.js-isotope');
 
-        var options = html_content.data('settings');
+        var options = html_content.data('isotope-options');
 
         html_content.imagesLoaded(function () {
 
@@ -19,11 +24,6 @@ jQuery(function ($) {
                 transitionDuration: '0.8s'
             });
         });
-
-        var container = $(this).find('.lsow-portfolio');
-        if (container.length === 0) {
-            return; // no items to filter or load and hence don't continue
-        }
 
         /* -------------- Taxonomy Filter --------------- */
 

@@ -1,80 +1,88 @@
 <?php
 /**
- * @var $style
  * @var $settings
- * @var $team_members
  */
 
 ?>
 
-<?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'] ?>
+<?php if( !empty( $instance['title'] ) ) echo $args['before_title'] . esc_html($instance['title']) . $args['after_title'];
 
-<?php $item_style = ''; ?>
+$settings = apply_filters('lsow_team_members_' . $this->id . '_settings', $settings);
 
-<?php $container_style = 'lsow-container'; ?>
+$item_style = '';
 
-<?php if ($style == 'style1'): ?>
+$container_style = 'lsow-container';
 
-    <?php $item_style = 'lsow-grid-item'; ?>
+if ($settings['style'] == 'style1'):
 
-    <?php $container_style = 'lsow-grid-container ' . lsow_get_grid_classes($settings); ?>
+    $item_style = 'lsow-grid-item';
 
-<?php endif; ?>
+    $container_style = 'lsow-grid-container ' . lsow_get_grid_classes($settings);
 
-<div class="lsow-team-members lsow-<?php echo $style; ?> <?php echo $container_style; ?>">
+endif;
 
-    <?php foreach ($team_members as $team_member): ?>
+$output = '<div class="lsow-team-members lsow-' . $settings['style'] . ' ' . $container_style . '">';
 
-        <div class="<?php echo $item_style; ?> lsow-team-member-wrapper">
+foreach ($settings['team_members'] as $team_member):
 
-            <?php list($animate_class, $animation_attr) = lsow_get_animation_atts($team_member['animation']); ?>
+    $child_output = '<div class="' . $item_style . ' lsow-team-member-wrapper">';
 
-            <div class="lsow-team-member <?php echo $animate_class; ?>" <?php echo $animation_attr; ?>>
+    list($animate_class, $animation_attr) = lsow_get_animation_atts($team_member['animation']);
 
-                <div class="lsow-image-wrapper">
+    $child_output .= '<div class="lsow-team-member ' . $animate_class . '" ' . $animation_attr . '>';
 
-                    <?php echo wp_get_attachment_image($team_member['image'], $settings['image_size'], false, array('class' => 'lsow-image')); ?>
+    $child_output .= '<div class="lsow-image-wrapper">';
 
-                    <?php if ($style == 'style1'): ?>
+    if (!empty($team_member['image'])):
 
-                        <?php include 'social-profile.php'; ?>
+        $image_html = wp_get_attachment_image($team_member['image'], $settings['image_size'], false, array('class' => 'lsow-image'));;
 
-                    <?php endif; ?>
+        $child_output .= $image_html;
 
-                </div>
+    endif;
 
-                <div class="lsow-team-member-text">
+    if ($settings['style'] == 'style1'):
 
-                    <h3 class="lsow-title"><?php echo esc_html($team_member['name']) ?></h3>
+        $child_output .= $this->social_profile($team_member, $settings);
 
-                    <div class="lsow-team-member-position">
+    endif;
 
-                        <?php echo do_shortcode($team_member['position']) ?>
+    $child_output .= '</div><!-- .lsow-image-wrapper -->';
 
-                    </div>
+    $child_output .= '<div class="lsow-team-member-text">';
 
-                    <div class="lsow-team-member-details">
+    $child_output .= '<h3 class="lsow-title">' . esc_html($team_member['name']) . '</h3>';
 
-                        <?php echo do_shortcode($team_member['details']) ?>
+    $child_output .= '<div class="lsow-team-member-position">';
 
-                    </div>
+    $child_output .= do_shortcode($team_member['position']);
 
-                    <?php if ($style == 'style2'): ?>
+    $child_output .= '</div>';
 
-                        <?php include 'social-profile.php'; ?>
+    $child_output .= '<div class="lsow-team-member-details">';
 
-                    <?php endif; ?>
+    $child_output .= do_shortcode($team_member['details']);
 
-                </div>
+    $child_output .= '</div>';
 
-            </div>
+    if ($settings['style'] == 'style2'):
 
-        </div>
+        $child_output .= $this->social_profile($team_member, $settings);
 
-        <?php
+    endif;
 
-    endforeach;
+    $child_output .= '</div><!-- .lsow-team-member-text -->';
 
-    ?>
+    $child_output .= '</div><!-- .lsow-team-member -->';
 
-</div>
+    $child_output .= '</div><!-- .lsow-team-member-wrapper -->';
+
+    $output .= apply_filters('lsow_team_member_output', $child_output, $team_member, $settings);
+
+endforeach;
+
+$output .= '</div><!-- .lsow-team-members -->';
+
+$output .= '<div class="lsow-clear"></div>';
+
+echo apply_filters('lsow_team_members_output', $output, $settings);

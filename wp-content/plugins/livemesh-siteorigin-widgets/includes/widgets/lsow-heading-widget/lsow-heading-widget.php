@@ -104,6 +104,34 @@ class LSOW_Heading_Widget extends SiteOrigin_Widget {
 
     function initialize() {
 
+        $this->register_frontend_scripts(
+            array(
+                array(
+                    'lsow-waypoints',
+                    LSOW_PLUGIN_URL . 'assets/js/jquery.waypoints' . LSOW_JS_SUFFIX . '.js',
+                    array('jquery'),
+                    LSOW_VERSION
+                ),
+            )
+        );
+
+        $this->register_frontend_styles(
+            array(
+                array(
+                    'lsow-animate',
+                    LSOW_PLUGIN_URL . 'assets/css/animate.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+                array(
+                    'lsow-frontend',
+                    LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+                    array(),
+                    LSOW_VERSION
+                ),
+            )
+        );
+
         $this->register_frontend_styles(array(
             array(
                 'lsow-heading',
@@ -113,24 +141,32 @@ class LSOW_Heading_Widget extends SiteOrigin_Widget {
     }
 
     function get_template_variables($instance, $args) {
-        return array(
+
+        $settings = $instance['settings'];
+
+        $settings = array_merge($settings, array(
             'style' => $instance['style'],
             'align' => $instance['align'],
             'heading' => $instance['heading'],
             'short_text' => !empty($instance['short_text']) ? $instance['short_text'] : '',
             'subtitle' => !empty($instance['subtitle']) ? $instance['subtitle'] : '',
 
-            'heading' => $instance['heading'],
-            'settings' => $instance['settings']
-        );
+            'heading' => $instance['heading']
+        ));
+
+        return array('settings' => $settings);
     }
 
     function get_less_variables($instance) {
+
+        if (empty($instance) || !isset($instance['heading_font']))
+            return;
+
         $less = array();
 
-        $font = siteorigin_widget_get_font( $instance['heading_font'] );
+        $font = siteorigin_widget_get_font($instance['heading_font']);
         $less['heading_font'] = $font['family'];
-        if ( ! empty( $font['weight'] ) ) {
+        if (!empty($font['weight'])) {
             $less['heading_font_weight'] = $font['weight'];
         }
 
@@ -141,11 +177,12 @@ class LSOW_Heading_Widget extends SiteOrigin_Widget {
      * Less function for importing Google web fonts.
      */
     function less_import_google_font($instance, $args) {
-        if( empty( $instance ) ) return;
+        if (empty($instance) || !isset($instance['heading_font']))
+            return;
 
-        $font_import = siteorigin_widget_get_font( $instance['heading_font'] );
-        if( !empty( $font_import['css_import'] ) ) {
-            return  $font_import['css_import'];
+        $font_import = siteorigin_widget_get_font($instance['heading_font']);
+        if (!empty($font_import['css_import'])) {
+            return $font_import['css_import'];
         }
     }
 

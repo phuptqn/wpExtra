@@ -1,5 +1,11 @@
 <?php
 
+/*
+Widget Name: Posts Grid
+Description: Display posts or custom post types in a multi-column grid.
+Author: LiveMesh
+Author URI: https://www.livemeshthemes.com
+*/
 class LSOW_Portfolio_Widget extends SiteOrigin_Widget
 {
     function __construct()
@@ -32,17 +38,23 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
             LSOW_VERSION
         ) ) );
         $this->register_frontend_styles( array( array(
-            'lsow-frontend-styles',
-            LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
-            array(),
-            LSOW_VERSION
-        ), array(
-            'lsow-icomoon-styles',
+            'lsow-icomoon',
             LSOW_PLUGIN_URL . 'assets/css/icomoon.css',
             array(),
             LSOW_VERSION
         ) ) );
         $this->register_frontend_scripts( array( array( 'lsow-portfolio', plugin_dir_url( __FILE__ ) . 'js/portfolio' . LSOW_JS_SUFFIX . '.js', array( 'jquery' ) ) ) );
+        $this->register_frontend_styles( array( array(
+            'lsow-icomoon',
+            LSOW_PLUGIN_URL . 'assets/css/icomoon.css',
+            array(),
+            LSOW_VERSION
+        ), array(
+            'lsow-frontend',
+            LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
+            array(),
+            LSOW_VERSION
+        ) ) );
         $this->register_frontend_styles( array( array( 'lsow-portfolio', plugin_dir_url( __FILE__ ) . 'css/style.css' ) ) );
     }
     
@@ -240,11 +252,14 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
     
     function get_template_variables( $instance, $args )
     {
-        return array(
+        $settings = $instance['settings'];
+        $settings = array_merge( $settings, array(
             'posts'           => $instance['posts'],
             'taxonomy_filter' => $instance['taxonomy_filter'],
             'heading'         => $instance['heading'],
-            'settings'        => $instance['settings'],
+        ) );
+        return array(
+            'settings' => $settings,
         );
     }
 

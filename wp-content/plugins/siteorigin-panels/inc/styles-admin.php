@@ -142,7 +142,9 @@ class SiteOrigin_Panels_Styles_Admin {
 						if ( $field['group'] == $group_id ) {
 							?>
 							<div class="style-field-wrapper">
-								<label><?php echo $field['name'] ?></label>
+								<?php if ( ! empty( $field['name'] ) ) : ?>
+									<label><?php echo $field['name'] ?></label>
+								<?php endif; ?>
 								<div
 									class="style-field style-field-<?php echo sanitize_html_class( $field['type'] ) ?>">
 									<?php $this->render_style_field( $field, isset( $current[ $field_id ] ) ? $current[ $field_id ] : $default, $field_id, $current ) ?>
@@ -280,6 +282,19 @@ class SiteOrigin_Panels_Styles_Admin {
 				<?php
 				break;
 
+			case 'radio' :
+				$radio_id = $field_name . '-' . uniqid();
+				foreach ( $field['options'] as $k => $v ) :
+					?>
+					<label for="<?php echo esc_attr( $radio_id . '-' . $k ) ?>">
+						<input type="radio" name="<?php echo esc_attr( $radio_id ) ?>"
+					       id="<?php echo esc_attr( $radio_id . '-' . $k ) ?>"
+					       value="<?php echo esc_attr( $k ) ?>" <?php checked( $k, $current ) ?>> <?php echo esc_html( $v ) ?>
+					</label>
+					<?php
+				endforeach;
+				break;
+
 			case 'textarea' :
 			case 'code' :
 				?><textarea type="text" name="<?php echo esc_attr( $field_name ) ?>"
@@ -343,7 +358,7 @@ class SiteOrigin_Panels_Styles_Admin {
 	 * @param $section
 	 * @param $styles
 	 *
-	 * @return Sanitized styles
+	 * @return array Sanitized styles
 	 */
 	function sanitize_style_fields( $section, $styles ) {
 		// Use the filter to get the fields for this section.
@@ -355,6 +370,10 @@ class SiteOrigin_Panels_Styles_Admin {
 			$fields_cache[ $section ] = apply_filters( 'siteorigin_panels_general_style_fields', $fields_cache[ $section ], false, false );
 		}
 		$fields = $fields_cache[ $section ];
+		
+		if ( empty( $fields ) ) {
+			return array();
+		}
 
 		$return = array();
 		foreach ( $fields as $k => $field ) {
@@ -387,7 +406,7 @@ class SiteOrigin_Panels_Styles_Admin {
 					$return[ $k ] = ! empty( $styles[ $k ] ) ? sanitize_text_field( $styles[ $k ] ) : false;
 					$fallback_name = $k . '_fallback';
 					if ( empty( $styles[ $k ] ) && empty( $styles[ $fallback_name ] ) ) {
-						continue;
+						break;
 					}
 					$return[ $fallback_name ] = ! empty( $styles[ $fallback_name ] ) ? esc_url_raw( $styles[ $fallback_name ] ) : false;
 					break;
@@ -411,6 +430,7 @@ class SiteOrigin_Panels_Styles_Admin {
 					}
 					break;
 				case 'select' :
+				case 'radio' :
 					if ( ! empty( $styles[ $k ] ) && in_array( $styles[ $k ], array_keys( $field['options'] ) ) ) {
 						$return[ $k ] = $styles[ $k ];
 					}
