@@ -4,3 +4,5 @@ node_modules.mac
 npm-debug.log
 .DS_Store
 package-lock.json
+dist/bundles
+dist/min
