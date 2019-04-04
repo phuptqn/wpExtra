@@ -2,8 +2,8 @@
 Tags: page builder, responsive, widget, widgets, builder, page, admin, gallery, content, cms, pages, post, css, layout, grid
 Requires at least: 4.4
 Tested up to: 5.1
-Stable tag: 2.10.2
-Build time: 2019-02-28T11:29:02-08:00
+Stable tag: 2.10.4
+Build time: 2019-04-03T14:14:32-07:00
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Donate link: https://siteorigin.com/downloads/premium/
@@ -95,6 +95,17 @@ Page Builder is actively developed and updated, so generally I'd recommend that 
 We've tried to ensure that Page Builder is compatible with most plugin widgets. It's best to just download Page Builder and test for yourself.
 
 == Changelog ==
+
+= 2.10.4 - 3 April 2019 =
+* New welcome page.
+* Include row style wrapper in cell CSS direct child selectors.
+
+= 2.10.3 - 2 April 2019 =
+* Layout builder widget: Call styles sanitization in update.
+* Live editor: Only call `process_raw_widgets` once for preview data.
+* Add a setting for whether to display SiteOrigin Page Builder post state.
+* Sidebars emulator: Cache the result of url_to_postid().
+* Prevent affecting child layouts with parent layouts' CSS.
 
 = 2.10.2 - 28 February 2019 =
 * Don't remove left/right border when Full Width Stretch Padding is enabled on row.
