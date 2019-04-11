@@ -1,0 +1,7 @@
+wp-content/themes/gpj
+.htaccess
+.htpasswd
+wp-config.php
+.git
+db
+rsync_exclude.txt

@@ -10,8 +10,11 @@ SERVERS = dict(
         keyFile = './id_rsa',
         port = 'port_here',
         src = '../',
+        srcRoot = '../../../../',
         dest = '/home/web',
-        excludeFile = '\'../rsync_exclude.txt\''
+        destRoot = '/home',
+        excludeFile = '\'../rsync_exclude.txt\'',
+        excludeFileRoot = '\'../../../../rsync_exclude.txt\''
     ),
     prod = dict(
         host = 'ip_here',
