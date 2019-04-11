@@ -86,18 +86,16 @@ add_filter( 'tiny_mce_before_init', 'masterTextSizes' );
  * Enqueue scripts and styles.
  */
 function masterScripts() {
-
   if ( is_singular() && get_option( 'thread_comments' ) )
     wp_enqueue_script( 'comment-reply' );
 
   $urlObj = new assetUrl();
-  $param  = isLocalHost() ? rand(100000000, 999999999) : null;
-  $useMin = true;
+  $useMin = !isLocalHost();
 
   wp_enqueue_style( 'vendor-style', $urlObj->styleUrl('vendor', $useMin), array(), null );
-  wp_enqueue_style( 'main-style', $urlObj->styleUrl('style', $useMin), array(), $param );
+  wp_enqueue_style( 'main-style', $urlObj->styleUrl('style', $useMin), array(), null );
 
   wp_enqueue_script( 'vendor-script', $urlObj->scriptUrl('vendor', $useMin), array('jquery'), null, true );
-  wp_enqueue_script( 'main-script', $urlObj->scriptUrl('script', $useMin), array('jquery'), $param, true );
+  wp_enqueue_script( 'main-script', $urlObj->scriptUrl('script', $useMin), array('jquery'), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'masterScripts' );

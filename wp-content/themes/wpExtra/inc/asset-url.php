@@ -7,7 +7,7 @@ class assetUrl
     $path = 'dist/bundles/' . $name . '.js';
 
     if ($useMin === true) {
-      $path = 'dist/min/'.$name.'.min.js';
+      $path = 'dist/min/'. $name . '.min.js';
     }
 
     return get_stylesheet_directory_uri() . '/' . $path;

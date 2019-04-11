@@ -14,8 +14,8 @@ function masterWidgetsInit() {
 }
 
 // Extras functions
+require( 'inc/static.php' );
 require( 'inc/clean-up.php' );
 require( 'inc/asset-url.php' );
 require( 'inc/pagination.php' );
-require( 'inc/static.php' );
 require( 'inc/extras.php' );
