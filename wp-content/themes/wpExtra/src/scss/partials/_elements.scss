@@ -1,0 +1,75 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+}
+
+p, ul, ol, h2, h3, h4, h5, h6 {
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+iframe, img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  transition: 0.4s;
+}
+
+button, input, textarea, select {
+  outline: none;
+  font: inherit;
+  color: inherit;
+}
+
+button, [type="button"], [type="submit"] {
+  transition: 0.4s;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+strong, .bold {
+  font-weight: 700;
+}
+
+.black {
+  font-weight: 800;
+}
+
+em, .italic {
+  font-style: italic;
+}
+
+.flex {
+  @include flex;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-center-horizon {
+  @include flex-center-horizon;
+}
+
+.flex-center-vertical {
+  @include flex-center-vertical;
+}
+
+.clearfix {
+  display: block;
+  clear: both;
+  
+  &::after, &::before {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
