@@ -91,11 +91,12 @@ function masterScripts() {
 
   $urlObj = new assetUrl();
   $useMin = !isLocalHost();
+  $param = !$useMin ? rand(100000000, 999999999) : '';
 
   wp_enqueue_style( 'vendor-style', $urlObj->styleUrl('vendor', $useMin), array(), null );
-  wp_enqueue_style( 'main-style', $urlObj->styleUrl('style', $useMin), array(), null );
+  wp_enqueue_style( 'main-style', $urlObj->styleUrl('style', $useMin) . '?nocache=' . $param, array(), null );
 
   wp_enqueue_script( 'vendor-script', $urlObj->scriptUrl('vendor', $useMin), array('jquery'), null, true );
-  wp_enqueue_script( 'main-script', $urlObj->scriptUrl('script', $useMin), array('jquery'), null, true );
+  wp_enqueue_script( 'main-script', $urlObj->scriptUrl('script', $useMin) . '?nocache=' . $param, array('jquery'), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'masterScripts' );

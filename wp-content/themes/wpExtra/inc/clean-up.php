@@ -38,13 +38,13 @@ function masterCleanup() {
 add_action('after_setup_theme', 'masterCleanup');
 
 function noCacheParam($src) {
-  if (strpos($src, '?ver=')) {
+  if (strpos($src, '?ver=') !== FALSE) {
     $src = remove_query_arg( 'ver', $src );
   }
 
   $param = isset($_GET['clearcache']) ? rand(100000000, 999999999) : '';
-  if ($param) {
-    $src = add_query_arg('nochache', $param, $src);
+  if ($param && strpos($src, '?nocache=') === FALSE) {
+    $src = add_query_arg('nocache', $param, $src);
   }
 
   return $src;
