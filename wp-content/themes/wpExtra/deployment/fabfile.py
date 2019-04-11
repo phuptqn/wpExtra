@@ -5,25 +5,17 @@ from fabric.contrib.files import exists
 
 SERVERS = dict(
     staging = dict(
-        host = 'ip_here',
-        user = 'user_here',
+        host = '139.99.121.6',
+        user = 'gpj',
         keyFile = './id_rsa',
-        port = 'port_here',
+        port = '60022',
+        gitBranch = 'develop',
         src = '../',
         srcRoot = '../../../../',
-        dest = '/home/web',
-        destRoot = '/home',
+        dest = '/home/gpj/web/gpj.bjdev.net/public_html/wp-content/themes/gpj',
+        destRoot = '/home/gpj/web/gpj.bjdev.net/public_html',
         excludeFile = '\'../rsync_exclude.txt\'',
         excludeFileRoot = '\'../../../../rsync_exclude.txt\''
-    ),
-    prod = dict(
-        host = 'ip_here',
-        user = 'user_here',
-        keyFile = './id_rsa',
-        port = 'port_here',
-        src = '../',
-        dest = '/home/web',
-        excludeFile = '\'../rsync_exclude.txt\''
     )
 )
 
@@ -54,22 +46,39 @@ def deploy(server_name='staging'):
     """
     Script to deploy special server
     """
-    print(green('Start deploy %s.....' % server_name))
+    print(green('Start Deploy THEME %s.....' % server_name))
 
-    sync_code_to_server(server_name)
+    sync_code_to_server(server_name, 'theme')
+
+def deploy_root(server_name='staging'):
+    """
+    Script to deploy special server
+    """
+    print(green('Start Deploy ROOT %s.....' % server_name))
+
+    sync_code_to_server(server_name, 'root')
 
 
-def sync_code_to_server(server_name='staging'):
+def sync_code_to_server(server_name='staging', folder='theme'):
     """
     Script to sync built code from local to server
     """
     if connect_server(server_name):
         if not exists(SERVERS[server_name]['dest']):
             run('mkdir -p %s' % SERVERS[server_name]['dest'])
+    
+    print(green('[GIT] Stash current code...'))
+    local('git stash -u')
 
-    print(green('Start sync code to %s server.....' % server_name))
-    local('echo Build app...')
+    print(green('[GIT] Switching to branch %s...' % SERVERS[server_name]['gitBranch']))
+    local('git checkout %s' % SERVERS[server_name]['gitBranch'])
 
+    print(green('Build app...'))
     local('gulp build')
 
-    local('rsync -avHPe ssh %s -e "ssh -i %s -p %s" --rsync-path="rsync" %s@%s:%s --exclude-from %s' % (SERVERS[server_name]['src'], SERVERS[server_name]['keyFile'], SERVERS[server_name]['port'], SERVERS[server_name]['user'], SERVERS[server_name]['host'], SERVERS[server_name]['dest'], SERVERS[server_name]['excludeFile']))
+    if folder == 'theme':
+        print(green('Start sync THEME code to %s server.....' % server_name))
+        local('rsync -avHPe ssh %s -e "ssh -i %s -p %s" --rsync-path="rsync" %s@%s:%s --exclude-from %s' % (SERVERS[server_name]['src'], SERVERS[server_name]['keyFile'], SERVERS[server_name]['port'], SERVERS[server_name]['user'], SERVERS[server_name]['host'], SERVERS[server_name]['dest'], SERVERS[server_name]['excludeFile']))
+    elif folder == 'root':
+        print(green('Start sync ROOT code to %s server.....' % server_name))
+        local('rsync -avHPe ssh %s -e "ssh -i %s -p %s" --rsync-path="rsync" %s@%s:%s --exclude-from %s' % (SERVERS[server_name]['srcRoot'], SERVERS[server_name]['keyFile'], SERVERS[server_name]['port'], SERVERS[server_name]['user'], SERVERS[server_name]['host'], SERVERS[server_name]['destRoot'], SERVERS[server_name]['excludeFileRoot']))

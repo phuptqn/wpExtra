@@ -1,2 +1,3 @@
 node_modules
 deployment
+rsync_exclude.txt
