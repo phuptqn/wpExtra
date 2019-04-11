@@ -1,13 +1,17 @@
 {
-  "name": "wpExtra",
+  "name": "wp-extra",
   "description": "Master WordPress Extra",
   "version": "1.0.0",
-  "homepage": "phú.com",
+  "homepage": "https://phú.com",
   "authors": [
     "Phu Phan Thanh <phuptqn@gmail.com>"
   ],
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "deploy-staging": "cd deployment && fab deploy:staging",
+    "deploy-prod": "cd deployment && fab deploy:prod",
+    "ssh-staging": "cd deployment && ssh -i ./id_rsa user@ip",
+    "ssh-prod": "cd deployment && ssh -i ./id_rsa user@ip"
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.3.5",
