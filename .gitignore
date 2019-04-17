@@ -1,1 +1,5 @@
-wp-content/uploads
+*.mp4
+*.webm
+*.mkv
+*.3gp
+*.avi
