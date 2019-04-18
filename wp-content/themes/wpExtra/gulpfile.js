@@ -53,7 +53,7 @@ gulp.task('sass', function () {
 			outputStyle: 'expanded',
 			indentType: 'space',
 			indentWidth: 2
-		}))
+		}).on('error', sass.logError))
 		.pipe(autoprefixer({
 			browsers: ['last 10 versions']
 		}))
