@@ -1,5 +1,14 @@
 #Deployment guides
 
+- ######REQUIREMENT
+
+	```
+	- Python 2.7.15
+	- Fabric 1.14.0
+	- Paramiko 1.16.0
+	- Rsync 3.1.2
+	```
+
 - ######Deploy staging ROOT
 
 	```
