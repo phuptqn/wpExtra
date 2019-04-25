@@ -8,3 +8,4 @@ dist/bundles
 dist/min
 deployment/id_rsa
 deployment/fabfile.pyc
+src/temp
