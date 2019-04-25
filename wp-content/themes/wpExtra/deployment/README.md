@@ -3,6 +3,7 @@
 - ######REQUIREMENT
 
 	```
+	- Install MSYS2
 	- Python 2.7.15
 	- Fabric 1.14.0
 	- Paramiko 1.16.0
