@@ -73,6 +73,9 @@ def sync_code_to_server(server_name='staging', folder='theme'):
     print(green('[GIT] Switching to branch %s...' % SERVERS[server_name]['gitBranch']))
     local('git checkout %s' % SERVERS[server_name]['gitBranch'])
 
+    print(green('[GIT] Pull code from branch %s...' % SERVERS[server_name]['gitBranch']))
+    local('git pull')
+
     print(green('Build app...'))
     local('gulp build')
 
