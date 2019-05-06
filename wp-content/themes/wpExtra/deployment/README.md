@@ -3,11 +3,11 @@
 - ######REQUIREMENT
 
 	```
-	- Install MSYS2
-	- Python 2.7.15
-	- Fabric 1.14.0
-	- Paramiko 1.16.0
-	- Rsync 3.1.2
+	1. Install Git Bash (https://git-scm.com/downloads) or MSYS2 (https://www.msys2.org/)
+	2. Uninstall default Python & install Python 2.7.15 (https://www.python.org/downloads/release/python-2715/) then add to system path
+	3. Install Fabric 1.14.0 (pip install fabric==1.14.0)
+	4. Uninstall default Paramiko (pip uninstall paramiko) and install Paramiko 1.16.0 (pip install paramiko==1.16.0)
+	5. Get Rsync (from teammate) and add to system path
 	```
 
 - ######Deploy staging ROOT
