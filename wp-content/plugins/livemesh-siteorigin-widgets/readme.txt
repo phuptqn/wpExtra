@@ -4,8 +4,8 @@ Plugin URI: https://www.livemeshthemes.com/siteorigin-widgets
 Contributors: livemesh, freemius
 Tags: widget, siteorigin, siteorigin widgets bundle, siteorigin page builder, siteorigin widgets, grid, gallery, video background, portfolio, carousel, shortcode, tabs, admin, plugin, page
 Requires at least: 4.5
-Tested up to: 5.1
-Stable Tag: 2.5.2
+Tested up to: 5.2
+Stable Tag: 2.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,7 +122,11 @@ Pls install and activate the <a href="https://wordpress.org/plugins/portfolio-po
 
 == Changelog ==
 
+= 2.5.3 =
+* Fixed - The posts carousel widget navigation arrows missing.
+
 = 2.5.2 =
+* Updated - Freemius library with a security fix. Recommended to update immediately.
 * Fixed - Unwanted loading of scripts and CSS in pages where livemesh widgets are not used
 * Fixed - Some themes can raise JS error due to jQuery $ being unavailable
 

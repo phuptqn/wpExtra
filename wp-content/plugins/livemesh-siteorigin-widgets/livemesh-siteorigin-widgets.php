@@ -8,7 +8,7 @@
  * Author URI: https://www.livemeshthemes.com/
  * License: GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
- * Version: 2.5.2
+ * Version: 2.5.3
  * Text Domain: livemesh-so-widgets
  * Domain Path: languages
  *
@@ -34,7 +34,7 @@ if ( !defined( 'ABSPATH' ) ) {
 // Ensure the free version is deactivated if premium is running
 
 if ( !function_exists( 'lsow_fs' ) ) {
-    define( 'LSOW_VERSION', '2.5.2' );
+    define( 'LSOW_VERSION', '2.5.3' );
     // Plugin Folder Path
     define( 'LSOW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
     // Plugin Folder URL

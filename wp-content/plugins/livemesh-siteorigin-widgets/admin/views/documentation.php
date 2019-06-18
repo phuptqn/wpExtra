@@ -1322,6 +1322,17 @@ else {
 
                 <h2>Change Log for the Premium Version</h2>
                 <br>
+                <h3>2.5.3</h3>
+                <ul>
+                    <li>Fixed - The posts carousel widget navigation arrows missing.</li>
+                </ul>
+                <h3>2.5.2</h3>
+                <ul>
+                    <li>Updated - Freemius library with a security fix. Recommended to update immediately.</li>
+                    <li>Fixed - Some themes can raise JS error due to jQuery $ being unavailable</li>
+                    <li>Fixed - Unwanted loading of scripts and CSS in pages where livemesh widgets are not used.</li>
+                    <li>Fixed - Error in Gallery Carousel due to invalid HTML generated with certain options.</li>
+                </ul>
                 <h3>2.5.1</h3>
                 <ul>
                     <li>Fixed - The posts grid widget won't show up with the free version of the plugin.</li>

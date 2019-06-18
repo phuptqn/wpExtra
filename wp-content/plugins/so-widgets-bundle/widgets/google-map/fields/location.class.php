@@ -15,8 +15,10 @@ class SiteOrigin_Widget_Field_Location extends SiteOrigin_Widget_Field_Base {
 		$address = '';
 		if ( ! empty( $value['address'] ) ) {
 			$address = $value['address'];
-		} else if ( ! empty( $value['name'] ) ) {
-			$address = $value['name'];
+		}
+
+		if ( ! empty( $value['name'] ) && strpos( $address, $value['name'] ) !== 0) {
+			$address = $value['name'] . ', ' . $address;
 		}
 		
 		$api_key = SiteOrigin_Widget_GoogleMap_Widget::get_api_key( $instance );
@@ -70,12 +72,15 @@ class SiteOrigin_Widget_Field_Location extends SiteOrigin_Widget_Field_Base {
 		if ( empty( $value ) ) {
 			return array();
 		}
+
 		if ( is_string( $value ) ) {
 			$decoded_value = json_decode( $value, true );
 			// If it's not valid JSON
 			if ( $decoded_value == null ) {
 				$decoded_value = array( 'address' => $value );
 			}
+		} else if ( is_array( $value ) ) {
+			$decoded_value = $value;
 		}
 		$location = array();
 		
