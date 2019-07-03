@@ -1322,6 +1322,21 @@ else {
 
                 <h2>Change Log for the Premium Version</h2>
                 <br>
+                <h3>2.5.6</h3>
+                <ul>
+                    <li>Fixed - Some sites reporting error - call to undefined function get_blog_list().</li>
+                    <li>Updated - Freemius to 2.3.0.</li>
+                </ul>
+                <h3>2.5.5</h3>
+                <ul>
+                    <li>Added - Offset support for Posts/Portfolio Grid and Posts Block modules.</li>
+                    <li>Added - Security improvements to Posts Grid and Gallery modules.</li>
+                </ul>
+                <h3>2.5.4</h3>
+                <ul>
+                    <li>Added - Thumbnails support for the lightbox module of Posts Grid, Posts Block, Image/Video Gallery and Gallery Carousel.</li>
+                    <li>Updated - Fancybox scripts to 3.5.7 release.</li>
+                </ul>
                 <h3>2.5.3</h3>
                 <ul>
                     <li>Fixed - The posts carousel widget navigation arrows missing.</li>

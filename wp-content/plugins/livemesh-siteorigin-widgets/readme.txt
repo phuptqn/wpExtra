@@ -5,7 +5,7 @@ Contributors: livemesh, freemius
 Tags: widget, siteorigin, siteorigin widgets bundle, siteorigin page builder, siteorigin widgets, grid, gallery, video background, portfolio, carousel, shortcode, tabs, admin, plugin, page
 Requires at least: 4.5
 Tested up to: 5.2
-Stable Tag: 2.5.3
+Stable Tag: 2.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,10 @@ Pls install and activate the <a href="https://wordpress.org/plugins/portfolio-po
 5. Livemesh SiteOrigin widgets in the Appearance > Widgets page.
 
 == Changelog ==
+
+= 2.5.6 =
+* Fixed - Some sites reporting error - call to undefined function get_blog_list().
+* Updated - Freemius to 2.3.0.
 
 = 2.5.3 =
 * Fixed - The posts carousel widget navigation arrows missing.
