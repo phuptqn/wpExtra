@@ -112,7 +112,8 @@ var tasks = ['copy_assets', 'vendor_js', 'vendor_css', 'jshint', 'babeljs', 'js'
 var main = function() {
 
 	browserSync.init({
-		proxy: siteUrl
+		proxy: siteUrl,
+		open: false
 	});
 
 	// Run registerd tasks
