@@ -10,6 +10,7 @@ var gulp 				= require('gulp'),
 	rename 				= require('gulp-rename'),
 	babel 				= require('gulp-babel'),
 	wait          = require('gulp-wait'),
+	watch 				= require('gulp-watch'),
 	browserSync 	= require('browser-sync').create();
 
 var paths = {
@@ -22,7 +23,9 @@ var paths = {
 	scss		: './src/scss',
 	temp		: './src/temp',
 
-	node		: './node_modules'
+	node		: './node_modules',
+	
+	dist		: './dist'
 };
 
 gulp.task( 'copy_assets', function() {
@@ -121,27 +124,25 @@ var main = function() {
 	});
 
 	// Run registerd tasks
-	gulp.watch([
-		paths.js + '/*.js',
-		paths.js + '/*/*.js',
-		paths.js + '/*/*/*.js'
-	], {cwd: './'}, ['js']);
+	watch([
+    paths.js + '/**/*.js'
+  ], function() {
+    gulp.start('js');
+  });
 
-	gulp.watch([
-		paths.scss + '/*.scss',
-		paths.scss + '/*/*.scss',
-		paths.scss + '/*/*/*.scss'
-	], {cwd: './'}, ['sass']);
+	watch([
+    paths.scss + '/**/*.scss'
+  ], function() {
+    gulp.start('sass');
+  });
 
-	gulp.watch([
-		'./*.php',
-		'./*/*.php',
-		'./*/*/*.php',
-		paths.bundles + '/*.{js,css}'
-	])
-	.on('change', browserSync.reload);
+	watch([
+    './**/*.php',
+    paths.dist + '/**/*'
+  ], browserSync.reload);
 
 };
 
+gulp.task('build', tasks);
 gulp.task('default', tasks, main);
 gulp.task('watch', tasks, main);
