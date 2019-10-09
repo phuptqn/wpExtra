@@ -66,9 +66,6 @@ def sync_code_to_server(server_name='staging', folder='theme'):
     if connect_server(server_name):
         if not exists(SERVERS[server_name]['dest']):
             run('mkdir -p %s' % SERVERS[server_name]['dest'])
-    
-    print(green('[GIT] Stash current code...'))
-    local('git stash -u')
 
     print(green('[GIT] Switching to branch %s...' % SERVERS[server_name]['gitBranch']))
     local('git checkout %s' % SERVERS[server_name]['gitBranch'])

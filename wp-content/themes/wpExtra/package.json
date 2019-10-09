@@ -8,11 +8,11 @@
   ],
   "scripts": {
     "start": "gulp",
-    "deploy-staging": "cd deployment && fab deploy:staging",
-    "deploy-staging-root": "cd deployment && fab deploy_root:staging",
-    "deploy-prod": "cd deployment && fab deploy:prod",
-    "deploy-prod-root": "cd deployment && fab deploy_root:prod",
-    "ssh-staging": "cd deployment && ssh -i ./id_rsa user@ip",
+    "deploy-stag": "cd deployment && fab deploy:staging",
+    "deploy-stag-root": "cd deployment && fab deploy_root:staging",
+    "deploy-prod": "cd deployment && fab deploy:production",
+    "deploy-prod-root": "cd deployment && fab deploy_root:production",
+    "ssh-stag": "cd deployment && ssh -i ./id_rsa user@ip",
     "ssh-prod": "cd deployment && ssh -i ./id_rsa user@ip"
   },
   "dependencies": {
