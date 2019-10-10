@@ -1,6 +1,6 @@
-wp-content/themes/gpj/node_modules
-wp-content/themes/gpj/deployment
-wp-content/themes/gpj/rsync_exclude.txt
+wp-content/themes/wpExtra/node_modules
+wp-content/themes/wpExtra/deployment
+wp-content/themes/wpExtra/rsync_exclude.txt
 .htaccess
 .htpasswd
 wp-config.php
