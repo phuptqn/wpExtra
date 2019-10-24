@@ -4,10 +4,10 @@ from fabric.colors import green, red
 from fabric.contrib.files import exists
 
 SERVERS = dict(
-    staging = dict(
+    stag = dict(
         host = '139.99.121.6',
         user = 'gpj',
-        keyFile = './id_rsa',
+        keyFile = './key_stag',
         port = '60022',
         gitBranch = 'develop',
         src = '../',
@@ -20,7 +20,7 @@ SERVERS = dict(
 )
 
 
-def prepare_env(server_name='staging'):
+def prepare_env(server_name='stag'):
     env.host_string = SERVERS[server_name]['host']
     env.user = SERVERS[server_name]['user']
     env.key_filename = SERVERS[server_name]['keyFile']
@@ -28,7 +28,7 @@ def prepare_env(server_name='staging'):
     env['name'] = server_name
 
 
-def connect_server(server_name='staging'):
+def connect_server(server_name='stag'):
     """
     Script to connect to server
     """
@@ -42,7 +42,7 @@ def connect_server(server_name='staging'):
         return False
 
 
-def deploy(server_name='staging'):
+def deploy(server_name='stag'):
     """
     Script to deploy special server
     """
@@ -50,7 +50,7 @@ def deploy(server_name='staging'):
 
     sync_code_to_server(server_name, 'theme')
 
-def deploy_root(server_name='staging'):
+def deploy_root(server_name='stag'):
     """
     Script to deploy special server
     """
@@ -59,7 +59,7 @@ def deploy_root(server_name='staging'):
     sync_code_to_server(server_name, 'root')
 
 
-def sync_code_to_server(server_name='staging', folder='theme'):
+def sync_code_to_server(server_name='stag', folder='theme'):
     """
     Script to sync built code from local to server
     """

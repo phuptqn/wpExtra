@@ -1,3 +1,12 @@
 node_modules
 deployment
 rsync_exclude.txt
+package.json
+package-lock.json
+gulpfile.js
+gulpfile.babel.js
+.jshintrc
+.gitignore
+.babelrc
+src
+npm-debug.log

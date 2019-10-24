@@ -7,5 +7,12 @@ package-lock.json
 dist/bundles
 dist/min
 deployment/id_rsa
+deployment/id_rsa.pub
+deployment/key_dev
+deployment/key_dev.pub
+deployment/key_stag
+deployment/key_stag.pub
+deployment/key_prod
+deployment/key_prod.pub
 deployment/fabfile.pyc
 src/temp
