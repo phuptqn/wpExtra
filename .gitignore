@@ -4,3 +4,5 @@
 *.3gp
 *.avi
 .DS_Store
+wp-config.php
+.htaccess
