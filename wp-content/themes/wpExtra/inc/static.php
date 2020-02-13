@@ -86,17 +86,20 @@ add_filter( 'tiny_mce_before_init', 'masterTextSizes' );
  * Enqueue scripts and styles.
  */
 function masterScripts() {
+  global $LAST_UPDATED;
+
   if ( is_singular() && get_option( 'thread_comments' ) )
     wp_enqueue_script( 'comment-reply' );
 
   $urlObj = new assetUrl();
-  $useMin = !isLocalHost();
-  $param = !$useMin ? rand(100000000, 999999999) : '';
+  $isLocalHost = isLocalHost();
+  $useMin = !$isLocalHost;
+  $param = $isLocalHost ? rand(100000000, 999999999) : $LAST_UPDATED;
 
-  wp_enqueue_style( 'vendor-style', $urlObj->styleUrl('vendor', $useMin), array(), null );
+  wp_enqueue_style( 'vendor-style', $urlObj->styleUrl('vendor', $useMin) . '?nocache=' . $LAST_UPDATED, array(), null );
   wp_enqueue_style( 'main-style', $urlObj->styleUrl('style', $useMin) . '?nocache=' . $param, array(), null );
 
-  wp_enqueue_script( 'vendor-script', $urlObj->scriptUrl('vendor', $useMin), array('jquery'), null, true );
+  wp_enqueue_script( 'vendor-script', $urlObj->scriptUrl('vendor', $useMin) . '?nocache=' . $LAST_UPDATED, array('jquery'), null, true );
   wp_enqueue_script( 'main-script', $urlObj->scriptUrl('script', $useMin) . '?nocache=' . $param, array('jquery'), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'masterScripts' );

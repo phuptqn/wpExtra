@@ -1,5 +1,7 @@
 <?php
 
+require( 'inc/config.php' );
+
 add_action( 'init', 'masterInit' );
 function masterInit() {
 	require( 'inc/posttypes.php' );

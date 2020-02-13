@@ -1,0 +1,5 @@
+<?php
+
+global $LAST_UPDATED;
+
+$LAST_UPDATED = '202002131700';

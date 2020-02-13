@@ -19,14 +19,12 @@ SERVERS = dict(
     )
 )
 
-
 def prepare_env(server_name='stag'):
     env.host_string = SERVERS[server_name]['host']
     env.user = SERVERS[server_name]['user']
     env.key_filename = SERVERS[server_name]['keyFile']
     env.port = SERVERS[server_name]['port']
     env['name'] = server_name
-
 
 def connect_server(server_name='stag'):
     """
@@ -40,7 +38,6 @@ def connect_server(server_name='stag'):
     else:
         print(red('Can\'t connect to %s server. Please double check your list of IPs in hosts' % server_name))
         return False
-
 
 def deploy(server_name='stag'):
     """
@@ -57,7 +54,6 @@ def deploy_root(server_name='stag'):
     print(green('Start Deploy ROOT %s.....' % server_name))
 
     sync_code_to_server(server_name, 'root')
-
 
 def sync_code_to_server(server_name='stag', folder='theme'):
     """

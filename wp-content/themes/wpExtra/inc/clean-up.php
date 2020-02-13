@@ -37,20 +37,18 @@ function masterCleanup() {
 }
 add_action('after_setup_theme', 'masterCleanup');
 
-function noCacheParam($src) {
+function updateAssetSrc($src) {
+  global $LAST_UPDATED;
+
   if (strpos($src, '?ver=') !== FALSE) {
     $src = remove_query_arg( 'ver', $src );
-  }
-
-  $param = isset($_GET['clearcache']) ? rand(100000000, 999999999) : '';
-  if ($param && strpos($src, '?nocache=') === FALSE) {
-    $src = add_query_arg('nocache', $param, $src);
+    $src = add_query_arg('nocache', $LAST_UPDATED, $src);
   }
 
   return $src;
 }
-add_filter( 'style_loader_src', 'noCacheParam', 1000 );
-add_filter( 'script_loader_src', 'noCacheParam', 1000 );
+add_filter( 'style_loader_src', 'updateAssetSrc', 1000 );
+add_filter( 'script_loader_src', 'updateAssetSrc', 1000 );
 
 // Remove slick scripts from Livemesh post carousel widget
 // Because the theme already included
