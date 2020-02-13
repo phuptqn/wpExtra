@@ -1322,6 +1322,20 @@ else {
 
                 <h2>Change Log for the Premium Version</h2>
                 <br>
+                <h3>2.5.9</h3>
+                <ul>
+                    <li>Tweak - Enabled lazy load for all the widgets except for the grid/gallery addons - Posts Grid, Video and Image Gallery. The Posts Grid and Gallery addons utilize the popular Isotope library for laying out grid elements and Isotope library is not compatible with lazy loading of images.</li>
+                    <li>Updated - Freemius SDK 2.3.2 with Opt-In / Out Enhancements, User Change, and More.</li>
+                </ul>
+                <h3>2.5.8</h3>
+                <ul>
+                    <li>Updated - Freemius SDK 2.3.1 with white label mode, URL whitelisting and other features and bug fixes.</li>
+                </ul>
+                <h3>2.5.7</h3>
+                <ul>
+                    <li>Fixed - The taxonomy chosen dropdown displaying superfluous taxonomies in the dropdown for Posts Grid/Posts Block.</li>
+                    <li>Fixed - Cannot display taxonomy terms for the post in block styles 7,8 and 9 of Posts Block.</li>
+                </ul>
                 <h3>2.5.6</h3>
                 <ul>
                     <li>Fixed - Some sites reporting error - call to undefined function get_blog_list().</li>

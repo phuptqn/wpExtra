@@ -17,16 +17,22 @@ class Loader {
 	 * Key is the mailer option, value is the path to its classes.
 	 *
 	 * @since 1.0.0
+	 * @since 1.6.0 Added Sendinblue.
+	 * @since 1.7.0 Added AmazonSES/Outlook as indication of the Pro mailers.
 	 *
 	 * @var array
 	 */
 	protected $providers = array(
-		'mail'     => 'WPMailSMTP\Providers\Mail\\',
-		'gmail'    => 'WPMailSMTP\Providers\Gmail\\',
-		'mailgun'  => 'WPMailSMTP\Providers\Mailgun\\',
-		'sendgrid' => 'WPMailSMTP\Providers\Sendgrid\\',
-		'pepipost' => 'WPMailSMTP\Providers\Pepipost\\',
-		'smtp'     => 'WPMailSMTP\Providers\SMTP\\',
+		'mail'        => 'WPMailSMTP\Providers\Mail\\',
+		'pepipostapi' => 'WPMailSMTP\Providers\PepipostAPI\\',
+		'sendinblue'  => 'WPMailSMTP\Providers\Sendinblue\\',
+		'mailgun'     => 'WPMailSMTP\Providers\Mailgun\\',
+		'sendgrid'    => 'WPMailSMTP\Providers\Sendgrid\\',
+		'amazonses'   => 'WPMailSMTP\Providers\AmazonSES\\',
+		'gmail'       => 'WPMailSMTP\Providers\Gmail\\',
+		'outlook'     => 'WPMailSMTP\Providers\Outlook\\',
+		'smtp'        => 'WPMailSMTP\Providers\SMTP\\',
+		'pepipost'    => 'WPMailSMTP\Providers\Pepipost\\',
 	);
 
 	/**
@@ -59,7 +65,7 @@ class Loader {
 	 *
 	 * @param string $provider
 	 *
-	 * @return array
+	 * @return string|null
 	 */
 	public function get_provider_path( $provider ) {
 
@@ -78,7 +84,6 @@ class Loader {
 	 * Get the provider options, if exists.
 	 *
 	 * @since 1.0.0
-	 * @since 1.5.0 Init the Option class for a provider only once and store it for future reuse.
 	 *
 	 * @param string $provider
 	 *
@@ -86,13 +91,7 @@ class Loader {
 	 */
 	public function get_options( $provider ) {
 
-		static $options = array();
-
-		if ( empty( $options[ $provider ] ) ) {
-			$options[ $provider ] = $this->get_entity( $provider, 'Options' );
-		}
-
-		return $options[ $provider ];
+		return $this->get_entity( $provider, 'Options' );
 	}
 
 	/**
@@ -131,7 +130,6 @@ class Loader {
 	 * Get the provider mailer, if exists.
 	 *
 	 * @since 1.0.0
-	 * @since 1.5.0 Init the Mailer class for a provider only once and store it for future reuse.
 	 *
 	 * @param string      $provider
 	 * @param MailCatcher $phpmailer
@@ -140,8 +138,6 @@ class Loader {
 	 */
 	public function get_mailer( $provider, $phpmailer ) {
 
-		static $providers = array();
-
 		if (
 			$phpmailer instanceof MailCatcher ||
 			$phpmailer instanceof \PHPMailer
@@ -149,11 +145,7 @@ class Loader {
 			$this->phpmailer = $phpmailer;
 		}
 
-		if ( empty( $providers[ $provider ] ) ) {
-			$providers[ $provider ] = $this->get_entity( $provider, 'Mailer' );
-		}
-
-		return $providers[ $provider ];
+		return $this->get_entity( $provider, 'Mailer' );
 	}
 
 	/**

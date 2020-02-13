@@ -391,7 +391,7 @@ class LSOW_Hero_Image_Widget extends SiteOrigin_Widget {
         if ( ! empty( $font['weight'] ) ) {
             $less['heading_font_weight'] = $font['weight'];
         }
-         
+
         $less['top_padding'] = intval($instance['settings']['top_padding']) . 'px';
         $less['bottom_padding'] = intval($instance['settings']['bottom_padding']) . 'px';
 
@@ -403,7 +403,7 @@ class LSOW_Hero_Image_Widget extends SiteOrigin_Widget {
 
         $less['mobile_top_padding'] = intval($instance['settings']['responsive']['mobile']['top_padding']) . 'px';
         $less['mobile_bottom_padding'] = intval($instance['settings']['responsive']['mobile']['bottom_padding']) . 'px';
-        
+
         return $less;
     }
 

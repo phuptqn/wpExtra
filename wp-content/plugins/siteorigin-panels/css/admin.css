@@ -403,7 +403,7 @@
 }
 .siteorigin-panels-builder .so-rows-container .so-row-container .so-cells .cell .cell-wrapper {
   background: #e4eff4;
-  padding: 7px 7px 0px 7px;
+  padding: 7px 7px 1px 7px;
   height: 100%;
   min-height: 63px;
   -webkit-transition: background 0.25s ease-in-out 0s;
@@ -425,7 +425,7 @@
 }
 .siteorigin-panels-builder .so-rows-container .so-row-container .so-cells .cell .widgets-container .so-widget {
   cursor: move;
-  margin-bottom: 7px;
+  margin-bottom: 6px;
   background: #f9f9fb;
   border: 1px solid rgba(255, 255, 255, 0.75);
   max-height: 49px;
@@ -456,6 +456,7 @@
   display: block;
   cursor: pointer;
   margin: 0 15px 3px 0;
+  font-size: 1em;
   font-weight: 600;
   line-height: 1.25em;
   color: #474747;
@@ -490,9 +491,13 @@
   opacity: 1;
 }
 .siteorigin-panels-builder .so-rows-container .so-row-container .so-cells .cell .widgets-container .so-widget .title .actions a {
+  color: #0073aa;
   display: none;
   margin-right: 3px;
   text-decoration: none;
+}
+.siteorigin-panels-builder .so-rows-container .so-row-container .so-cells .cell .widgets-container .so-widget .title .actions a:hover {
+  color: #00a0d2;
 }
 .siteorigin-panels-builder .so-rows-container .so-row-container .so-cells .cell .widgets-container .so-widget .title .actions a.widget-delete {
   color: #FF0000;
@@ -617,6 +622,7 @@
 }
 .siteorigin-panels-builder.so-display-narrow .so-builder-toolbar {
   padding: 10px;
+  text-decoration: none;
 }
 .siteorigin-panels-builder.so-display-narrow .so-builder-toolbar > .so-tool-button .so-panels-icon {
   margin: 3px 0;
@@ -638,7 +644,7 @@
   pointer-events: none;
   border: 1px solid rgba(0, 0, 0, 0.35) !important;
   cursor: move;
-  margin-bottom: 7px;
+  margin-bottom: 6px;
   background: #f9f9fb;
   border: 1px solid rgba(255, 255, 255, 0.75);
   max-height: 49px;
@@ -669,6 +675,7 @@
   display: block;
   cursor: pointer;
   margin: 0 15px 3px 0;
+  font-size: 1em;
   font-weight: 600;
   line-height: 1.25em;
   color: #474747;
@@ -703,9 +710,13 @@
   opacity: 1;
 }
 .so-widget.ui-sortable-helper.widget-being-dragged .title .actions a {
+  color: #0073aa;
   display: none;
   margin-right: 3px;
   text-decoration: none;
+}
+.so-widget.ui-sortable-helper.widget-being-dragged .title .actions a:hover {
+  color: #00a0d2;
 }
 .so-widget.ui-sortable-helper.widget-being-dragged .title .actions a.widget-delete {
   color: #FF0000;
@@ -774,6 +785,7 @@
 }
 .so-panels-dialog,
 .block-editor {
+  -webkit-text-size-adjust: none;
   /* The add widget dialog */
   /* The row edit dialog */
   /* For prebuilt layouts */
@@ -1120,6 +1132,7 @@
   width: 100%;
   padding: 6px;
   margin-bottom: 20px;
+  line-height: normal;
 }
 .so-panels-dialog .so-left-sidebar .so-sidebar-tabs,
 .block-editor .so-left-sidebar .so-sidebar-tabs {
@@ -2081,6 +2094,7 @@
 }
 .so-panels-dialog .siteorigin-panels-layout-block-container ul,
 .block-editor .siteorigin-panels-layout-block-container ul {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
   list-style: none;
 }
 .so-panels-dialog .siteorigin-panels-block-icon,
@@ -2547,8 +2561,8 @@
 .so-panels-contextual-menu .so-section ul li {
   cursor: pointer;
   margin: 0;
-  padding: 4px 10px;
-  line-height: 1em;
+  padding: 3px 10px;
+  line-height: 1.3em;
 }
 .so-panels-contextual-menu .so-section ul li:hover,
 .so-panels-contextual-menu .so-section ul li.so-active {

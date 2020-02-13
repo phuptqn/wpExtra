@@ -5,7 +5,7 @@ namespace WPMailSMTP\Admin\Pages;
 use WPMailSMTP\Admin\Area;
 use WPMailSMTP\Admin\PageAbstract;
 use WPMailSMTP\Admin\PluginsInstallSkin;
-use WPMailSMTP\WP;
+use WPMailSMTP\Admin\PluginsInstallUpgrader;
 
 /**
  * Class About to display a page with About Us and Versus content.
@@ -181,7 +181,7 @@ class About extends PageAbstract {
 					printf(
 						wp_kses(
 							/* translators: %1$s - WPBeginner URL, %2$s - OptinMonster URL, %3$s - MonsterInsights URL. */
-							__( 'WP Mail SMTP is brought to you by the same team that\'s behind the most user friendly WordPress forms, <a href="%1$s" target="_blank" rel="noopener noreferrer">WPForms</a>, the largest WordPress resource site, <a href="%1$s" target="_blank" rel="noopener noreferrer">WPBeginner</a>, the most popular lead-generation software, <a href="%2$s" target="_blank" rel="noopener noreferrer">OptinMonster</a>, and the best WordPress analytics plugin, <a href="%3$s" target="_blank" rel="noopener noreferrer">MonsterInsights</a>.', 'wp-mail-smtp' ),
+							__( 'WP Mail SMTP is brought to you by the same team that\'s behind the most user friendly WordPress forms, <a href="%1$s" target="_blank" rel="noopener noreferrer">WPForms</a>, the largest WordPress resource site, <a href="%2$s" target="_blank" rel="noopener noreferrer">WPBeginner</a>, the most popular lead-generation software, <a href="%3$s" target="_blank" rel="noopener noreferrer">OptinMonster</a>, and the best WordPress analytics plugin, <a href="%4$s" target="_blank" rel="noopener noreferrer">MonsterInsights</a>.', 'wp-mail-smtp' ),
 							array(
 								'a' => array(
 									'href'   => array(),
@@ -447,14 +447,11 @@ class About extends PageAbstract {
 			\wp_send_json_error( $error );
 		}
 
-		// We do not need any extra credentials if we have gotten this far, so let's install the plugin.
-		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-
 		// Do not allow WordPress to search/download translations, as this will break JS output.
 		\remove_action( 'upgrader_process_complete', array( 'Language_Pack_Upgrader', 'async_upgrade' ), 20 );
 
 		// Create the plugin upgrader with our custom skin.
-		$installer = new \Plugin_Upgrader( new PluginsInstallSkin() );
+		$installer = new PluginsInstallUpgrader( new PluginsInstallSkin() );
 
 		// Error check.
 		if ( ! \method_exists( $installer, 'install' ) || empty( $_POST['plugin'] ) ) {
@@ -578,7 +575,7 @@ class About extends PageAbstract {
 			<div class="wp-mail-smtp-admin-about-section wp-mail-smtp-admin-about-section-hero">
 				<div class="wp-mail-smtp-admin-about-section-hero-main no-border">
 					<h3 class="call-to-action centered">
-						<a href="https://wpmailsmtp.com/pricing?utm_source=WordPress&utm_medium=about-page&utm_campaign=smtpplugin&discount=LITEUPGRADE" target="_blank" rel="noopener noreferrer">
+						<a href="<?php echo esc_url( wp_mail_smtp()->get_upgrade_link( 'lite-vs-pro' ) ); ?>" target="_blank" rel="noopener noreferrer">
 							<?php \esc_html_e( 'Get WP Mail SMTP Pro Today and Unlock all of these Powerful Features', 'wp-mail-smtp' ); ?>
 						</a>
 					</h3>

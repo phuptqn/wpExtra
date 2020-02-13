@@ -4,8 +4,8 @@ Plugin URI: https://www.livemeshthemes.com/siteorigin-widgets
 Contributors: livemesh, freemius
 Tags: widget, siteorigin, siteorigin widgets bundle, siteorigin page builder, siteorigin widgets, grid, gallery, video background, portfolio, carousel, shortcode, tabs, admin, plugin, page
 Requires at least: 4.5
-Tested up to: 5.2
-Stable Tag: 2.5.6
+Tested up to: 5.3
+Stable Tag: 2.5.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,10 +78,11 @@ http://twitter.com/live_mesh
 == Installation ==
 
 1. Install and activate the <strong>required plugin</strong> <a href="https://wordpress.org/plugins/so-widgets-bundle/" rel="nofollow">SiteOrigin Widgets Bundle</a>.
-2. Unzip the downloaded livemesh-so-widgets.zip file and upload to the `/wp-content/plugins/` directory or install the Livemesh SiteOrigin Widgets plugin from WordPress repository. Activate the plugin through the 'Plugins' menu in WordPress
+2. Unzip the downloaded livemesh-so-widgets.zip file and upload to the `/wp-content/plugins/` directory or install the Livemesh SiteOrigin Widgets plugin from WordPress repository. Activate the plugin through the 'Plugins' menu in WordPress.
+
 3. Enable all the widgets you need from Plugins &gt; SiteOrigin Widgets.
 4. If you need page builder functions, install and activate the <strong>optional plugin</strong> <a href="https://wordpress.org/plugins/siteorigin-panels/" rel="nofollow">Page Builder by SiteOrigin</a>.
-4. For Portfolio widget, install and activate the <strong>optional plugin</strong> <a href="https://wordpress.org/plugins/portfolio-post-type/" title="Portfolio Post Type">Portfolio Post Type plugin</a>. The Portfolio widget is built using custom post type registered by this plugin.
+5. For Portfolio widget, install and activate the <strong>optional plugin</strong> <a href="https://wordpress.org/plugins/portfolio-post-type/" title="Portfolio Post Type">Portfolio Post Type plugin</a>. The Portfolio widget is built using custom post type registered by this plugin.
 
 Optionally, if you have <a href="https://www.livemeshthemes.com/siteorigin-widgets/" title="Livemesh SiteOrigin Widgets Pro" target="_blank">premium version</a> installed, you can import the sample data that replicates the demo site for you by importing the file sample-data.xml file located in the plugin directory. The import option is available under Tools &gt; Import in WordPress admin.
 
@@ -121,6 +122,17 @@ Pls install and activate the <a href="https://wordpress.org/plugins/portfolio-po
 5. Livemesh SiteOrigin widgets in the Appearance > Widgets page.
 
 == Changelog ==
+
+
+= 2.5.9 =
+* Tweak - Enabled lazy load for all the widgets except for the Posts Grid addon. Posts Grid utilizes the popular Isotope library for laying out grid elements and Isotope library is not compatible with lazy loading of images.
+* Updated - Freemius SDK 2.3.2 with Opt-In / Out Enhancements, User Change, and More.
+
+= 2.5.8 =
+* Updated - Freemius SDK 2.3.1 with white label mode, URL whitelisting and other features and bug fixes.
+
+= 2.5.7 =
+* Fixed - The taxonomy chosen dropdown displaying superfluous taxonomies in the dropdown for Posts Grid.
 
 = 2.5.6 =
 * Fixed - Some sites reporting error - call to undefined function get_blog_list().

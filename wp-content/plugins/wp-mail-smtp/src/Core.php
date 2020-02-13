@@ -119,7 +119,7 @@ class Core {
 					<br><br>
 					<?php
 					printf(
-						wp_kses( /* translators: %s - WPForms.com URL for documentation with more details. */
+						wp_kses( /* translators: %s - WPForms.com docs URL with more details. */
 							__( '<strong>Note:</strong> WP Mail SMTP plugin is disabled on your site until you fix the issue. <a href="%s" target="_blank" rel="noopener noreferrer">Read more for additional information.</a>', 'wp-mail-smtp' ),
 							array(
 								'a'      => array(
@@ -163,13 +163,14 @@ class Core {
 		add_action( 'admin_init', array( $this, 'init_notifications' ) );
 
 		add_action( 'init', array( $this, 'init' ) );
+
+		add_action( 'plugins_loaded', array( $this, 'get_pro' ) );
 	}
 
 	/**
 	 * Initial plugin actions.
 	 *
 	 * @since 1.0.0
-	 * @since 1.5.0 Added Pro version initialization.
 	 */
 	public function init() {
 
@@ -198,19 +199,13 @@ class Core {
 			add_action( 'admin_notices', array( '\WPMailSMTP\WP', 'display_admin_notices' ) );
 			add_action( 'admin_notices', array( $this, 'display_general_notices' ) );
 		}
-
-		/*
-		 * Should be the last thing here to be able to overwrite anything from the above.
-		 */
-		if ( $this->is_pro_allowed() ) {
-			$this->pro = new \WPMailSMTP\Pro\Pro();
-		}
 	}
 
 	/**
 	 * Whether the Pro part of the plugin is allowed to be loaded.
 	 *
 	 * @since 1.5.0
+	 * @since 1.6.0 Added a filter.
 	 *
 	 * @return bool
 	 */
@@ -226,7 +221,27 @@ class Core {
 			$is_allowed = false;
 		}
 
-		return $is_allowed;
+		return apply_filters( 'wp_mail_smtp_core_is_pro_allowed', $is_allowed );
+	}
+
+	/**
+	 * Get/Load the Pro code of the plugin if it exists.
+	 *
+	 * @since 1.6.2
+	 *
+	 * @return \WPMailSMTP\Pro\Pro
+	 */
+	public function get_pro() {
+
+		if ( ! $this->is_pro_allowed() ) {
+			return $this->pro;
+		}
+
+		if ( ! $this->is_pro() ) {
+			$this->pro = new \WPMailSMTP\Pro\Pro();
+		}
+
+		return $this->pro;
 	}
 
 	/**
@@ -392,89 +407,58 @@ class Core {
 		if ( Options::init()->get( 'general', 'am_notifications_hidden' ) ) {
 			return;
 		}
-
-		static $notification;
-
-		if ( ! isset( $notification ) ) {
-			$notification = new AM_Notification( 'smtp', WPMS_PLUGIN_VER );
-		}
 	}
 
 	/**
 	 * Display all debug mail-delivery related notices.
 	 *
 	 * @since 1.3.0
+	 * @since 1.6.0 Added a filter that allows to hide debug errors.
 	 */
 	public static function display_general_notices() {
 
-		if ( Options::init()->get( 'general', 'do_not_send' ) ) {
+		if ( wp_mail_smtp()->is_blocked() ) {
 			?>
 
 			<div class="notice <?php echo esc_attr( WP::ADMIN_NOTICE_ERROR ); ?>">
 				<p>
 					<?php
-					printf(
-						wp_kses( /* translators: %1$s - plugin name and its version, %2$s - plugin Misc settings page. */
-							__( '<strong>EMAILING DISABLED:</strong> The %1$s is currently blocking all emails from being sent. To send emails, go to plugin <a href="%2$s">Misc settings</a> and disable the "Do Not Send" option.', 'wp-mail-smtp' ),
-							array(
-								'strong' => array(),
-								'a'      => array(
-									'href' => array(),
-								),
-							)
-						),
-						esc_html( 'WP Mail SMTP v' . WPMS_PLUGIN_VER ),
-						esc_url( add_query_arg( 'tab', 'misc', wp_mail_smtp()->get_admin()->get_admin_page_url() ) )
-					);
-					?>
-				</p>
-			</div>
-
-			<?php
-			return;
-		}
-
-		$notice = Debug::get_last();
-
-		if ( ! empty( $notice ) ) {
-			?>
-
-			<div class="notice <?php echo esc_attr( WP::ADMIN_NOTICE_ERROR ); ?>">
-				<p>
-					<?php
-					printf(
+					$notices[] = sprintf(
 						wp_kses( /* translators: %s - plugin name and its version. */
-							__( '<strong>EMAIL DELIVERY ERROR:</strong> the plugin %s logged this error during the last time it tried to send an email:', 'wp-mail-smtp' ),
+							__( '<strong>EMAILING DISABLED:</strong> The %s is currently blocking all emails from being sent.', 'wp-mail-smtp' ),
 							array(
-								'strong' => array(),
+								'strong' => true,
 							)
 						),
 						esc_html( 'WP Mail SMTP v' . WPMS_PLUGIN_VER )
 					);
-					?>
-				</p>
 
-				<blockquote>
-					<pre><?php echo $notice; ?></pre>
-				</blockquote>
-
-				<p>
-					<?php
-					if ( ! wp_mail_smtp()->get_admin()->is_admin_page() ) {
-						printf(
-							wp_kses( /* translators: %s - plugin admin page URL. */
-								__( 'Please review your WP Mail SMTP settings in <a href="%s">plugin admin area</a>.' ) . ' ',
+					if ( Options::init()->is_const_defined( 'general', 'do_not_send' ) ) {
+						$notices[] = sprintf(
+							wp_kses( /* translators: %1$s - constant name; %2$s - constant value. */
+								__( 'To send emails, change the value of the %1$s constant to %2$s.', 'wp-mail-smtp' ),
+								array(
+									'code' => true,
+								)
+							),
+							'<code>WPMS_DO_NOT_SEND</code>',
+							'<code>false</code>'
+						);
+					} else {
+						$notices[] = sprintf(
+							wp_kses( /* translators: %s - plugin Misc settings page URL. */
+								__( 'To send emails, go to plugin <a href="%s">Misc settings</a> and disable the "Do Not Send" option.', 'wp-mail-smtp' ),
 								array(
 									'a' => array(
-										'href' => array(),
+										'href' => true,
 									),
 								)
 							),
-							esc_url( wp_mail_smtp()->get_admin()->get_admin_page_url() )
+							esc_url( add_query_arg( 'tab', 'misc', wp_mail_smtp()->get_admin()->get_admin_page_url() ) )
 						);
 					}
 
-					esc_html_e( 'Consider running an email test after fixing it.', 'wp-mail-smtp' );
+					echo implode( ' ', $notices );
 					?>
 				</p>
 			</div>
@@ -482,9 +466,57 @@ class Core {
 			<?php
 			return;
 		}
-		?>
 
-		<?php
+		if ( wp_mail_smtp()->get_admin()->is_error_delivery_notice_enabled() ) {
+
+			$notice = Debug::get_last();
+
+			if ( ! empty( $notice ) ) {
+				?>
+
+				<div class="notice <?php echo esc_attr( WP::ADMIN_NOTICE_ERROR ); ?>">
+					<p>
+						<?php
+						printf(
+							wp_kses( /* translators: %s - plugin name and its version. */
+								__( '<strong>EMAIL DELIVERY ERROR:</strong> the plugin %s logged this error during the last time it tried to send an email:', 'wp-mail-smtp' ),
+								array(
+									'strong' => array(),
+								)
+							),
+							esc_html( 'WP Mail SMTP v' . WPMS_PLUGIN_VER )
+						);
+						?>
+					</p>
+
+					<blockquote>
+						<pre><?php echo $notice; ?></pre>
+					</blockquote>
+
+					<p>
+						<?php
+						if ( ! wp_mail_smtp()->get_admin()->is_admin_page() ) {
+							printf(
+								wp_kses( /* translators: %s - plugin admin page URL. */
+									__( 'Please review your WP Mail SMTP settings in <a href="%s">plugin admin area</a>.' ) . ' ',
+									array(
+										'a' => array(
+											'href' => array(),
+										),
+									)
+								),
+								esc_url( wp_mail_smtp()->get_admin()->get_admin_page_url() )
+							);
+						}
+
+						esc_html_e( 'Consider running an email test after fixing it.', 'wp-mail-smtp' );
+						?>
+					</p>
+				</div>
+
+				<?php
+			}
+		}
 	}
 
 	/**
@@ -547,9 +579,10 @@ class Core {
 	}
 
 	/**
-	 * Overwrite default PhpMailer with out MailCatcher.
+	 * Overwrite default PhpMailer with our MailCatcher.
 	 *
 	 * @since 1.0.0
+	 * @since 1.5.0 Throw external PhpMailer exceptions, inherits default WP behavior.
 	 *
 	 * @param null $obj PhpMailer object to override with own implementation.
 	 *
@@ -635,13 +668,52 @@ class Core {
 	 * Upgrade link used within the various admin pages.
 	 *
 	 * @since 1.5.0
+	 * @since 1.5.1 Support all UTM params.
 	 *
-	 * @param string $medium utm_medium URL parameter.
+	 * @param array|string $utm Array of UTM params, or if string provided - utm_content URL parameter.
 	 *
-	 * @return string.
+	 * @return string
 	 */
-	public function get_upgrade_link( $medium = 'link' ) {
+	public function get_upgrade_link( $utm ) {
 
-		return apply_filters( 'wp_mail_smtp_core_get_upgrade_link', 'https://wpmailsmtp.com/lite-upgrade/?discount=LITEUPGRADE&amp;utm_source=WordPress&amp;utm_medium=' . sanitize_key( apply_filters( 'wp_mail_smtp_core_get_upgrade_link_medium', $medium ) ) . '&amp;utm_campaign=liteplugin' );
+		// Defaults.
+		$source   = 'WordPress';
+		$medium   = 'plugin-settings';
+		$campaign = 'liteplugin';
+		$content  = 'general';
+
+		if ( is_array( $utm ) ) {
+			if ( isset( $utm['source'] ) ) {
+				$source = $utm['source'];
+			}
+			if ( isset( $utm['medium'] ) ) {
+				$medium = $utm['medium'];
+			}
+			if ( isset( $utm['campaign'] ) ) {
+				$campaign = $utm['campaign'];
+			}
+			if ( isset( $utm['content'] ) ) {
+				$content = $utm['content'];
+			}
+		} elseif ( is_string( $utm ) ) {
+			$content = $utm;
+		}
+
+		return apply_filters(
+			'wp_mail_smtp_core_get_upgrade_link',
+			'https://wpmailsmtp.com/lite-upgrade/?utm_source=' . esc_attr( $source ) . '&utm_medium=' . esc_attr( $medium ) . '&utm_campaign=' . esc_attr( $campaign ) . '&utm_content=' . esc_attr( $content )
+		);
+	}
+
+	/**
+	 * Whether the emailing functionality is blocked, with either an option or a constatnt.
+	 *
+	 * @since 1.7.0
+	 *
+	 * @return bool
+	 */
+	public function is_blocked() {
+
+		return (bool) Options::init()->get( 'general', 'do_not_send' );
 	}
 }

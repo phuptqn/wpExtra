@@ -122,11 +122,24 @@ function lsow_get_info_for_taxonomies( $taxonomies )
 function lsow_get_taxonomies_map()
 {
     $map = array();
-    $taxonomies = get_taxonomies();
+    $taxonomies = lsow_get_all_taxonomies();
     foreach ( $taxonomies as $taxonomy ) {
         $map[$taxonomy] = $taxonomy;
     }
     return apply_filters( 'lsow_taxonomies_map', $map );
+}
+
+function lsow_get_all_taxonomies()
+{
+    $taxonomies = get_taxonomies( array(
+        'public'   => true,
+        '_builtin' => false,
+    ) );
+    $taxonomies = array_merge( array(
+        'category' => 'category',
+        'post_tag' => 'post_tag',
+    ), $taxonomies );
+    return $taxonomies;
 }
 
 function lsow_entry_published( $format = null )
@@ -498,4 +511,14 @@ function lsow_get_module_template_part( $template_name, $module )
     }
     
     return null;
+}
+
+function lsow_disable_lazy_load_classes()
+{
+    // no-lazyload - wp-smushit
+    // data-no-lazy="1" - wprocket, rocket-lazy-load
+    // skip-lazy - jetpack, SG Optimizer using filter in functions.php
+    // exclude-me - autoptimize
+    // a3-notlazy - a3-lazy-load
+    return apply_filters( 'lsow_disable_lazy_load_classes', 'skip-lazy no-lazyload exclude-me a3-notlazy' );
 }

@@ -28,6 +28,24 @@ abstract class OptionsAbstract implements OptionsInterface {
 	 */
 	private $description = '';
 	/**
+	 * @since 1.6.0
+	 *
+	 * @var array
+	 */
+	private $notices = array();
+	/**
+	 * @since 1.6.0
+	 *
+	 * @var bool
+	 */
+	private $recommended = false;
+	/**
+	 * @since 1.7.0
+	 *
+	 * @var bool
+	 */
+	private $disabled = false;
+	/**
 	 * @var string
 	 */
 	private $php = WPMS_PHP_VER;
@@ -56,16 +74,42 @@ abstract class OptionsAbstract implements OptionsInterface {
 		$this->title = sanitize_text_field( $params['title'] );
 
 		if ( ! empty( $params['description'] ) ) {
-			$this->description = wp_kses( $params['description'],
-				array(
-					'br' => array(),
-					'a'  => array(
-						'href'   => array(),
-						'rel'    => array(),
-						'target' => array(),
-					),
-				)
-			);
+			$this->description = wp_kses_post( $params['description'] );
+		}
+
+		if ( ! empty( $params['notices'] ) ) {
+			foreach ( (array) $params['notices'] as $key => $notice ) {
+				$key = sanitize_key( $key );
+				if ( empty( $key ) ) {
+					continue;
+				}
+
+				$notice = wp_kses(
+					$notice,
+					array(
+						'br'     => true,
+						'strong' => true,
+						'em'     => true,
+						'a'      => array(
+							'href'   => true,
+							'rel'    => true,
+							'target' => true,
+						),
+					)
+				);
+				if ( empty( $notice ) ) {
+					continue;
+				}
+
+				$this->notices[ $key ] = $notice;
+			}
+		}
+
+		if ( isset( $params['recommended'] ) ) {
+			$this->recommended = (bool) $params['recommended'];
+		}
+		if ( isset( $params['disabled'] ) ) {
+			$this->disabled = (bool) $params['disabled'];
 		}
 
 		if ( ! empty( $params['php'] ) ) {
@@ -105,6 +149,22 @@ abstract class OptionsAbstract implements OptionsInterface {
 	 */
 	public function get_description() {
 		return apply_filters( 'wp_mail_smtp_providers_provider_get_description', $this->description, $this );
+	}
+
+	/**
+	 * Some mailers may display a notice above its options.
+	 *
+	 * @since 1.6.0
+	 *
+	 * @param string $type
+	 *
+	 * @return string
+	 */
+	public function get_notice( $type ) {
+
+		$type = sanitize_key( $type );
+
+		return apply_filters( 'wp_mail_smtp_providers_provider_get_notice', isset( $this->notices[ $type ] ) ? $this->notices[ $type ] : '', $this );
 	}
 
 	/**
@@ -306,6 +366,31 @@ abstract class OptionsAbstract implements OptionsInterface {
 	}
 
 	/**
+	 * Whether this mailer is recommended or not.
+	 *
+	 * @since 1.6.0
+	 *
+	 * @return bool
+	 */
+	public function is_recommended() {
+
+		return (bool) apply_filters( 'wp_mail_smtp_providers_provider_is_recommended', $this->recommended, $this );
+	}
+
+	/**
+	 * Whether this mailer is disabled or not.
+	 * Used for displaying Pro mailers inside Lite plugin.
+	 *
+	 * @since 1.7.0
+	 *
+	 * @return bool
+	 */
+	public function is_disabled() {
+
+		return (bool) apply_filters( 'wp_mail_smtp_providers_provider_is_disabled', $this->disabled, $this );
+	}
+
+	/**
 	 * Check whether we can use this provider based on the PHP version.
 	 * Valid for those, that use SDK.
 	 *
@@ -337,7 +422,7 @@ abstract class OptionsAbstract implements OptionsInterface {
 			);
 			?>
 			<br>
-			<?php esc_html_e( 'Meanwhile you can switch to the "Other SMTP" Mailer option.', 'wp-mail-smtp' ); ?>
+			<?php esc_html_e( 'Meanwhile you can switch to some other mailers.', 'wp-mail-smtp' ); ?>
 		</blockquote>
 
 		<?php
@@ -361,7 +446,7 @@ abstract class OptionsAbstract implements OptionsInterface {
 			);
 			?>
 			<br>
-			<?php esc_html_e( 'Meanwhile you can switch to the "Other SMTP" Mailer option.', 'wp-mail-smtp' ); ?>
+			<?php esc_html_e( 'Meanwhile you can switch to some other mailers.', 'wp-mail-smtp' ); ?>
 		</blockquote>
 
 		<?php

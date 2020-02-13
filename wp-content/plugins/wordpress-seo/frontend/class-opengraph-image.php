@@ -11,6 +11,8 @@
 class WPSEO_OpenGraph_Image {
 
 	/**
+	 * The image ID used when the image is external.
+	 *
 	 * @var string
 	 */
 	const EXTERNAL_IMAGE_ID = '-1';
@@ -20,7 +22,7 @@ class WPSEO_OpenGraph_Image {
 	 *
 	 * @var array
 	 */
-	protected $images = array();
+	protected $images = [];
 
 	/**
 	 * Holds the WPSEO_OpenGraph instance, so we can call og_tag.
@@ -34,37 +36,37 @@ class WPSEO_OpenGraph_Image {
 	 *
 	 * @var array
 	 */
-	private $image_tags = array(
+	private $image_tags = [
 		'width'     => 'width',
 		'height'    => 'height',
 		'mime-type' => 'type',
-	);
+	];
 
 	/**
 	 * The parameters we have for Facebook images.
 	 *
 	 * @var array
 	 */
-	private $image_params = array(
+	private $image_params = [
 		'min_width'  => 200,
 		'max_width'  => 2000,
 		'min_height' => 200,
 		'max_height' => 2000,
-	);
+	];
 
 	/**
 	 * Image types that are supported by OpenGraph.
 	 *
 	 * @var array
 	 */
-	private $valid_image_types = array( 'image/jpeg', 'image/gif', 'image/png' );
+	private $valid_image_types = [ 'image/jpeg', 'image/gif', 'image/png' ];
 
 	/**
 	 * Image extensions that are supported by OpenGraph.
 	 *
 	 * @var array
 	 */
-	private $valid_image_extensions = array( 'jpeg', 'jpg', 'gif', 'png' );
+	private $valid_image_extensions = [ 'jpeg', 'jpg', 'gif', 'png' ];
 
 	/**
 	 * Constructor.
@@ -166,7 +168,7 @@ class WPSEO_OpenGraph_Image {
 	public function add_image( $attachment ) {
 		// In the past `add_image` accepted an image url, so leave this for backwards compatibility.
 		if ( is_string( $attachment ) ) {
-			$attachment = array( 'url' => $attachment );
+			$attachment = [ 'url' => $attachment ];
 		}
 
 		if ( ! is_array( $attachment ) || empty( $attachment['url'] ) ) {
@@ -212,7 +214,7 @@ class WPSEO_OpenGraph_Image {
 		switch ( $image_id ) {
 			case self::EXTERNAL_IMAGE_ID:
 				// Add image by URL, but skip attachment_to_id call. We already know this is an external image.
-				$this->add_image( array( 'url' => $image_url ) );
+				$this->add_image( [ 'url' => $image_url ] );
 				break;
 
 			case '':
@@ -259,7 +261,7 @@ class WPSEO_OpenGraph_Image {
 		$frontpage_image_url = WPSEO_Options::get( 'og_frontpage_image' );
 		$frontpage_image_id  = WPSEO_Options::get( 'og_frontpage_image_id' );
 
-		$this->add_image_by_id_or_url( $frontpage_image_id, $frontpage_image_url, array( $this, 'save_frontpage_image_id' ) );
+		$this->add_image_by_id_or_url( $frontpage_image_id, $frontpage_image_url, [ $this, 'save_frontpage_image_id' ] );
 	}
 
 	/**
@@ -349,7 +351,7 @@ class WPSEO_OpenGraph_Image {
 			return;
 		}
 
-		$this->add_image_by_id_or_url( $default_image_id, $default_image_url, array( $this, 'save_default_image_id' ) );
+		$this->add_image_by_id_or_url( $default_image_id, $default_image_url, [ $this, 'save_default_image_id' ] );
 	}
 
 	/**
@@ -376,7 +378,7 @@ class WPSEO_OpenGraph_Image {
 		$image_id  = WPSEO_Meta::get_value( 'opengraph-image-id', $post_id );
 		$image_url = WPSEO_Meta::get_value( 'opengraph-image', $post_id );
 
-		$this->add_image_by_id_or_url( $image_id, $image_url, array( $this, 'save_opengraph_image_id_meta' ) );
+		$this->add_image_by_id_or_url( $image_id, $image_url, [ $this, 'save_opengraph_image_id_meta' ] );
 	}
 
 	/**
@@ -435,7 +437,7 @@ class WPSEO_OpenGraph_Image {
 			return $attachment_id;
 		}
 
-		$this->add_image( array( 'url' => $url ) );
+		$this->add_image( [ 'url' => $url ] );
 
 		return -1;
 	}
@@ -667,6 +669,6 @@ class WPSEO_OpenGraph_Image {
 			return;
 		}
 
-		$this->add_image( array( 'url' => $image_url ) );
+		$this->add_image( [ 'url' => $image_url ] );
 	}
 }

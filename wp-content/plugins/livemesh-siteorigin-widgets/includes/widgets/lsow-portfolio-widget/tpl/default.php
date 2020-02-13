@@ -84,16 +84,21 @@ if ($loop->have_posts()) :
 
             $entry_image = '<div class="lsow-project-image">';
 
+            $image_attrs = array(
+                'class' => 'lsow-image ' . lsow_disable_lazy_load_classes(),
+                'data-no-lazy' => 1
+            );
+
             if ($settings['image_linkable']):
 
                 $thumbnail_html = '<a href="' . get_the_permalink()
                     . '" target="' . $settings['link_target']
-                    . '">' . get_the_post_thumbnail($post_id, $settings['image_size'])
+                    . '">' . get_the_post_thumbnail($post_id, $settings['image_size'], $image_attrs)
                     . '</a>';
 
             else:
 
-                $thumbnail_html = get_the_post_thumbnail($post_id, $settings['image_size']);
+                $thumbnail_html = get_the_post_thumbnail($post_id, $settings['image_size'], $image_attrs);
 
             endif;
 
