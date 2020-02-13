@@ -9,6 +9,22 @@ function isLocalHost() {
   return in_array($_SERVER['REMOTE_ADDR'], $ipList);
 }
 
+function getImgAttr($imageObject, $sizeToGet = 'thumbnail', $extraField = '') {
+  if (!$imageObject) return '';
+
+  if ($sizeToGet) {
+    if ($sizeToGet == 'master') {
+      return $imageObject['url'];
+    }
+
+    return isset($imageObject['sizes'][$sizeToGet]) ? $imageObject['sizes'][$sizeToGet] : '';
+  } elseif ($extraField) {
+    return isset($imageObject[$extraField]) ? $imageObject[$extraField] : '';
+  }
+
+  return '';
+}
+
 function isUsedPageBuilder($currentPost = '') {
   if ( ! $currentPost ) {
     global $post;
