@@ -57,14 +57,16 @@ class SiteOrigin_Widget_Features_Widget extends SiteOrigin_Widget {
 						'default' => '#404040',
 					),
 
+					// Left and right array keys are swapped due to a mistake that couldn't be corrected without disturbing existing users.
+
                     'container_position' => array(
                         'type' => 'select',
                         'label' => __( 'Icon container position', 'so-widgets-bundle' ),
                         'options' => array(
                             'top'    => __( 'Top', 'so-widgets-bundle' ),
-                            'right'  => __( 'Right', 'so-widgets-bundle' ),
+                            'left'  => __( 'Right', 'so-widgets-bundle' ),
                             'bottom' => __( 'Bottom', 'so-widgets-bundle' ),
-                            'left'   => __( 'Left', 'so-widgets-bundle' ),
+                            'right'   => __( 'Left', 'so-widgets-bundle' ),
                         ),
                         'default' => 'top',
                     ),
@@ -92,6 +94,7 @@ class SiteOrigin_Widget_Features_Widget extends SiteOrigin_Widget {
 						'library' => 'image',
 						'label' => __( 'Icon image', 'so-widgets-bundle' ),
 						'description' => __( 'Use your own icon image.', 'so-widgets-bundle' ),
+						'fallback' => true,
 					),
 
 					'icon_image_size' => array(
@@ -218,6 +221,20 @@ class SiteOrigin_Widget_Features_Widget extends SiteOrigin_Widget {
 				'default' => false,
 			),
 
+			'title_tag' => array(
+				'type' => 'select',
+				'label' => __( 'Title text HTML tag', 'so-widgets-bundle' ),
+				'default' => 'h5',
+				'options' => array(
+					'h1' => __( 'H1', 'so-widgets-bundle' ),
+					'h2' => __( 'H2', 'so-widgets-bundle' ),
+					'h3' => __( 'H3', 'so-widgets-bundle' ),
+					'h4' => __( 'H4', 'so-widgets-bundle' ),
+					'h5' => __( 'H5', 'so-widgets-bundle' ),
+					'h6' => __( 'H6', 'so-widgets-bundle' ),
+				)
+			),
+
 			'per_row' => array(
 				'type' => 'number',
 				'label' => __( 'Features per row', 'so-widgets-bundle' ),
@@ -283,6 +300,7 @@ class SiteOrigin_Widget_Features_Widget extends SiteOrigin_Widget {
 
 		$less_vars['container_size'] = $instance['container_size'];
 		$less_vars['icon_size'] = $instance['icon_size'];
+		$less_vars['title_tag'] = $instance['title_tag'];
 		$less_vars['per_row'] = $instance['per_row'];
 		$less_vars['use_icon_size'] = empty( $instance['icon_size_custom'] ) ? 'false' : 'true';
 

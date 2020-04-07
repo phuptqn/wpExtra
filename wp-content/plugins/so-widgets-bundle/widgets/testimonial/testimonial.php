@@ -70,6 +70,7 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 					'image' => array(
 						'type' => 'media',
 						'label' => __('Image', 'so-widgets-bundle'),
+						'fallback' => true,
 					),
 
 					'link_image' => array(
@@ -90,7 +91,7 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 
 					'new_window' => array(
 						'type' => 'checkbox',
-						'label' => __('Open In New Window', 'so-widgets-bundle'),
+						'label' => __('Open in a new window', 'so-widgets-bundle'),
 					),
 				)
 			),
@@ -189,7 +190,7 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 						'fields' => array(
 							'image_shape' => array(
 								'type' => 'select',
-								'label' => __('Testimonial image shape', 'so-widgets-bundle'),
+								'label' => __('Image shape', 'so-widgets-bundle'),
 								'options' => array(
 									'square' => __('Square', 'so-widgets-bundle'),
 									'round' => __('Round', 'so-widgets-bundle'),
@@ -214,16 +215,16 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 						'fields' => array(
 							'testimonial_background' => array(
 								'type' => 'color',
-								'label' => __('Widget Background', 'so-widgets-bundle'),
+								'label' => __('Widget background', 'so-widgets-bundle'),
 							),
 							'text_background' => array(
 								'type' => 'color',
-								'label' => __('Text Background', 'so-widgets-bundle'),
+								'label' => __('Text background', 'so-widgets-bundle'),
 								'default' => '#f0f0f0',
 							),
 							'text_color' => array(
 								'type' => 'color',
-								'label' => __('Text Color', 'so-widgets-bundle'),
+								'label' => __('Text color', 'so-widgets-bundle'),
 								'default' => '#444444',
 							),
 						),
@@ -240,7 +241,7 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 
 					'border_radius' => array(
 						'type' => 'slider',
-						'label' => __( 'Testimonial Radius', 'so-widgets-bundle' ),
+						'label' => __( 'Text background radius', 'so-widgets-bundle' ),
 						'integer' => true,
 						'default' => 4,
 						'max' => 100,
@@ -335,15 +336,17 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 		);
 	}
 
-	function testimonial_user_image( $image_id, $design ){
-		if ( ! empty( $image_id ) ) {
-			if( $design['image']['image_shape'] == 'square') {
-				return wp_get_attachment_image( $image_id, array( $design['image']['image_size'], $design['image']['image_size'] ), false, array(
-					'class' => 'sow-image-shape-' . $design['image']['image_shape'],
-				) );
-			}
-			else {
-				$src = wp_get_attachment_image_src( $image_id, array( $design['image']['image_size'], $design['image']['image_size'] ) );
+	function testimonial_user_image( $image_id, $design, $image_fallback = false ){
+		$src = siteorigin_widgets_get_attachment_image_src(
+			$image_id,
+			$design['image']['image_size'],
+			! empty( $image_fallback ) ? $image_fallback : false
+		);
+
+		if ( ! empty( $src ) ) {
+			if ( $design['image']['image_shape'] == 'square' ) {
+				return '<img src="' . esc_url( $src[0] ) . '" class="sow-image-shape-' . $design['image']['image_shape'] . '">';
+			} else {
 				return '<div class="sow-round-image-frame" style="background-image: url(' . esc_url( $src[0] ) . ');"></div>';
 			}
 		}

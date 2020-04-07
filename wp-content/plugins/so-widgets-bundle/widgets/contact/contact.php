@@ -68,13 +68,13 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 					'from'                               => array(
 						'type'        => 'text',
 						'label'       => __( 'From email address', 'so-widgets-bundle' ),
-						'description' => __( 'It will appear as if emails are sent from this address. Ideally this should be in the same domain as this server to avoid spam filters.', 'so-widgets-bundle' ),
+						'description' => __( 'It will appear as if emails are sent from this address. Ideally, this should be in the same domain as this server to avoid spam filters.', 'so-widgets-bundle' ),
 						'sanitize'    => 'email',
 					),
 					'default_subject'                  => array(
 						'type'        => 'text',
 						'label'       => __( 'Default subject', 'so-widgets-bundle' ),
-						'description' => __( "Subject to use when there isn't one available.", 'so-widgets-bundle' ),
+						'description' => __( "Subject to use when there isn't one supplied by the user. If you make use of this option it won't be possible to set the Subject field as required because the default subject will be used as a fallback.", 'so-widgets-bundle' ),
 					),
 					'subject_prefix'                   => array(
 						'type'        => 'text',
@@ -124,7 +124,8 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 					),
 					'log_ip_address' => array(
 						'type' => 'checkbox',
-						'label' => __( 'Log IP addresses.', 'so-widgets-bundle' ),
+						'label' => __( 'Log IP addresses', 'so-widgets-bundle' ),
+						'description' => __( 'List in contact emails, the IP address of the form sender.', 'so-widgets-bundle' ),
 						'default' => false,
 					),
 				),
@@ -716,13 +717,14 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 
 	function modify_instance( $instance ) {
 		// Use this to set up an initial version of the
-		if ( empty( $instance['settings']['to'] ) ) {
+		if ( empty( $instance['settings']['to'] ) || $this->is_dev_email( $instance['settings']['to'] ) ) {
 			$current_user               = wp_get_current_user();
 			$instance['settings']['to'] = $current_user->user_email;
 		}
-		if ( empty( $instance['settings']['from'] ) ) {
-			$instance['settings']['from'] = get_option( 'admin_email' );
+		if ( empty( $instance['settings']['from'] )  || $this->is_dev_email( $instance['settings']['from'] ) ) {
+			$instance['settings']['from'] = $this->default_from_address();
 		}
+
 		if ( empty( $instance['fields'] ) ) {
 			$instance['fields'] = array(
 				array(
@@ -854,7 +856,7 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 			'submit_text_color'          => $instance['design']['submit']['text_color'],
 			'submit_font_size'           => $instance['design']['submit']['font_size'],
 			'submit_weight'              => $instance['design']['submit']['weight'],
-			'submit_padding'             => $instance['design']['submit']['padding'],			
+			'submit_padding'             => $instance['design']['submit']['padding'],
 			'submit_width'               => ! empty( $instance['design']['submit']['width'] ) ? $instance['design']['submit']['width'] : '',
 			'submit_align'               => ! empty( $instance['design']['submit']['align'] ) ? $instance['design']['submit']['align'] : '',
 			'submit_inset_highlight'     => $instance['design']['submit']['inset_highlight'] . '%',
@@ -1034,7 +1036,7 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 			}
 			$field_name = $this->name_from_label( ! empty( $field['label'] ) ? $field['label'] : $i, $field_ids ) . '-' . $instance['_sow_form_id'];
 			$value      = isset( $post_vars[ $field_name ] ) ? $post_vars[ $field_name ] : '';
-			
+
 			// Can't just use `strlen` here as $value could be an array. E.g. for checkboxes field.
 			if ( empty( $value ) && $value !== '0' ) {
 				if ( $field['required']['required'] ) {
@@ -1071,6 +1073,21 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 						'label' => $field['label'],
 						'value' => implode( ', ', $value ),
 					);
+					break;
+
+				case 'tel':
+					// Somewhat arbitrary basic phone number validation, checking for at least 3 digits, ignoring all
+					// non-digit characters. Apparently, the lower limit for phone numbers is 3. See
+					// https://github.com/siteorigin/so-widgets-bundle/issues/958#issuecomment-573139753
+					$digits = preg_replace( '/\D/', '', $value );
+					if ( strlen($digits) < 3 ) {
+						$errors[ $field_name ] = __( 'Invalid phone number. It should contain at least three digits.', 'so-widgets-bundle' );
+					} else {
+						$email_fields['message'][] = array(
+							'label' => $field['label'],
+							'value' => $value,
+						);
+					}
 					break;
 
 				default:
@@ -1135,11 +1152,11 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 			} else if ( empty( $success ) ) {
 				$errors['_general'] = array( 'send' => __( 'Error sending email, please try again later.', 'so-widgets-bundle' ) );
 			} else {
-				// This action will allow other plugins to run code when contact form has successfully been sent 
+				// This action will allow other plugins to run code when contact form has successfully been sent
 				do_action( 'siteorigin_widgets_contact_sent', $instance, $email_fields );
 			}
 		}
-		
+
 		if ( ! empty( $errors ) ) {
 			// This action will allow other plugins to run code when the contact form submission has resulted in error
 			do_action( 'siteorigin_widgets_contact_error', $instance, $email_fields, $errors );
@@ -1252,14 +1269,18 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 		}
 		$body = wpautop( trim( $body ) );
 
-		if ( $instance['settings']['to'] == 'ibrossiter@gmail.com' || $instance['settings']['to'] == 'test@example.com' || empty( $instance['settings']['to'] ) ) {
+		if ( $this->is_dev_email($instance['settings']['to']) || empty( $instance['settings']['to'] ) ) {
 			// Replace default and empty email address.
-			// Also replaces the email address that comes from the prebuilt layout directory
+			// Also replaces the email address that comes from the prebuilt layout directory and SiteOrigin Support Email
 			$instance['settings']['to'] = get_option( 'admin_email' );
 		}
-		
-		if ( $instance['settings']['from'] == 'test@example.com' || empty( $instance['settings']['from'] ) ) {
-			$instance['settings']['from'] = get_option( 'admin_email' );
+
+		if (
+			$this->is_dev_email($instance['settings']['from']) ||
+			empty( $instance['settings']['from'] ) ||
+			$instance['settings']['from'] == $instance['settings']['to']
+		) {
+			$instance['settings']['from'] = $this->default_from_address();
 		}
 
 		$headers = array(
@@ -1311,6 +1332,23 @@ class SiteOrigin_Widgets_ContactForm_Widget extends SiteOrigin_Widget {
 	 */
 	static function sanitize_header( $value ) {
 		return preg_replace( '=((<CR>|<LF>|0x0A/%0A|0x0D/%0D|\\n|\\r)\S).*=i', null, $value );
+	}
+
+	private function is_dev_email( $email ) {
+		return $email == 'ibrossiter@gmail.com' ||
+		       $email == 'amisplon@gmail.com' ||
+		       $email == 'test@example.com' ||
+		       $email == 'support@siteorigin.com';
+	}
+
+	private function default_from_address() {
+		// Get the site domain and get rid of www.
+		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
+		if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+			$sitename = substr( $sitename, 4 );
+		}
+
+		return apply_filters( 'siteorigin_widgets_contact_default_email', 'wordpress@' . $sitename );
 	}
 
 }

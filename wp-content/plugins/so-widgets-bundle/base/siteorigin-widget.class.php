@@ -237,7 +237,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 		echo '</div>';
 		echo $args['after_widget'];
 		do_action( 'siteorigin_widgets_after_widget_' . $this->id_base, $instance, $this );
-		
+
 		if ( $this->is_preview( $instance ) ) {
 			// print inline styles if we're preview the widget.
 			siteorigin_widget_print_styles();
@@ -335,10 +335,10 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 		global $wp_customize;
 		return is_a( $wp_customize, 'WP_Customize_Manager' ) && $wp_customize->is_preview();
 	}
-	
-	private function is_block_editor_page() {
+
+	protected function is_block_editor_page() {
 		$current_screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-		
+
 		// This is for the Gutenberg plugin.
 		$is_gutenberg_page = $current_screen != null &&
 							 function_exists( 'is_gutenberg_page' ) &&
@@ -348,7 +348,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 		if ( ! empty( $current_screen ) && method_exists( $current_screen, 'is_block_editor' ) ) {
 			$is_block_editor = $current_screen->is_block_editor();
 		}
-		
+
 		return $is_block_editor || $is_gutenberg_page;
 	}
 
@@ -749,14 +749,14 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 			if ( WP_Filesystem() ) {
 				global $wp_filesystem;
 				$upload_dir = wp_upload_dir();
-				
+
 				$dir_exists = $wp_filesystem->is_dir( $upload_dir['basedir'] . '/siteorigin-widgets/' );
-				
+
 				if ( empty( $dir_exists ) ) {
 					// The 'siteorigin-widgets' directory doesn't exist, so try to create it.
 					$dir_exists = $wp_filesystem->mkdir( $upload_dir['basedir'] . '/siteorigin-widgets/' );
 				}
-				
+
 				if ( ! empty( $dir_exists ) ) {
 					// The 'siteorigin-widgets' directory exists, so we can try to write the CSS to a file.
 					$wp_filesystem->delete( $upload_dir['basedir'] . '/siteorigin-widgets/' . $name );
@@ -764,7 +764,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 						$upload_dir['basedir'] . '/siteorigin-widgets/' . $name,
 						$css
 					);
-					
+
 					// Alert other plugins that we've added a new CSS file
 					do_action( 'siteorigin_widgets_stylesheet_added', $name, $instance );
 				}
@@ -802,7 +802,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 				//Reindex array
 				$this->generated_css = array_values( $this->generated_css );
 			}
-			
+
 			// Alert other plugins that we've deleted a CSS file
 			do_action( 'siteorigin_widgets_stylesheet_deleted', $name, $instance );
 		}
@@ -1347,7 +1347,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 	function is_preview( $instance = array() ) {
 		// Check if the instance is a preview
 		if( !empty( $instance[ 'is_preview' ] ) ) return true;
-		
+
 		// Check if the general request is a preview
 		$is_preview =
 			is_preview() || // Is this a standard preview
@@ -1374,9 +1374,11 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 	/**
 	 * Get the global settings from the options table.
 	 *
+	 * @param string|null $key
+	 *
 	 * @return mixed
 	 */
-	function get_global_settings( ){
+	function get_global_settings( $key = null ){
 		$values = get_option( 'so_widget_settings[' . $this->widget_class . ']', array() );
 
 		// Add in the defaults
@@ -1384,7 +1386,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 			$values = $this->add_defaults( $this->get_settings_form(), $values );
 		}
 
-		return $values;
+		return !empty( $key ) ? $values[$key] : $values;
 	}
 
 	/**
