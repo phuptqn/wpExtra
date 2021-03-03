@@ -8,19 +8,23 @@
   ],
   "scripts": {
     "start": "gulp",
-    "deploy-stag": "cd deployment && fab deploy:stag",
-    "deploy-stag-root": "cd deployment && fab deploy_root:stag",
-    "deploy-prod": "cd deployment && fab deploy:prod",
-    "deploy-prod-root": "cd deployment && fab deploy_root:prod",
-    "ssh-stag": "cd deployment && ssh -i ./id_rsa user@ip",
-    "ssh-prod": "cd deployment && ssh -i ./id_rsa user@ip"
+    "deploy:stag": "cd deployment && fab deploy:stag",
+    "deploy_root:stag": "cd deployment && fab deploy_root:stag",
+    "deploy:prod": "cd deployment && fab deploy:prod",
+    "deploy_root:prod": "cd deployment && fab deploy_root:prod",
+    "ssh:stag": "cd deployment && ssh -i ./id_rsa user@ip",
+    "ssh:prod": "cd deployment && ssh -i ./id_rsa user@ip"
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.3.5",
-    "babel-preset-es2015": "^6.24.1",
     "bootstrap": "^4.1.1",
-    "browser-sync": "^2.24.4",
     "font-awesome": "^4.7.0",
+    "popper.js": "^1.14.3",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.24.4",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.3",
@@ -33,8 +37,6 @@
     "gulp-wait": "0.0.2",
     "jshint": "^2.9.5",
     "node-sass": "^4.9.0",
-    "popper.js": "^1.14.3",
-    "slick-carousel": "^1.8.1",
     "gulp-watch": "^5.0.1"
   }
 }
