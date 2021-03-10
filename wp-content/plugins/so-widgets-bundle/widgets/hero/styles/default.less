@@ -1,7 +1,5 @@
 @import "../../../base/less/mixins";
 
-.widget-function('import_google_font');
-
 @nav_color_hex: #FFFFFF;
 @nav_size: 25;
 
@@ -27,6 +25,7 @@
 
 @responsive_breakpoint: 780px;
 @slide_height_responsive: default;
+@vertically_align: false;
 
 // "Pre-fill" hero widget area if height is set
 & when ( isnumber( @slide_height ) ) {
@@ -54,6 +53,12 @@
 
 			max-width: @slide_width;
 			height: @slide_height;
+
+			& when (@vertically_align = true) {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
 
 			& when ( isnumber( @slide_height_responsive ) ) {
 				@media (max-width: @responsive_breakpoint) {

@@ -16,13 +16,15 @@ class SiteOrigin_Widget_Editor_Widget extends SiteOrigin_Widget {
 			'sow-editor',
 			__('SiteOrigin Editor', 'so-widgets-bundle'),
 			array(
-				'description' => __('A rich-text, text editor.', 'so-widgets-bundle'),
+				'description' => __('A widget which allows editing of content using the TinyMCE editor.', 'so-widgets-bundle'),
 				'help' => 'https://siteorigin.com/widgets-bundle/editor-widget/'
 			),
 			array(),
 			false,
 			plugin_dir_path(__FILE__)
 		);
+
+		add_filter( 'siteorigin_widgets_sanitize_instance_sow-editor', array( $this, 'add_noreferrer_to_link_targets' ) );
 	}
 
 	function get_widget_form() {
@@ -66,7 +68,9 @@ class SiteOrigin_Widget_Editor_Widget extends SiteOrigin_Widget {
 			empty( $GLOBALS[ 'SITEORIGIN_PANELS_CACHE_RENDER' ] ) &&
 			empty( $GLOBALS[ 'SITEORIGIN_PANELS_POST_CONTENT_RENDER' ] )
 		) {
-			if (function_exists('wp_make_content_images_responsive')) {
+			if ( function_exists( 'wp_filter_content_tags' ) ) {
+				$instance['text'] = wp_filter_content_tags( $instance['text'] );
+			} else if ( function_exists( 'wp_make_content_images_responsive' ) ) {
 				$instance['text'] = wp_make_content_images_responsive( $instance['text'] );
 			}
 
@@ -115,7 +119,9 @@ class SiteOrigin_Widget_Editor_Widget extends SiteOrigin_Widget {
 
 	private function process_more_quicktag( $content ) {
 		$post = get_post();
-		$panels_content = get_post_meta( $post->ID, 'panels_data', true );
+		if ( ! empty( $post ) ) {
+			$panels_content = get_post_meta( $post->ID, 'panels_data', true );
+		}
 		// We only want to do this processing if on archive pages for posts with non-PB layouts.
 		if ( ! is_singular() && empty( $panels_content ) && ! $this->is_block_editor_page() && empty( $GLOBALS['SO_WIDGETS_BUNDLE_PREVIEW_RENDER'] ) ) {
 			if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {
@@ -133,6 +139,13 @@ class SiteOrigin_Widget_Editor_Widget extends SiteOrigin_Widget {
 		}
 
 		return $content;
+	}
+
+	function add_noreferrer_to_link_targets( $instance ) {
+		if ( function_exists( 'wp_targeted_link_rel' ) ) {
+			$instance['text'] = wp_targeted_link_rel( $instance['text'] );
+		}
+		return $instance;
 	}
 
 

@@ -784,7 +784,7 @@ else {
                     image.</p>
                 <p>The widget options are mostly self-explanatory and you can view a live preview of the buttons <a
                         title="Livemesh SiteOrigin Button Widget Demo"
-                        href="https://www.livemeshthemes.com/siteorigin-widgets/icon-lists-buttons/">here</a>.</p>
+                        href="https://livemeshwp.com/siteorigin-widgets/icon-lists-buttons/">here</a>.</p>
 
 
                 <hr>
@@ -1024,7 +1024,7 @@ else {
                     video tutorial sites, video marketers, small businesses or websites with a major presence on
                     YouTube/Vimeo. The videos can be played with a single click of the play button on the gallery item
                     as seen in this <a title="Video Gallery"
-                                       href="https://www.livemeshthemes.com/siteorigin-widgets/video-gallery/">demo page</a>.
+                                       href="https://livemeshwp.com/siteorigin-widgets/video-gallery/">demo page</a>.
                 </p>
                 <p><img class="alignnone size-large" src="https://www.livemeshthemes.com/wp-content/uploads/plugin-doc/livemesh-widgets/image-gallery-edit1.jpg" alt="Image Gallery Widget Edit Window"></p>
                 <p>The configuration for creating a video gallery is similar to that of image gallery; a video URL would be required along with image that acts as a placeholder.</p>
@@ -1090,7 +1090,7 @@ else {
                     video tutorial sites, video marketers, small businesses or websites with a major presence on
                     YouTube/Vimeo. The videos can be played with a single click of the play button on the gallery item
                     as seen in this <a title="Video Gallery"
-                                       href="https://www.livemeshthemes.com/siteorigin-widgets/video-gallery/">demo page</a>.
+                                       href="https://livemeshwp.com/siteorigin-widgets/video-gallery/">demo page</a>.
                 </p>
                 <p><img class="alignnone size-large" src="https://www.livemeshthemes.com/wp-content/uploads/plugin-doc/livemesh-widgets/image-carousel-edit.jpg" alt="Image Carousel Widget Edit Window"></p>
                 <p>The option for creation of video carousel is similar to that of image carousel - requires input of URL for the Vimeo/YouTube video along with placeholder image. </p>
@@ -1322,6 +1322,17 @@ else {
 
                 <h2>Change Log for the Premium Version</h2>
                 <br>
+                <h3>2.7.0</h3>
+                <ul>
+                    <li>Updated - Move to new domain livemeshwp.com</li>
+                    <li>Updated - Compatibility with WP 5.5</li>
+                </ul>
+                <h3>2.6.0</h3>
+                <ul>
+                    <li>Added - Options to turn off/on title and taxonomy terms displayed on posts carousel thumbnail</li>
+                    <li>Added - Open in new window option for post links in posts carousel</li>
+                    <li>Added - Ability to add read more link for the posts carousel</li>
+                </ul>
                 <h3>2.5.9</h3>
                 <ul>
                     <li>Tweak - Enabled lazy load for all the widgets except for the grid/gallery addons - Posts Grid, Video and Image Gallery. The Posts Grid and Gallery addons utilize the popular Isotope library for laying out grid elements and Isotope library is not compatible with lazy loading of images.</li>
@@ -1652,7 +1663,7 @@ else {
                             <p><?php _e('Premium version offers multiple benefits - more widgets, advanced features for widgets including those part of the free plugin and priority support through a dedicated support portal.', 'livemesh-so-widgets'); ?></p>
 
                             <a class="button button-primary"
-                               href="https://www.livemeshthemes.com/siteorigin-widgets/widgets-demo/#why-upgrade"
+                               href="https://livemeshwp.com/siteorigin-widgets/widgets-demo/#why-upgrade"
                                title="<?php esc_attr_e('Know More', 'livemesh-so-widgets'); ?>"><?php _e('Know More Details', 'livemesh-so-widgets'); ?></a>
                         </div><!-- .panel-aside knowledge base -->
 
@@ -1663,10 +1674,10 @@ else {
                             <h4>Need support for the plugin?</h4>
                             <p>The premium version of the plugin entitles you to quick support with replies posted within 24 hours (on week days). </p>
 
-                            <p>Please submit your support query through our <a href="https://www.livemeshthemes.com/siteorigin-widgets/contact-us/" title="Livemesh Contact form">website contact form</a>. This will create a support ticket in our support portal.</p>
+                            <p>Please submit your support query through our <a href="https://livemeshwp.com/siteorigin-widgets/contact-us/" title="Livemesh Contact form">website contact form</a>. This will create a support ticket in our support portal.</p>
 
                             <a class="button button-primary"
-                               href="https://www.livemeshthemes.com/siteorigin-widgets/contact-us/"
+                               href="https://livemeshwp.com/siteorigin-widgets/contact-us/"
                                title="<?php esc_attr_e('Contact Us', 'livemesh-so-widgets'); ?>"><?php _e('Contact Us', 'livemesh-so-widgets'); ?></a>
                         </div><!-- .panel-aside knowledge base -->
 

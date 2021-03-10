@@ -156,7 +156,7 @@ $layouts = apply_filters( 'siteorigin_panels_prebuilt_layouts', array() );
 		<div class="so-title-bar {{% if ( dialogIcon ) print( 'so-has-icon' ) %}}">
 			<a class="so-show-left-sidebar"><span class="so-dialog-icon"></span></a>
 			{{% if ( ! _.isEmpty( dialogIcon ) ) { %}}
-				<div class="so-panels-icon so-panels-icon-{{%- dialogIcon %}}" />
+				<div class="so-panels-icon so-panels-icon-{{%- dialogIcon %}}"></div>
 			{{% } %}}
 			<h3 class="so-title{{% if ( editableLabel ) print(' so-title-editable')%}}"
 			    {{% if ( editableLabel ) print('contenteditable="true" spellcheck="false" tabIndex="1"')%}}
@@ -555,13 +555,13 @@ $layouts = apply_filters( 'siteorigin_panels_prebuilt_layouts', array() );
 			><?php esc_html_e('Update', 'siteorigin-panels') ?></button>
 			<button class="live-editor-close button-secondary"><?php esc_html_e('Close', 'siteorigin-panels') ?></button>
 
-			<a class="live-editor-mode live-editor-desktop so-active" title="<?php esc_attr_e( 'Toggle desktop mode', 'siteorigin-panels' ) ?>" data-mode="desktop">
+			<a class="live-editor-mode live-editor-desktop so-active" title="<?php esc_attr_e( 'Toggle desktop mode', 'siteorigin-panels' ) ?>" data-mode="desktop" data-width="100%" >
 				<span class="dashicons dashicons-desktop"></span>
 			</a>
-			<a class="live-editor-mode live-editor-tablet" title="<?php esc_attr_e( 'Toggle tablet mode', 'siteorigin-panels' ) ?>" data-mode="tablet">
+			<a class="live-editor-mode live-editor-tablet" title="<?php esc_attr_e( 'Toggle tablet mode', 'siteorigin-panels' ) ?>" data-mode="tablet" data-width="720px">
 				<span class="dashicons dashicons-tablet"></span>
 			</a>
-			<a class="live-editor-mode live-editor-mobile" title="<?php esc_attr_e( 'Toggle mobile mode', 'siteorigin-panels' ) ?>" data-mode="mobile">
+			<a class="live-editor-mode live-editor-mobile" title="<?php esc_attr_e( 'Toggle mobile mode', 'siteorigin-panels' ) ?>" data-mode="mobile" data-width="320px">
 				<span class="dashicons dashicons-smartphone"></span>
 			</a>
 
@@ -609,7 +609,7 @@ $layouts = apply_filters( 'siteorigin_panels_prebuilt_layouts', array() );
 <script type="text/template" id="siteorigin-panels-add-layout-block-button">
 	<div class="siteorigin-panels-add-layout-block wp-block">
 		<button class="components-button is-button is-primary">
-			<span class="siteorigin-panels-block-icon white"/>
+			<span class="siteorigin-panels-block-icon white"></span>
 			<?php _e( 'Add SiteOrigin Layout Block', 'siteorigin-panels' ) ?>
 		</button>
 	</div>

@@ -133,6 +133,18 @@ class LSOW_Posts_Carousel_Widget extends SiteOrigin_Widget {
                             ),
                         ),
 
+                        'display_title_on_thumbnail' => array(
+                            'type' => 'checkbox',
+                            'label' => __('Display project title on post/project thumbnail?', 'livemesh-so-widgets'),
+                            'default' => true,
+                        ),
+
+                        'display_taxonomy_on_thumbnail' => array(
+                            'type' => 'checkbox',
+                            'label' => __('Display taxonomy info on post/project thumbnail?', 'livemesh-so-widgets'),
+                            'default' => false,
+                        ),
+
                         'display_title' => array(
                             'type' => 'checkbox',
                             'label' => __('Display posts title below the post item?', 'livemesh-so-widgets'),
@@ -143,6 +155,18 @@ class LSOW_Posts_Carousel_Widget extends SiteOrigin_Widget {
                             'type' => 'checkbox',
                             'label' => __('Display post excerpt/summary below the post item?', 'livemesh-so-widgets'),
                             'default' => true
+                        ),
+
+                        'display_read_more' => array(
+                            'type' => 'checkbox',
+                            'label' => __('Display read more link to the post/portfolio?', 'livemesh-so-widgets'),
+                            'default' => false,
+                        ),
+
+                        'read_more_text' => array(
+                            'type' => 'text',
+                            'label' => __('Read More Text', 'livemesh-so-widgets'),
+                            'default' => __('Read More', 'livemesh-so-widgets'),
                         ),
 
                         'post_meta' => array(

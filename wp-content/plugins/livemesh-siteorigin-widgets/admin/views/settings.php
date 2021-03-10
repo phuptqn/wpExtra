@@ -316,7 +316,7 @@ $custom_css = lsow_get_option('lsow_custom_css', '');
 
                             <?php else: ?>
 
-                                <a class="lsow-button know-more" href="https://www.livemeshthemes.com/siteorigin-widgets/"><i class="dashicons dashicons-external"></i><?php echo __('Know More', 'livemesh-so-widgets'); ?></a>
+                                <a class="lsow-button know-more" href="https://livemeshwp.com/siteorigin-widgets/"><i class="dashicons dashicons-external"></i><?php echo __('Know More', 'livemesh-so-widgets'); ?></a>
 
                             <?php endif; ?>
                         </div>

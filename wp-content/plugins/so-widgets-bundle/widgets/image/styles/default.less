@@ -27,6 +27,10 @@
 		display: inline-block;
 		width: @image_width;
 		max-width: @image_max_width;
+
+		@media screen and ( -ms-high-contrast: active ), screen and ( -ms-high-contrast: none ) {  
+			display: flex;
+		}
 	}
 
 	.so-widget-image {

@@ -6,7 +6,7 @@ jQuery( function ( $ ) {
 	sowb.setupSimpleMasonries = function () {
 		var $grid = $( '.sow-masonry-grid' );
 		
-		if ( !$grid.is( ':visible' ) || $grid.data( 'initialized' ) ) {
+		if ( $grid.data( 'initialized' ) ) {
 			return $grid;
 		}
 		
@@ -38,10 +38,10 @@ jQuery( function ( $ ) {
 						rowSpan = Math.max( Math.min( rowSpan, layout.numColumns ), 1 );
 						//Use rowHeight if non-zero else fall back to matching columnWidth.
 						var rowHeight = layout.rowHeight || columnWidth;
-						$$.css( 'height', ( rowHeight * rowSpan ) + ( layout.gutter * ( rowSpan - 1 ) ) );
+						$$.css( 'height', ( rowHeight * rowSpan ) + ( layout.gutter * ( rowSpan - 1 ) ) + 'px' );
 						
 						var $img = $$.find( '> img,> a > img' );
-						var imgAR = $img.attr( 'height' ) > 0 ? $img.attr( 'width' ) / $img.attr( 'height' ) : 1;
+						var imgAR = $img.height() > 0 ? $img.width() / $img.height() : 1;
 						var itemAR = $$.height() > 0 ? $$.width() / $$.height() : 1;
 						imgAR = parseFloat( imgAR.toFixed( 3 ) );
 						itemAR = parseFloat( itemAR.toFixed( 3 ) );
@@ -51,8 +51,7 @@ jQuery( function ( $ ) {
 							$img.css( 'margin-top', '' );
 							var marginLeft = ( $img.width() - $$.width() ) * -0.5;
 							$img.css( 'margin-left', marginLeft + 'px' );
-						}
-						else {
+						} else {
 							$img.css( 'height', 'auto' );
 							$img.css( 'width', '100%' );
 							$img.css( 'margin-left', '' );
@@ -60,11 +59,19 @@ jQuery( function ( $ ) {
 							$img.css( 'margin-top', marginTop + 'px' );
 						}
 					} );
+
 					$gridEl.packery( {
 						itemSelector: '.sow-masonry-grid-item',
 						columnWidth: columnWidth,
-						gutter: layout.gutter
+						gutter: layout.gutter,
+						originLeft: $gridEl.data( 'layout-origin-left' ),
 					} );
+
+					// If preloader is present, remove and show masonry
+					if ( $grid.prev( '.sow-masonry-grid-preloader' ).length ) {
+						$grid.prev().remove()
+						$grid.css( 'opacity', 1 );
+					}
 				} );
 			} );
 		};

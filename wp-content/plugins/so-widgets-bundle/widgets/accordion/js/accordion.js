@@ -12,7 +12,7 @@ jQuery( function ( $ ) {
 			}
 
 			var $accordionPanels = $( element ).find( '> .sow-accordion-panel' );
-			$accordionPanels.not( '.sow-accordion-panel-open' ).find( '.sow-accordion-panel-content' ).hide();
+			$accordionPanels.not( '.sow-accordion-panel-open' ).children( '.sow-accordion-panel-content' ).hide();
 			var openPanels = $accordionPanels.filter( '.sow-accordion-panel-open' ).toArray();
 
 			var updateHash = function () {
@@ -42,7 +42,14 @@ jQuery( function ( $ ) {
 							$( sowb ).trigger( 'setup_widgets' );
 						},
 						complete: function() {
-							if ( keepVisible && $panel.offset().top < window.scrollY ) {
+							if (
+								keepVisible &&
+								sowAccordion.scrollto_after_change &&
+								(
+									$panel.offset().top < window.scrollY ||
+									$panel.offset().top + $panel.height() > window.scrollY
+								)
+							) {
 								scrollToPanel( $panel, true );
 							}
 							$( this ).trigger( 'show' );

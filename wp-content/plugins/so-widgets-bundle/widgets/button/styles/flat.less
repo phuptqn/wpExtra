@@ -1,11 +1,12 @@
 @import "../../../base/less/mixins";
 
-.widget-function('import_google_font');
-
 @button_width: '';
 @button_color: #41a9d5;
 @border_color: darken(@button_color, 5%);
 @text_color: #FFFFFF;
+
+@hover_background_color: #41a9d5;
+@hover_text_color:  #FFFFFF;
 
 @button_font: default;
 @button_font_weight: default;
@@ -45,16 +46,14 @@
 			}
 		}
 
-		&:visited,
 		&:active,
 		&:hover{
-			color: @text_color !important;
+			color: @hover_text_color !important;
 		}
 
 		&.ow-button-hover:hover {
-			background: lighten(@button_color, 4%);
-			border-bottom-color: lighten(@border_color, 4%);
-			color: lighten(@text_color, 4%);
+			background: lighten(@hover_background_color, 4%);
+			border-color: lighten(@hover_background_color, 4%);
 		}
 	}
 }

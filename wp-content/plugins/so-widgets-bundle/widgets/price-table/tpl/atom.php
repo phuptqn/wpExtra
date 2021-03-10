@@ -11,7 +11,7 @@
 ?>
 
 <?php if ( ! empty( $title ) ) {
-	echo $before_title . esc_html( $title ) . $after_title;
+	echo $before_title . $title . $after_title;
 } ?>
 
 <div class="ow-pt-columns-atom<?php echo( $equalize_row_heights ? ' sow-equalize-row-heights' : '' ) ?>">
@@ -38,7 +38,7 @@
 
             <div class="ow-pt-features">
 				<?php foreach ( $column['features'] as $i => $feature ) : ?>
-                    <div class="ow-pt-feature ow-pt-feature-<?php echo $i % 2 == 0 ? 'even' : 'odd' ?> ow-pt-feature-index-<?php echo $i ?>">
+                    <div class="ow-pt-feature ow-pt-feature-<?php echo $i % 2 == 0 ? 'even' : 'odd' ?> ow-pt-feature-index-<?php echo $i ?>" title="<?php echo ! empty( $feature['hover'] ) ? esc_attr( $feature['hover'] ) : ''; ?>">
 
 						<?php
 						if ( ! empty( $feature['icon_new'] ) ) : ?>
@@ -53,7 +53,7 @@
                             </div>
 						<?php endif; ?>
                         <div class="sow-feature-text">
-                            <p <?php if ( ! empty( $feature['hover'] ) ) : ?>data-tooltip-text="<?php echo esc_attr( $feature['hover'] ) ?>"<?php endif; ?>>
+                            <p>
 								<?php echo wp_kses_post( $feature['text'] ) ?>
                             </p>
                         </div>

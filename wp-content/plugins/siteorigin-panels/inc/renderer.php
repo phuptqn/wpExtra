@@ -25,8 +25,16 @@ class SiteOrigin_Panels_Renderer {
 		if ( is_null( $this->inline_css ) ) {
 			// Initialize the inline CSS array and add actions to handle printing.
 			$this->inline_css = array();
-			add_action( 'wp_head', array( $this, 'print_inline_css' ), 12 );
-			add_action( 'wp_footer', array( $this, 'print_inline_css' ) );
+
+			$output_css = siteorigin_panels_setting( 'output-css-header');
+			if ( is_admin() || SiteOrigin_Panels_Admin::is_block_editor() || $output_css == 'auto' ) {
+				add_action( 'wp_head', array( $this, 'print_inline_css' ), 12 );
+				add_action( 'wp_footer', array( $this, 'print_inline_css' ) );
+			} else if ( $output_css == 'header' ) {
+				add_action( 'wp_head', array( $this, 'print_inline_css' ), 12 );
+			} else {
+				add_action( 'wp_footer', array( $this, 'print_inline_css' ) );
+			}
 		}
 
 		$this->inline_css[ $post_id ] = $css;
@@ -73,7 +81,7 @@ class SiteOrigin_Panels_Renderer {
 			
 			// Filter the bottom margin for this row with the arguments
 			$panels_margin_bottom = apply_filters( 'siteorigin_panels_css_row_margin_bottom', $settings['margin-bottom'] . 'px', $row, $ri, $panels_data, $post_id );
-			$panels_mobile_margin_bottom = apply_filters( 'siteorigin_panels_css_row_mobile_margin_bottom', '', $row, $ri, $panels_data, $post_id );
+			$panels_mobile_margin_bottom = apply_filters( 'siteorigin_panels_css_row_mobile_margin_bottom', $settings['row-mobile-margin-bottom'] . 'px', $row, $ri, $panels_data, $post_id );
 			
 			if ( empty( $row['cells'] ) ) {
 				continue;
@@ -177,11 +185,6 @@ class SiteOrigin_Panels_Renderer {
 					} else {
 						$remove_bottom_margin .= 'child(-n+2)';
 					}
-
-					$css->add_cell_css( $post_id, $ri, false, $remove_bottom_margin, array(
-							'margin-bottom' => 0,
-						), $panels_tablet_width . ':' . ( $panels_mobile_width + 1 )
-					);
 
 					if ( ! empty( $gutter_parts[1] ) ) {
 						// Tablet responsive css for cells
@@ -648,7 +651,9 @@ class SiteOrigin_Panels_Renderer {
 
 				$panels_data = ! empty( $layouts[ $prebuilt_id ] ) ? $layouts[ $prebuilt_id ] : current( $layouts );
 			}
-		} else {
+		}
+
+		if ( ! empty( $post_id ) && empty( $panels_data ) ) {
 			if ( post_password_required( $post_id ) ) {
 				return false;
 			}

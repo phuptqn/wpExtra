@@ -4,11 +4,33 @@
 @thumbnail_hover_width: default;
 @thumbnail_hover_height: default;
 
+@thumbnail_overlay_hover_color: #3279BB;
+@navigation_color: #fff;
+@navigation_color_hover: default;
+@navigation_background: #333;
+@navigation_hover_background: #444;
+
+.sow-carousel-title {
+
+  a.sow-carousel-next,
+  a.sow-carousel-previous {
+    background: @navigation_background;
+    color: @navigation_color;
+
+    &:focus,
+    &:hover {
+      background: @navigation_hover_background;
+      color: @navigation_color_hover;
+    }
+  }
+
+}
+
 .sow-carousel-wrapper {
 
-  ul.sow-carousel-items {
+  .sow-carousel-items {
 
-    li.sow-carousel-item {
+    .sow-carousel-item {
       width: @thumbnail_width;
 
       .sow-carousel-thumbnail a {
@@ -20,9 +42,17 @@
           height: @thumbnail_height;
         }
 
+        span.overlay {
+          background: @thumbnail_overlay_hover_color;
+        }
+
         &:hover {
           background-size: @thumbnail_hover_width @thumbnail_hover_height;
         }
+      }
+
+      &:focus .sow-carousel-thumbnail a {
+          background-size: @thumbnail_hover_width @thumbnail_hover_height;
       }
 
       .sow-carousel-default-thumbnail {
@@ -31,7 +61,7 @@
       }
     }
 
-    li.sow-carousel-loading {
+    .sow-carousel-loading {
       width: @thumbnail_width;
       height: @thumbnail_height;
     }

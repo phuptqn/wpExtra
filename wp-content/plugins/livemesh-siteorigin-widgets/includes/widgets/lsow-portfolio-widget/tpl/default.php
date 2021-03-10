@@ -86,7 +86,8 @@ if ($loop->have_posts()) :
 
             $image_attrs = array(
                 'class' => 'lsow-image ' . lsow_disable_lazy_load_classes(),
-                'data-no-lazy' => 1
+                'data-no-lazy' => 1,
+                'loading' => 'eager'
             );
 
             if ($settings['image_linkable']):
@@ -104,27 +105,39 @@ if ($loop->have_posts()) :
 
             $entry_image .= apply_filters('lsow_posts_grid_thumbnail_html', $thumbnail_html, $post_id, $settings);
 
-            $image_info = '<div class="lsow-image-info">';
+            if ($settings['display_title_on_thumbnail'] || $settings['display_taxonomy_on_thumbnail']):
 
-            $image_info .= '<div class="lsow-entry-info">';
+                $image_info = '<div class="lsow-image-info">';
 
-            $image_info .= '<h3 class="lsow-post-title">';
+                $image_info .= '<div class="lsow-entry-info">';
 
-            $image_info .= '<a href="' . get_permalink()
-                . '" title="' . get_the_title()
-                . '" target="' . $settings["link_target"]
-                . '" rel="bookmark">' . get_the_title()
-                . '</a>';
+                if ($settings['display_title_on_thumbnail']):
 
-            $image_info .= '</h3>';
+                    $image_info .= '<h3 class="lsow-post-title">';
 
-            $image_info .= lsow_get_info_for_taxonomies($taxonomies);
+                    $image_info .= '<a href="' . get_permalink()
+                        . '" title="' . get_the_title()
+                        . '" target="' . $settings["link_target"]
+                        . '" rel="bookmark">' . get_the_title()
+                        . '</a>';
 
-            $image_info .= '</div>';
+                    $image_info .= '</h3>';
 
-            $image_info .= '</div><!-- .lsow-image-info -->';
+                endif;
 
-            $entry_image .= apply_filters('lsow_posts_grid_image_info', $image_info, $post_id, $settings);
+                if ($settings['display_taxonomy_on_thumbnail']):
+
+                    $image_info .= lsow_get_info_for_taxonomies($taxonomies);
+
+                endif;
+
+                $image_info .= '</div>';
+
+                $image_info .= '</div><!-- .lsow-image-info -->';
+
+                $entry_image .= apply_filters('lsow_posts_grid_image_info', $image_info, $post_id, $settings);
+
+            endif;
 
             $entry_image .= '</div>';
 
@@ -189,6 +202,20 @@ if ($loop->have_posts()) :
                 $excerpt .= '</div>';
 
                 $entry_text .= apply_filters('lsow_posts_grid_entry_excerpt', $excerpt, $post_id, $settings);
+
+            endif;
+
+            if ($settings['display_read_more']) :
+
+                $read_more_text = $settings['read_more_text'];
+
+                $read_more = '<div class="lsow-read-more">';
+
+                $read_more .= '<a href="' . get_the_permalink() . '" target="' . $settings["link_target"] . '">' . $read_more_text . '</a>';
+
+                $read_more .= '</div>';
+
+                $entry_text .= apply_filters('lsow_posts_grid_read_more_link', $read_more, $post_id, $settings);
 
             endif;
 

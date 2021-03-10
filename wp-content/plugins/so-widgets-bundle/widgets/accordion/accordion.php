@@ -14,7 +14,7 @@ class SiteOrigin_Widget_Accordion_Widget extends SiteOrigin_Widget {
 			'sow-accordion',
 			__( 'SiteOrigin Accordion', 'so-widgets-bundle' ),
 			array(
-				'description' => __( 'An accordion widget.', 'so-widgets-bundle' ),
+				'description' => __( 'An accordion to squeeze a lot of content into a small space.', 'so-widgets-bundle' ),
 				'help' => 'https://siteorigin.com/widgets-bundle/accordion-widget/',
 			),
 			array(),
@@ -37,8 +37,32 @@ class SiteOrigin_Widget_Accordion_Widget extends SiteOrigin_Widget {
 				)
 			)
 		);
+
+		add_action( 'siteorigin_widgets_enqueue_frontend_scripts_sow-accordion', array( $this, 'enqueue_widget_scripts' ) );
 	}
-	
+
+	function get_settings_form() {
+		return array(
+			'scrollto_after_change' => array(
+				'type'        => 'checkbox',
+				'label'       => __( 'Scroll top', 'so-widgets-bundle' ),
+				'default'     => true,
+				'description' => __( 'When opening the panel, scroll the user to the top of the panel.', 'so-widgets-bundle' ),
+			)
+		);
+	}
+
+	function enqueue_widget_scripts() {
+		$global_settings = $this->get_global_settings();
+		wp_localize_script(
+			'sow-accordion',
+			'sowAccordion',
+			array(
+				'scrollto_after_change' => ! empty( $global_settings['scrollto_after_change'] ),
+			)
+		);
+	}
+
 	function get_widget_form() {
 		
 		return array(
@@ -62,6 +86,12 @@ class SiteOrigin_Widget_Accordion_Widget extends SiteOrigin_Widget {
 					'content_text' => array(
 						'type'  => 'tinymce',
 						'label' => __( 'Content', 'so-widgets-bundle' ),
+						'wpautop_toggle_field' => '.siteorigin-widget-field-autop input[type="checkbox"]',
+					),
+					'autop' => array(
+						'type' => 'checkbox',
+						'default' => false,
+						'label' => __( 'Automatically add paragraphs', 'so-widgets-bundle' ),
 					),
 					'initial_state' => array(
 						'type' => 'radio',
@@ -226,7 +256,7 @@ class SiteOrigin_Widget_Accordion_Widget extends SiteOrigin_Widget {
 	}
 	
 	public function render_panel_content( $panel, $instance ) {
-		$content = wp_kses_post( $panel['content_text'] );
+		$content = $panel['autop'] ? wpautop( $panel['content_text'] ) : $panel['content_text'];
 		
 		echo apply_filters( 'siteorigin_widgets_accordion_render_panel_content', $content, $panel, $instance );
 	}

@@ -2,7 +2,7 @@
 /*
 Plugin Name: SiteOrigin Widgets Bundle
 Description: A collection of all widgets, neatly bundled into a single plugin. It's also a framework to code your own widgets on top of.
-Version: 1.16.0
+Version: 1.17.11
 Text Domain: so-widgets-bundle
 Domain Path: /lang
 Author: SiteOrigin
@@ -12,7 +12,7 @@ License: GPL3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 */
 
-define('SOW_BUNDLE_VERSION', '1.16.0');
+define('SOW_BUNDLE_VERSION', '1.17.11');
 define('SOW_BUNDLE_BASE_FILE', __FILE__);
 
 // Allow JS suffix to be pre-set
@@ -418,7 +418,7 @@ class SiteOrigin_Widgets_Bundle {
 			wp_die( __( 'Invalid request.', 'so-widgets-bundle' ), 400 );
 		}
 
-		$form_values = array_shift( array_shift( array_values( $_POST ) ) );
+		$form_values = stripslashes_deep( array_shift( array_shift( array_values( $_POST ) ) ) );
 		$widget_object->save_global_settings( $form_values );
 		
 		wp_send_json_success();
@@ -746,7 +746,7 @@ class SiteOrigin_Widgets_Bundle {
 			'dessandro-packery',
 			plugin_dir_url( SOW_BUNDLE_BASE_FILE ) . 'js/lib/packery.pkgd' . SOW_BUNDLE_JS_SUFFIX . '.js',
 			array( 'jquery' ),
-			'1.4.3',
+			'2.1.2',
 			true
 		);
 		wp_register_script(

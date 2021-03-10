@@ -14,7 +14,7 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 			'sow-button',
 			__('SiteOrigin Button', 'so-widgets-bundle'),
 			array(
-				'description' => __('A customizable button widget.', 'so-widgets-bundle'),
+				'description' => __('A powerful yet simple button widget for your sidebars or Page Builder pages.', 'so-widgets-bundle'),
 				'help' => 'https://siteorigin.com/widgets-bundle/button-widget-documentation/'
 			),
 			array(
@@ -55,6 +55,13 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 				'type' => 'checkbox',
 				'default' => false,
 				'label' => __('Open in a new window', 'so-widgets-bundle'),
+			),
+
+			'download' => array(
+				'type' => 'checkbox',
+				'default' => false,
+				'label' => __( 'Download', 'so-widgets-bundle' ),
+				'description' => __( 'The button destination URL will be downloaded when a user clicks on the button.', 'so-widgets-bundle' ),
 			),
 
 			'button_icon' => array(
@@ -140,8 +147,34 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 					'hover' => array(
 						'type' => 'checkbox',
 						'default' => true,
-						'label' => __('Use hover effects', 'so-widgets-bundle'),
+						'label' => __( 'Use hover effects', 'so-widgets-bundle' ),
+						'state_emitter' => array(
+							'callback' => 'conditional',
+							'args'     => array(
+								'hover[show]: val',
+								'hover[hide]: ! val',
+							),
+						)
 					),
+
+					'hover_background_color' => array(
+						'type' => 'color',
+						'label' => __( 'Hover background color', 'so-widgets-bundle' ),
+						'state_handler' => array(
+							'hover[show]' => array( 'show' ),
+							'hover[hide]' => array( 'hide' ),
+						)
+					),
+
+					'hover_text_color' => array(
+						'type' => 'color',
+						'label' => __( 'Hover text color', 'so-widgets-bundle' ),
+						'state_handler' => array(
+							'hover[show]' => array( 'show' ),
+							'hover[hide]' => array( 'hide' ),
+						)
+					),
+
 
 					'font' => array(
 						'type' => 'font',
@@ -264,6 +297,10 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 			$button_attributes['rel'] = 'noopener noreferrer';
 		}
 
+		if ( ! empty( $instance['download'] ) ) {
+			$button_attributes['download'] = null;
+		}
+
 		if ( ! empty( $attributes['id'] ) ) {
 			$button_attributes['id'] = $attributes['id'];
 		}
@@ -309,11 +346,15 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 	function get_less_variables($instance){
 		if( empty( $instance ) || empty( $instance['design'] ) ) return array();
 
+		$text_color = isset( $instance['design']['text_color'] ) ? $instance['design']['text_color'] : '';
+		$button_color = isset( $instance['design']['button_color'] ) ? $instance['design']['button_color'] : '';
+
 		$less_vars = array(
 			'button_width' => isset( $instance['design']['width'] ) ? $instance['design']['width'] : '',
-			'button_color' => isset($instance['design']['button_color']) ? $instance['design']['button_color'] : '',
-			'text_color' =>   isset($instance['design']['text_color']) ? $instance['design']['text_color'] : '',
-
+			'button_color' => $button_color,
+			'text_color' => $text_color,
+			'hover_text_color' => ! empty( $instance['design']['hover_text_color'] ) ? $instance['design']['hover_text_color'] : $text_color,
+			'hover_background_color' => ! empty( $instance['design']['hover_background_color'] ) ? $instance['design']['hover_background_color'] : $button_color,
 			'font_size' => isset($instance['design']['font_size']) ? $instance['design']['font_size'] . 'em' : '',
 			'rounding' => isset($instance['design']['rounding']) ? $instance['design']['rounding'] . 'em' : '',
 			'padding' => isset($instance['design']['padding']) ? $instance['design']['padding'] . 'em' : '',
@@ -330,11 +371,6 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 		return $less_vars;
 	}
 
-	function get_google_font_fields( $instance ) {
-		return array(
-			$instance['design']['font'],
-		);
-	}
 	/**
 	 * Make sure the instance is the most up to date version.
 	 *
@@ -355,6 +391,8 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 				'button_color',
 				'text_color',
 				'hover',
+				'hover_text_color',
+				'hover_background_color',
 				'font_size',
 				'rounding',
 				'padding',

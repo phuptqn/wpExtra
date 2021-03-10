@@ -1,11 +1,11 @@
 === Livemesh SiteOrigin Widgets ===
-Author URI: https://www.livemeshthemes.com/siteorigin-widgets
-Plugin URI: https://www.livemeshthemes.com/siteorigin-widgets
+Author URI: https://livemeshwp.com/siteorigin-widgets
+Plugin URI: https://livemeshwp.com/siteorigin-widgets
 Contributors: livemesh, freemius
 Tags: widget, siteorigin, siteorigin widgets bundle, siteorigin page builder, siteorigin widgets, grid, gallery, video background, portfolio, carousel, shortcode, tabs, admin, plugin, page
 Requires at least: 4.5
-Tested up to: 5.3
-Stable Tag: 2.5.9
+Tested up to: 5.6
+Stable Tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ A collection of premium quality widgets for use in any widgetized area or in Sit
 
 Livemesh SiteOrigin widgets features huge collection of premium, easy to use yet highly functional widgets that can be used in a page builder like <a href="https://wordpress.org/plugins/siteorigin-panels/" rel="nofollow">SiteOrigin</a> or in any widgetized area of your site. This is really a premium plugin that you can get for free.
 
-This plugin comes with widgets for just about everything you need to build a professional website without switching to a premium theme - hero headers, services, team profiles, statistics, testimonials, clients list, portfolio/posts grid, carousels, varieties of tabs, accordions, buttons, icon lists, pricing plan and much more in the <a href="https://www.livemeshthemes.com/siteorigin-widgets/" title="Livemesh SiteOrigin Widgets Premium Version">PRO version</a>. All the widgets that help turn your free theme into a premium one with just a few clicks. Every premium page builder element you need is available for easy drag and drop into your page by just activating this plugin.
+This plugin comes with widgets for just about everything you need to build a professional website without switching to a premium theme - hero headers, services, team profiles, statistics, testimonials, clients list, portfolio/posts grid, carousels, varieties of tabs, accordions, buttons, icon lists, pricing plan and much more in the <a href="https://livemeshwp.com/siteorigin-widgets/" title="Livemesh SiteOrigin Widgets Premium Version">PRO version</a>. All the widgets that help turn your free theme into a premium one with just a few clicks. Every premium page builder element you need is available for easy drag and drop into your page by just activating this plugin.
 
 <a href="https://wordpress.org/plugins/so-widgets-bundle/" alt="SiteOrigin Widgets Bundle" target="_blank">SiteOrigin Widgets Bundle</a> plugin must be activated to use this plugin. After you activate the required plugins, enable our widgets by going to Plugins > SiteOrigin Widgets in your WordPress admin.
 
@@ -23,45 +23,45 @@ Although not required, <a href="https://wordpress.org/plugins/siteorigin-panels/
 
 See the all of widgets in action here -
 
-<a href="https://www.livemeshthemes.com/siteorigin-widgets/widgets-demo#demo-section" title="Livemesh SiteOrigin Widgets Demo Site"><strong>LIVE DEMO</strong></a> | <a href="https://www.livemeshthemes.com/siteorigin-widgets/pricing/" title="Livemesh SiteOrigin Widgets Premium Version"><strong>PRO Version</strong></a>.
+<a href="https://livemeshwp.com/siteorigin-widgets/widgets-demo#demo-section" title="Livemesh SiteOrigin Widgets Demo Site"><strong>LIVE DEMO</strong></a> | <a href="https://livemeshwp.com/siteorigin-widgets/pricing/" title="Livemesh SiteOrigin Widgets Premium Version"><strong>PRO Version</strong></a>.
 
 The plugin comes with the following widgets. <strong>Almost all of the widgets come with a dark version.</strong> -
 
 <ul>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/services/" title="Services Extension">Services</a> that capture what you can offer for your clients/customers.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/portfolio-grid/" title="Portfolio Grid Widget">Portfolio Grid widget</a> that displays portfolio/blog entries in a nice responsive grid. Masonry and packed options are supported.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/posts-grid/" title="Posts Grid Extension">Blog Posts Grid</a> that displays portfolio/blog entries in a nice responsive grid. Masonry and packed options are supported.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/tabs/" title="Tabs Widget">Responsive Tabs</a> that function seamlessly across all devices and resolutions. The plugin features never before choice of over dozen styles of tabs to choosen from a simple widgets editor dropdown.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/accordion/" title="Accordion Module">Accordion/Toggle</a> that capture collapsible content panels when space is limited.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/hero-headers/" title="Hero Header Widget">Hero Header Widget</a> that lets you display any type of header content with option to set Parallax, YouTube or HTML5 video background.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/team-member-profiles/" title="Team Profiles Widget">Team Profiles</a> extension to display all the team members.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/odometer-counters/" title="Odometer/Counters Extension">Odometers/Counters</a> to show impressive numbers pertaining to your work or company.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/bar-charts/" title="Bar Charts">Bar charts widget</a> to capture skills or any type of percentage stats with just a few clicks in SiteOrigin Page Builder or any widgetized area of your site.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/piecharts/" title="Piecharts Extension">Animated Pie charts</a> for visual depiction of percentage stats.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/testimonials/" title="Testimonials Widget">Testimonials</a> to tell everyone the good things you often hear from your clients/customers.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/testimonial-slider/" title="Testimonial Slider Widget">Testimonials slider</a> is a responsive touch enabled slider that cycles through testimonials.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/posts-carousel/" title="Posts Carousel Extension">Post Carousel extension</a> that displays your posts as a highly responsive carousel.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/generic-carousel/" title="Generic Carousel Widget">Generic Carousel</a> element that displays lets you present a list of HTML content in a carousel.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/buttons/" title="Buttons">Flat style buttons</a> with rich set of customization options.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/icon-lists/" title="Icon List element">Icon list widget</a> that lets you use either images or icon fonts to create custom social icons list, capture payment options etc.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/services/" title="Services Extension">Services</a> that capture what you can offer for your clients/customers.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/portfolio-grid/" title="Portfolio Grid Widget">Portfolio Grid widget</a> that displays portfolio/blog entries in a nice responsive grid. Masonry and packed options are supported.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/posts-grid/" title="Posts Grid Extension">Blog Posts Grid</a> that displays portfolio/blog entries in a nice responsive grid. Masonry and packed options are supported.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/tabs/" title="Tabs Widget">Responsive Tabs</a> that function seamlessly across all devices and resolutions. The plugin features never before choice of over dozen styles of tabs to choosen from a simple widgets editor dropdown.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/accordion/" title="Accordion Module">Accordion/Toggle</a> that capture collapsible content panels when space is limited.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/hero-headers/" title="Hero Header Widget">Hero Header Widget</a> that lets you display any type of header content with option to set Parallax, YouTube or HTML5 video background.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/team-member-profiles/" title="Team Profiles Widget">Team Profiles</a> extension to display all the team members.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/odometer-counters/" title="Odometer/Counters Extension">Odometers/Counters</a> to show impressive numbers pertaining to your work or company.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/bar-charts/" title="Bar Charts">Bar charts widget</a> to capture skills or any type of percentage stats with just a few clicks in SiteOrigin Page Builder or any widgetized area of your site.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/piecharts/" title="Piecharts Extension">Animated Pie charts</a> for visual depiction of percentage stats.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/testimonials/" title="Testimonials Widget">Testimonials</a> to tell everyone the good things you often hear from your clients/customers.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/testimonial-slider/" title="Testimonial Slider Widget">Testimonials slider</a> is a responsive touch enabled slider that cycles through testimonials.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/posts-carousel/" title="Posts Carousel Extension">Post Carousel extension</a> that displays your posts as a highly responsive carousel.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/generic-carousel/" title="Generic Carousel Widget">Generic Carousel</a> element that displays lets you present a list of HTML content in a carousel.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/buttons/" title="Buttons">Flat style buttons</a> with rich set of customization options.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/icon-lists/" title="Icon List element">Icon list widget</a> that lets you use either images or icon fonts to create custom social icons list, capture payment options etc.</li>
 <li>Heading styles to capture effective headings for your page sections.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/clients-widget/" title="Clients List Element">Clients List</a> extension to showcase the clients that you have handled.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/pricing-table/" title="Pricing Table Extension">Pricing Plans</a> to help get more sales.</li></ul>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/clients-widget/" title="Clients List Element">Clients List</a> extension to showcase the clients that you have handled.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/pricing-table/" title="Pricing Table Extension">Pricing Plans</a> to help get more sales.</li></ul>
 
-The <strong><a href="https://www.livemeshthemes.com/siteorigin-widgets/" title="Livemesh SiteOrigin Widgets Pro" target="_blank">PRO version</a></strong> of the plugin comes with additional SiteOrigin widgets and advanced features added to elements above -
+The <strong><a href="https://livemeshwp.com/siteorigin-widgets/" title="Livemesh SiteOrigin Widgets Pro" target="_blank">PRO version</a></strong> of the plugin comes with additional SiteOrigin widgets and advanced features added to elements above -
 
 <ul>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/sliders/" title="Image Slider Extension">Image Slider</a> to create a responsive slider of images with support for captions, multiple slider types like Nivo, Flex, Slick and lightweight sliders, thumbnail navigation etc.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/image-gallery/" title="Image Gallery Widget">Image Gallery</a> widget that lets you create a grid of images with options for masonry or fit rows, pagination, lazy load, lightbox support etc. </li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/video-gallery/" title="Video Gallery Widget">Video Gallery</a> to build a beautiful grid of videos to help showcase a collection of YouTube/Vimeo videos on your site.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/gallery-carousel/" title="Image Carousel">Image Carousel</a> for a responsive carousel of images.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/gallery-carousel/" title="Video Carousel">Video Carousel</a> for creation of a responsive carousel of YouTube/Vimeo videos.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/faq-widget/" title="FAQ Element">FAQ element</a> to display a set of Frequently Asked Questions in a page.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/features-widget/" title="Features Widget">Features Widget</a> for showcasing product features or services provided by an agency/business.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/services-advanced/" title="Advanced Services">Advanced Services</a> with additional styles and animations for services widget.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/sliders/" title="Image Slider Extension">Image Slider</a> to create a responsive slider of images with support for captions, multiple slider types like Nivo, Flex, Slick and lightweight sliders, thumbnail navigation etc.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/image-gallery/" title="Image Gallery Widget">Image Gallery</a> widget that lets you create a grid of images with options for masonry or fit rows, pagination, lazy load, lightbox support etc. </li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/video-gallery/" title="Video Gallery Widget">Video Gallery</a> to build a beautiful grid of videos to help showcase a collection of YouTube/Vimeo videos on your site.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/gallery-carousel/" title="Image Carousel">Image Carousel</a> for a responsive carousel of images.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/gallery-carousel/" title="Video Carousel">Video Carousel</a> for creation of a responsive carousel of YouTube/Vimeo videos.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/faq-widget/" title="FAQ Element">FAQ element</a> to display a set of Frequently Asked Questions in a page.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/features-widget/" title="Features Widget">Features Widget</a> for showcasing product features or services provided by an agency/business.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/services-advanced/" title="Advanced Services">Advanced Services</a> with additional styles and animations for services widget.</li>
 <li>Countdown widget to display a countdown timer on your site pages such as those that feature events or under construction/coming soon pages.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/portfolio-grid-pro/" title="Posts Grid">Lazy Load</a> - The portfolio/post grid and image gallery widgets incorporate option to lazy load posts/images with the click of a Load More button.</li>
-<li><a href="https://www.livemeshthemes.com/siteorigin-widgets/portfolio-grid-pro/" title="Posts Grid">Pagination</a> - Create a grid of posts or custom post types with AJAX based pagination support. </li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/portfolio-grid-pro/" title="Posts Grid">Lazy Load</a> - The portfolio/post grid and image gallery widgets incorporate option to lazy load posts/images with the click of a Load More button.</li>
+<li><a href="https://livemeshwp.com/siteorigin-widgets/portfolio-grid-pro/" title="Posts Grid">Pagination</a> - Create a grid of posts or custom post types with AJAX based pagination support. </li>
 <li>Lightbox Support - The premium version of Livemesh SiteOrigin Widgets plugin comes with support for Lightbox for grid and carousel widgets.</li>
 <li>Customizations - Ability to choose custom font size, color or hover color for certain widgets. More coming.</li>
 <li>Custom Fonts - Ability to choose custom fonts from Google Fonts library for headings in heading widget and the hero header widget.</li>
@@ -72,8 +72,7 @@ The <strong><a href="https://www.livemeshthemes.com/siteorigin-widgets/" title="
 
 <strong>Important: You must activate widgets you need to use from Plugins &gt; SiteOrigin Widgets so that they can be available to use.</strong>.
 
-Do you have suggestions to make or want to be notified of important updates? Reach out to us on Twitter -
-http://twitter.com/live_mesh
+You can view the change log for the Premium version of the plugin at <a href="https://livemeshwp.com/siteorigin-widgets/change-log/" title="Livemesh SiteOrigin Widgets Premium Change Log" target="_blank">https://livemeshwp.com/siteorigin-widgets/change-log/</a>.
 
 == Installation ==
 
@@ -84,13 +83,13 @@ http://twitter.com/live_mesh
 4. If you need page builder functions, install and activate the <strong>optional plugin</strong> <a href="https://wordpress.org/plugins/siteorigin-panels/" rel="nofollow">Page Builder by SiteOrigin</a>.
 5. For Portfolio widget, install and activate the <strong>optional plugin</strong> <a href="https://wordpress.org/plugins/portfolio-post-type/" title="Portfolio Post Type">Portfolio Post Type plugin</a>. The Portfolio widget is built using custom post type registered by this plugin.
 
-Optionally, if you have <a href="https://www.livemeshthemes.com/siteorigin-widgets/" title="Livemesh SiteOrigin Widgets Pro" target="_blank">premium version</a> installed, you can import the sample data that replicates the demo site for you by importing the file sample-data.xml file located in the plugin directory. The import option is available under Tools &gt; Import in WordPress admin.
+Optionally, if you have <a href="https://livemeshwp.com/siteorigin-widgets/" title="Livemesh SiteOrigin Widgets Pro" target="_blank">premium version</a> installed, you can import the sample data that replicates the demo site for you by importing the file sample-data.xml file located in the plugin directory. The import option is available under Tools &gt; Import in WordPress admin.
 
 == Support ==
 
 The premium version of the plugin entitles you to quick support with replies posted within 24 hours (on week days).
 
-Please submit your support query through our <a href="https://www.livemeshthemes.com/siteorigin-widgets/contact-us/" title="Livemesh Contact form">website contact form</a>. This will create a support ticket in our support portal.
+Please submit your support query through our <a href="https://livemeshwp.com/siteorigin-widgets/contact-us/" title="Livemesh Contact form">website contact form</a>. This will create a support ticket in our support portal.
 
 == Frequently Asked Questions ==
 
@@ -123,6 +122,17 @@ Pls install and activate the <a href="https://wordpress.org/plugins/portfolio-po
 
 == Changelog ==
 
+
+
+= 2.7.0 =
+* Updated - Move to new domain livemeshwp.com
+* Updated - Compatibility with WP 5.5
+
+= 2.6.0 =
+* Added - Options to turn off/on title and taxonomy terms displayed on posts grid thumbnail
+* Added - Options to turn off/on title and taxonomy terms displayed on posts carousel thumbnail
+* Added - Open in new window option for post links in posts carousel and posts grid
+* Added - Ability to add read more link for the posts carousel and posts grid
 
 = 2.5.9 =
 * Tweak - Enabled lazy load for all the widgets except for the Posts Grid addon. Posts Grid utilizes the popular Isotope library for laying out grid elements and Isotope library is not compatible with lazy loading of images.

@@ -13,7 +13,7 @@ class SiteOrigin_Widget_Features_Widget extends SiteOrigin_Widget {
 			'sow-features',
 			__( 'SiteOrigin Features', 'so-widgets-bundle' ),
 			array(
-				'description' => __( 'Displays a list of features.', 'so-widgets-bundle' ),
+				'description' => __( 'Displays a block of features with icons.', 'so-widgets-bundle' ),
 				'help'        => 'https://siteorigin.com/widgets-bundle/features-widget-documentation/'
 			),
 			array(),
@@ -321,17 +321,6 @@ class SiteOrigin_Widget_Features_Widget extends SiteOrigin_Widget {
 				'default'     => '520px',
 				'description' => __( 'This setting controls when the features widget will collapse for mobile devices. The default value is 520px', 'so-widgets-bundle' )
 			)
-		);
-	}
-
-	function get_google_font_fields( $instance ) {
-
-		$fonts = $instance['fonts'];
-
-		return array(
-			$fonts['title_options']['font'],
-			$fonts['text_options']['font'],
-			$fonts['more_text_options']['font'],
 		);
 	}
 }

@@ -1,42 +1,50 @@
 <?php
 /*
-Plugin Name: TinyMCE Advanced
-Plugin URI: http://www.laptoptips.ca/projects/tinymce-advanced/
+Plugin Name: Advanced Editor Tools (previously TinyMCE Advanced)
+Plugin URI: https://wordpress.org/plugins/tinymce-advanced/
 Description: Extends and enhances the block editor (Gutenberg) and the classic editor (TinyMCE).
-Version: 5.3.0
-Author: Andrew Ozz
-Author URI: http://www.laptoptips.ca/
+Version: 5.6.0
+Requires at least: 5.6
+Tested up to: 5.6
+Requires PHP: 5.6
+Author: Automattic
+Author URI: https://automattic.com
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: tinymce-advanced
 
 
-TinyMCE Advanced is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
+Advanced Editor Tools (previously TinyMCE Advanced) is free software: you can
+redistribute it and/or modifyit under the terms of the GNU General Public License
+as published bythe Free Software Foundation, either version 2 of the License, or
 any later version.
 
-TinyMCE Advanced is distributed in the hope that it will be useful,
+Advanced Editor Tools is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along
-with TinyMCE Advanced or WordPress. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
+with Advanced Editor Tools or WordPress. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 
-Copyright (c) 2007-2019 Andrew Ozz. All rights reserved.
+Copyright (c) 2007-2020 Automattic, Inc. All rights reserved.
 */
+
+/**
+ * Main plugin file.
+ * @package advanced-editor-tools
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists('Tinymce_Advanced') ) :
+if ( ! class_exists( 'Advanced_Editor_Tools' ) ) :
 
-class Tinymce_Advanced {
+class Advanced_Editor_Tools {
 
-	private $required_wp_version = '5.2';
-	private $plugin_version = 5210;
+	private $required_wp_version = '5.6-alpha';
+	private $plugin_version = 5600;
 
 	private $user_settings;
 	private $admin_settings;
@@ -75,10 +83,12 @@ class Tinymce_Advanced {
 			'toolbar_3' => '',
 			'toolbar_4' => '',
 
-			'toolbar_classic_block' => 'formatselect,bold,italic,blockquote,bullist,numlist,alignleft,aligncenter,alignright,link,forecolor,backcolor,table,wp_help',
-			'toolbar_block' => 'core/image',
-			'toolbar_block_side' => 'tadv/sup,tadv/sub,core/strikethrough,core/code,tadv/mark,tadv/removeformat',
-			'panels_block' => 'tadv/color-panel,tadv/background-color-panel',
+			'toolbar_classic_block' => 'formatselect,bold,italic,blockquote,bullist,numlist,alignleft,aligncenter,alignright,' .
+				'link,forecolor,backcolor,table,wp_help',
+
+			'toolbar_block'      => 'core/code,core/image,core/strikethrough,tadv/mark,tadv/removeformat',
+			'toolbar_block_side' => 'core/superscript,core/subscript,core/underline',
+			'panels_block'       => 'tadv/color-panel,tadv/background-color-panel',
 		);
 	}
 
@@ -153,14 +163,15 @@ class Tinymce_Advanced {
 	//		'core/italic' => array( 'name' => 'Italic', 'icon' => '<span class="dashicons dashicons-editor-italic"></span>' ),
 	//		'core/link'   => array( 'name' => 'Insert/edit link', 'icon' => '<span class="dashicons dashicons-admin-links"></span>' ),
 			'core/strikethrough' => array( 'name' => 'Strikethrough', 'icon' => '<span class="dashicons dashicons-editor-strikethrough"></span>' ),
-			'core/code'   => array( 'name' => 'Code', 'icon' => '<span class="dashicons dashicons-editor-code"></span>' ),
+			'core/code' => array( 'name' => 'Code', 'icon' => '<span class="dashicons dashicons-editor-code"></span>' ),
 
-			'core/image'  => array( 'name' => 'Inline Image', 'icon' => '<span class="dashicons">' . $inline_img_icon . '</span>' ),
+			'core/image' => array( 'name' => 'Inline Image', 'icon' => '<span class="dashicons">' . $inline_img_icon . '</span>' ),
+			'core/text-color' => array( 'name' => 'Text Color', 'icon' => '<span class="dashicons dashicons-editor-textcolor"></span>' ),
 
-			'tadv/mark'   => array( 'name' => 'Mark', 'icon' => '<span class="dashicons dashicons-editor-textcolor"></span>' ),
+			'tadv/mark' => array( 'name' => 'Mark', 'icon' => '<span class="dashicons dashicons-editor-textcolor"></span>' ),
 			'tadv/removeformat' => array( 'name' => 'Clear formatting', 'icon' => '<span class="dashicons dashicons-editor-removeformatting"></span>' ),
-			'tadv/sup'    => array( 'name' => 'Superscript', 'icon' => '<span class="mce-ico mce-i-superscript"></span>' ),
-			'tadv/sub'    => array( 'name' => 'Subscript', 'icon' => '<span class="mce-ico mce-i-subscript"></span>' ),
+			'core/superscript' => array( 'name' => 'Superscript', 'icon' => '<span class="mce-ico mce-i-superscript"></span>' ),
+			'core/subscript' => array( 'name' => 'Subscript', 'icon' => '<span class="mce-ico mce-i-subscript"></span>' ),
 			'core/underline' => array( 'name' => 'Underline', 'icon' => '<span class="dashicons dashicons-editor-underline"></span>' ),
 		);
 
@@ -178,8 +189,6 @@ class Tinymce_Advanced {
 	}
 
 	public function __construct() {
-		register_activation_hook( __FILE__, array( $this, 'update_settings' ) );
-
 		if ( is_admin() ) {
 			add_action( 'admin_menu', array( $this, 'add_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -366,7 +375,7 @@ class Tinymce_Advanced {
 			<?php
 
 			printf(
-				__( 'TinyMCE Advanced requires WordPress version %1$s or newer. It appears that you are running %2$s. This can make the editor unstable.', 'tinymce-advanced' ),
+				__( 'Advanced Editor Tools requires WordPress version %1$s or newer. It appears that you are running %2$s. This can make the editor unstable.', 'tinymce-advanced' ),
 				$this->required_wp_version,
 				esc_html( $wp_version )
 			);
@@ -399,13 +408,14 @@ class Tinymce_Advanced {
 			return;
 		}
 
-		if ( ! $version || $version < 4000 ) {
+		if ( $version < 4000 ) {
 			// First install or upgrade to TinyMCE 4.0
 			$this->user_settings = $this->get_default_user_settings();
 			$this->admin_settings = $this->get_default_admin_settings();
 
 			update_option( 'tadv_settings', $this->user_settings );
 			update_option( 'tadv_admin_settings', $this->admin_settings );
+			update_option( 'tadv_version', $this->plugin_version );
 
 			// Clean out old options
 			delete_option('tadv_options');
@@ -416,70 +426,111 @@ class Tinymce_Advanced {
 			delete_option('tadv_btns3');
 			delete_option('tadv_btns4');
 			delete_option('tadv_allbtns');
-		} else {
-			$admin_settings = get_option( 'tadv_admin_settings', false );
-			$user_settings = get_option( 'tadv_settings', false );
-			$user_defaults = $this->get_default_user_settings();
 
-			if ( $version < 5000 ) {
-				// Update for WP 5.0
-				$admin_5000 = ! empty( $admin_settings['options'] ) ? $admin_settings['options'] : '';
-				$user_5000 = ! empty( $user_settings['options'] ) ? $user_settings['options'] : '';
-
-				if ( empty( $admin_5000 ) ) {
-					$admin_5000 = 'hybrid_mode,classic_paragraph_block';
-				} elseif ( strpos( $admin_5000, 'no_hybrid_mode' ) !== false ) {
-					$admin_5000 = str_replace( 'no_hybrid_mode', 'classic_paragraph_block', $admin_5000 );
-				} else {
-					$admin_5000 .= ',hybrid_mode,classic_paragraph_block';
-				}
-
-				if ( empty( $user_5000 ) ) {
-					$user_5000 = 'menubar_block,merge_toolbars';
-				} elseif ( strpos( $user_5000, 'no_merge_toolbars' ) !== false ) {
-					$user_5000 = str_replace( 'no_merge_toolbars', 'menubar_block', $user_5000 );
-				} else {
-					$user_5000 .= ',menubar_block,merge_toolbars';
-				}
-
-				if ( empty( $user_settings['toolbar_block'] ) ) {
-					$user_settings['toolbar_block'] = $user_defaults['toolbar_block'];
-					$user_settings['toolbar_block_side'] = $user_defaults['toolbar_block_side'];
-					$user_settings['panels_block'] = $user_defaults['panels_block'];
-				}
-
-				$admin_settings['options'] = $admin_5000;
-				$user_settings['options'] = $user_5000;
-			}
-
-			if ( $version < 5200 ) {
-				// Update for 5.2, table options
-				if ( empty( $admin_settings ) || ! is_array( $admin_settings ) ) {
-					$admin_settings = array(
-						'options' => 'table_resize_bars,table_grid,table_tab_navigation,table_advtab',
-					);
-				} elseif ( empty( $admin_settings['options'] ) || ! is_string( $admin_settings['options'] ) ) {
-					$admin_settings['options'] = 'table_resize_bars,table_grid,table_tab_navigation,table_advtab';
-				} else {
-					$admin_settings['options'] .= ',table_resize_bars,table_grid,table_tab_navigation,table_advtab';
-				}
-
-				if ( ! empty( $user_settings['toolbar_block'] ) ) {
-					// Remove previously manageable buttons...
-					$toolbar_block_5200 = str_replace( array( 'core/bold', 'core/italic', 'core/link' ), '', $user_settings['toolbar_block'] );
-					$user_settings['toolbar_block'] = trim( $toolbar_block_5200, ' ,' );
-				}
-
-				if ( empty( $user_settings['toolbar_block'] ) ) {
-					$user_settings['toolbar_block'] = 'core/image';
-				} else {
-					$user_settings['toolbar_block'] = $user_settings['toolbar_block'] . ',core/image';
-				}
-			}
-
-			update_option( 'tadv_admin_settings', $admin_settings );
-			update_option( 'tadv_settings', $user_settings );
+			return;
 		}
+
+		$admin_settings = get_option( 'tadv_admin_settings', false );
+		$user_settings = get_option( 'tadv_settings', false );
+		$user_defaults = $this->get_default_user_settings();
+
+		if ( $version < 5000 ) {
+			// Update for WP 5.0
+			$admin_5000 = ! empty( $admin_settings['options'] ) ? $admin_settings['options'] : '';
+			$user_5000 = ! empty( $user_settings['options'] ) ? $user_settings['options'] : '';
+
+			if ( empty( $admin_5000 ) ) {
+				$admin_5000 = 'hybrid_mode,classic_paragraph_block';
+			} elseif ( strpos( $admin_5000, 'no_hybrid_mode' ) !== false ) {
+				$admin_5000 = str_replace( 'no_hybrid_mode', 'classic_paragraph_block', $admin_5000 );
+			} else {
+				$admin_5000 .= ',hybrid_mode,classic_paragraph_block';
+			}
+
+			if ( empty( $user_5000 ) ) {
+				$user_5000 = 'menubar_block,merge_toolbars';
+			} elseif ( strpos( $user_5000, 'no_merge_toolbars' ) !== false ) {
+				$user_5000 = str_replace( 'no_merge_toolbars', 'menubar_block', $user_5000 );
+			} else {
+				$user_5000 .= ',menubar_block,merge_toolbars';
+			}
+
+			if ( empty( $user_settings['toolbar_block'] ) ) {
+				$user_settings['toolbar_block'] = $user_defaults['toolbar_block'];
+				$user_settings['toolbar_block_side'] = $user_defaults['toolbar_block_side'];
+				$user_settings['panels_block'] = $user_defaults['panels_block'];
+			}
+
+			$admin_settings['options'] = $admin_5000;
+			$user_settings['options'] = $user_5000;
+		}
+
+		if ( $version < 5200 ) {
+			// Update for 5.2, table options
+			if ( empty( $admin_settings ) || ! is_array( $admin_settings ) ) {
+				$admin_settings = array(
+					'options' => 'table_resize_bars,table_grid,table_tab_navigation,table_advtab',
+				);
+			} elseif ( empty( $admin_settings['options'] ) || ! is_string( $admin_settings['options'] ) ) {
+				$admin_settings['options'] = 'table_resize_bars,table_grid,table_tab_navigation,table_advtab';
+			} else {
+				$admin_settings['options'] .= ',table_resize_bars,table_grid,table_tab_navigation,table_advtab';
+			}
+
+			if ( ! empty( $user_settings['toolbar_block'] ) ) {
+				// Remove previously manageable buttons...
+				$toolbar_block_5200 = str_replace( array( 'core/bold', 'core/italic', 'core/link' ), '', $user_settings['toolbar_block'] );
+				$user_settings['toolbar_block'] = trim( $toolbar_block_5200, ' ,' );
+			}
+
+			if ( empty( $user_settings['toolbar_block'] ) ) {
+				$user_settings['toolbar_block'] = 'core/image';
+			} else {
+				$user_settings['toolbar_block'] = $user_settings['toolbar_block'] . ',core/image';
+			}
+		}
+
+		// Add the new text colot popup in 5.4 if 'tadv/color-panel' is not enabled.
+		// 'core/text-color' duplicates the functionality...
+		if ( $version < 5400 ) {
+			if ( ! empty( $user_settings['panels_block'] ) && is_string( $user_settings['panels_block'] ) ) {
+				$has_color_panel = ( strpos( $user_settings['panels_block'], 'tadv/color-panel' ) !== false );
+			} else {
+				$has_color_panel = false;
+			}
+
+			if ( ! $has_color_panel ) {
+				if ( empty( $user_settings['toolbar_block'] ) ) {
+					$user_settings['toolbar_block'] = 'core/text-color';
+				} else {
+					$user_settings['toolbar_block'] = $user_settings['toolbar_block'] . ',core/text-color';
+				}
+			}
+		}
+
+		// Fix/rename 'tadv/sup', 'tadv/sub' to 'core/superscript', 'core/subscript' as these were added to Gutenberg in WP 5.5.
+		if ( $version < 5500 ) {
+			$replace = array(
+				'tadv/sup',
+				'tadv/sub',
+			);
+
+			$with = array(
+				'core/superscript',
+				'core/subscript',
+			);
+
+			if ( ! empty( $user_settings['toolbar_block'] ) ) {
+				$user_settings['toolbar_block'] = str_replace( $replace, $with, $user_settings['toolbar_block'] );
+			}
+
+			if ( ! empty( $user_settings['toolbar_block_side'] ) ) {
+				$user_settings['toolbar_block_side'] = str_replace( $replace, $with, $user_settings['toolbar_block_side'] );
+			}
+		}
+
+		update_option( 'tadv_admin_settings', $admin_settings );
+		update_option( 'tadv_settings', $user_settings );
 
 		// Current version
 		update_option( 'tadv_version', $this->plugin_version );
@@ -1080,7 +1131,7 @@ class Tinymce_Advanced {
 		} elseif ( ! empty( $_POST[ 'toolbar_block' ] ) && is_array( $_POST[ 'toolbar_block' ] ) ) {
 			$settings[ 'toolbar_block' ] = $this->validate_settings( $_POST[ 'toolbar_block' ], $this->block_buttons_filter );
 		} else {
-			$settings[ 'toolbar_block' ] = array();
+			$settings[ 'toolbar_block' ] = '';
 		}
 
 		if ( ! empty( $user_settings[ 'toolbar_block_side' ] ) ) {
@@ -1088,7 +1139,7 @@ class Tinymce_Advanced {
 		} elseif ( ! empty( $_POST[ 'toolbar_block_side' ] ) && is_array( $_POST[ 'toolbar_block_side' ] ) ) {
 			$settings[ 'toolbar_block_side' ] = $this->validate_settings( $_POST[ 'toolbar_block_side' ], $this->block_buttons_filter );
 		} else {
-			$settings[ 'toolbar_block_side' ] = array();
+			$settings[ 'toolbar_block_side' ] = '';
 		}
 
 		if ( ! empty( $user_settings[ 'panels_block' ] ) ) {
@@ -1102,6 +1153,15 @@ class Tinymce_Advanced {
 
 			if ( ! empty( $_POST[ 'selected_text_background_color' ] ) && $_POST[ 'selected_text_background_color' ] === 'yes' ) {
 				$panels_block[] = 'tadv/background-color-panel';
+			}
+
+			// core/text-color is a duplicate of tadv/color-panel :(
+			// Remove it if both are set
+			$toolbar_block = explode( ',', $settings[ 'toolbar_block' ] );
+
+			if ( in_array( 'tadv/color-panel', $panels_block, true ) && in_array( 'core/text-color', $toolbar_block, true ) ) {
+				$toolbar_block = array_diff( $toolbar_block, array( 'core/text-color' ) );
+				$settings[ 'toolbar_block' ] = implode( ',', $toolbar_block );
 			}
 
 			$panels_block = implode( ',', $panels_block );
@@ -1268,7 +1328,9 @@ class Tinymce_Advanced {
 	}
 
 	public function add_menu() {
-		add_options_page( 'TinyMCE Advanced', 'TinyMCE Advanced', 'manage_options', 'tinymce-advanced', array( $this, 'settings_page' ) );
+		$page_title      = __( 'Advanced Editor Tools', 'tinymce-advanced' );
+		$menu_item_label = __( 'Advanced Editor Tools (TinyMCE Advanced)', 'tinymce-advanced' );
+		add_options_page( $page_title, $menu_item_label, 'manage_options', 'tinymce-advanced', array( $this, 'settings_page' ) );
 	}
 
 	/**
@@ -1276,8 +1338,7 @@ class Tinymce_Advanced {
 	 */
 	public function add_settings_link( $links, $file ) {
 		if (
-			strpos( $file, '/tinymce-advanced.php' ) !== false &&
-			plugin_basename( __FILE__ ) === $file &&
+			strrpos( $file, '/tinymce-advanced.php' ) === ( strlen( $file ) - 21 ) &&
 			current_user_can( 'manage_options' )
 		) {
 			$settings_link = sprintf( '<a href="%s">%s</a>', admin_url( 'options-general.php?page=tinymce-advanced' ), __( 'Settings', 'tinymce-advanced' ) );
@@ -1289,5 +1350,5 @@ class Tinymce_Advanced {
 	}
 }
 
-new Tinymce_Advanced;
+new Advanced_Editor_Tools;
 endif;

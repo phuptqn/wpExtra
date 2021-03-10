@@ -132,6 +132,11 @@ class LSOW_Tabs_Widget extends SiteOrigin_Widget
     {
         $this->register_frontend_scripts( array( array( 'lsow-tabs', plugin_dir_url( __FILE__ ) . 'js/tabs' . LSOW_JS_SUFFIX . '.js', array( 'jquery' ) ) ) );
         $this->register_frontend_styles( array( array(
+            'lsow-icomoon',
+            LSOW_PLUGIN_URL . 'assets/css/icomoon.css',
+            array(),
+            LSOW_VERSION
+        ), array(
             'lsow-frontend',
             LSOW_PLUGIN_URL . 'assets/css/lsow-frontend.css',
             array(),

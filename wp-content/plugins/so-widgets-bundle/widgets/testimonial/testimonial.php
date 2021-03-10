@@ -1,7 +1,7 @@
 <?php
 /*
 Widget Name: Testimonials
-Description: Display some testimonials.
+Description: Share your product or service testimonials in a variety of different ways.
 Author: SiteOrigin
 Author URI: https://siteorigin.com
 Documentation: https://siteorigin.com/widgets-bundle/testimonials-widget/
@@ -14,7 +14,7 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 			'sow-testimonials',
 			__('SiteOrigin Testimonials', 'so-widgets-bundle'),
 			array(
-				'description' => __('Share your product/service testimonials in a variety of different ways.', 'so-widgets-bundle'),
+				'description' => __('Share your product or service testimonials in a variety of different ways.', 'so-widgets-bundle'),
 				'help' => 'https://siteorigin.com/widgets-bundle/testimonial-widget-documentation/'
 			),
 			array(
@@ -269,6 +269,11 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 						),
 						'default' => 'side',
 					),
+
+					'equalize_testimonial_height' => array(
+						'type' => 'checkbox',
+						'label' => __('Equalize testimonial height', 'so-widgets-bundle'),
+					),
 				),
 			),
 		);
@@ -312,6 +317,7 @@ class SiteOrigin_Widgets_Testimonials_Widget extends SiteOrigin_Widget {
 			'testimonial_size' => round(100/$instance['settings']['per_line'], 4) . '%',
 			'testimonial_padding' => intval($instance['design']['padding']) . 'px',
 			'testimonial_background' => $instance['design']['colors']['testimonial_background'],
+			'equalize_testimonial_height' => ! empty( $instance['design']['equalize_testimonial_height'] ) ? 'true' : 'false',
 
 			// The text block
 			'text_border_radius' => intval($instance['design']['border_radius']) . 'px',

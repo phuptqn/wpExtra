@@ -85,12 +85,12 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
             'type'   => 'section',
             'label'  => __( 'Settings', 'livemesh-so-widgets' ),
             'fields' => array(
-            'filterable'      => array(
+            'filterable'                    => array(
             'type'    => 'checkbox',
             'label'   => __( 'Filterable?', 'livemesh-so-widgets' ),
             'default' => true,
         ),
-            'layout_mode'     => array(
+            'layout_mode'                   => array(
             'type'          => 'select',
             'label'         => __( 'Choose a layout for the grid', 'livemesh-so-widgets' ),
             'state_emitter' => array(
@@ -103,12 +103,12 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
             'masonry' => __( 'Masonry', 'livemesh-so-widgets' ),
         ),
         ),
-            'image_linkable'  => array(
+            'image_linkable'                => array(
             'type'    => 'checkbox',
             'label'   => __( 'Link the image to the post/portfolio?', 'livemesh-so-widgets' ),
             'default' => true,
         ),
-            'link_target'     => array(
+            'link_target'                   => array(
             'type'    => 'select',
             'label'   => __( 'Post Link Target', 'livemesh-so-widgets' ),
             'default' => '_self',
@@ -117,22 +117,42 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
             '_blank' => __( 'New Window', 'livemesh-so-widgets' ),
         ),
         ),
-            'image_size'      => array(
+            'image_size'                    => array(
             'type'    => 'image-size',
             'label'   => __( 'Image Size', 'livemesh-so-widgets' ),
             'default' => 'large',
         ),
-            'display_title'   => array(
+            'display_title_on_thumbnail'    => array(
+            'type'    => 'checkbox',
+            'label'   => __( 'Display project title on post/project thumbnail?', 'livemesh-so-widgets' ),
+            'default' => true,
+        ),
+            'display_taxonomy_on_thumbnail' => array(
+            'type'    => 'checkbox',
+            'label'   => __( 'Display taxonomy info on post/project thumbnail?', 'livemesh-so-widgets' ),
+            'default' => false,
+        ),
+            'display_title'                 => array(
             'type'    => 'checkbox',
             'label'   => __( 'Display project title for the post/portfolio?', 'livemesh-so-widgets' ),
             'default' => true,
         ),
-            'display_summary' => array(
+            'display_summary'               => array(
             'type'    => 'checkbox',
             'label'   => __( 'Display project excerpt/summary for the post/portfolio?', 'livemesh-so-widgets' ),
             'default' => true,
         ),
-            'post_meta'       => array(
+            'display_read_more'             => array(
+            'type'    => 'checkbox',
+            'label'   => __( 'Display read more link to the post/portfolio?', 'livemesh-so-widgets' ),
+            'default' => false,
+        ),
+            'read_more_text'                => array(
+            'type'    => 'text',
+            'label'   => __( 'Read More Text', 'livemesh-so-widgets' ),
+            'default' => __( 'Read More', 'livemesh-so-widgets' ),
+        ),
+            'post_meta'                     => array(
             'type'   => 'section',
             'label'  => __( 'Post Meta', 'livemesh-so-widgets' ),
             'fields' => array(
@@ -153,7 +173,7 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
         ),
         ),
         ),
-            'per_line'        => array(
+            'per_line'                      => array(
             'type'    => 'slider',
             'label'   => __( 'Columns per row', 'livemesh-so-widgets' ),
             'min'     => 1,
@@ -161,7 +181,7 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
             'integer' => true,
             'default' => 3,
         ),
-            'per_line_tablet' => array(
+            'per_line_tablet'               => array(
             'type'    => 'slider',
             'label'   => __( 'Columns per row in Tablet Resolution', 'livemesh-so-widgets' ),
             'min'     => 1,
@@ -169,7 +189,7 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
             'integer' => true,
             'default' => 2,
         ),
-            'per_line_mobile' => array(
+            'per_line_mobile'               => array(
             'type'    => 'slider',
             'label'   => __( 'Columns per row in Mobile Resolution', 'livemesh-so-widgets' ),
             'min'     => 1,
@@ -177,13 +197,13 @@ class LSOW_Portfolio_Widget extends SiteOrigin_Widget
             'integer' => true,
             'default' => 1,
         ),
-            'gutter'          => array(
+            'gutter'                        => array(
             'type'        => 'number',
             'label'       => __( 'Gutter', 'livemesh-so-widgets' ),
             'description' => __( 'Space between columns in masonry grid.', 'livemesh-so-widgets' ),
             'default'     => 20,
         ),
-            'responsive'      => array(
+            'responsive'                    => array(
             'type'   => 'section',
             'label'  => __( 'Responsive', 'livemesh-so-widgets' ),
             'hide'   => true,
